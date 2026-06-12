@@ -1,0 +1,1128 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PDF Redactor Pro User Guide - OCR, PII Detection and PDF Redaction</title>
+  <meta name="description" content="Learn how to use PDF Redactor Pro for offline PDF redaction, OCR, automatic PII detection, batch processing, address blocks, face detection and object inspection.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://pdfredact.pro/help.html">
+  <link rel="icon" href="assets/PRP.ico">
+  <meta property="og:title" content="PDF Redactor Pro User Guide">
+  <meta property="og:description" content="Instructions for offline PDF redaction, OCR, PII detection, batch processing and other PDF Redactor Pro tools.">
+  <meta property="og:url" content="https://pdfredact.pro/help.html">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://pdfredact.pro/assets/social-preview.png">
+  <meta property="og:image:alt" content="PDF Redactor Pro - Secure PDF Redaction and OCR">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PDF Redactor Pro User Guide">
+  <meta name="twitter:description" content="Instructions for offline PDF redaction, OCR, PII detection and batch processing.">
+  <meta name="twitter:image" content="https://pdfredact.pro/assets/social-preview.png">
+    <script>
+    window.PRP_GA_ID = 'G-NYWCCW67BT';
+    window.PRP_COOKIE_CHOICE_KEY = 'prp_analytics_consent';
+    function prpIsProductionHost() {
+      return location.hostname === 'pdfredact.pro' || location.hostname === 'www.pdfredact.pro';
+    }
+    function prpLoadAnalytics() {
+      if (!prpIsProductionHost() || window.PRP_ANALYTICS_LOADED) return;
+      window.PRP_ANALYTICS_LOADED = true;
+      var gaScript = document.createElement('script');
+      gaScript.async = true;
+      gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=' + window.PRP_GA_ID;
+      document.head.appendChild(gaScript);
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function(){ dataLayer.push(arguments); };
+      gtag('js', new Date());
+      gtag('config', window.PRP_GA_ID, { anonymize_ip: true });
+    }
+    try {
+      if (localStorage.getItem(window.PRP_COOKIE_CHOICE_KEY) === 'accepted') {
+        prpLoadAnalytics();
+      }
+    } catch (e) {}
+  </script>
+  <style>
+    :root {
+      --bg:       #f7f8fa;
+      --bg2:      #ffffff;
+      --bg3:      #f0f2f6;
+      --border:   #e2e6ee;
+      --border2:  #d0d5e0;
+      --text:     #2c3245;
+      --text2:    #5a6278;
+      --text3:    #8e97ab;
+      --heading:  #111827;
+      --accent:   #2563eb;
+      --accent-l: #eff4ff;
+      --accent2:  #be185d;
+      --ok:       #16a34a;
+      --ok-bg:    #f0fdf4;
+      --warn:     #92400e;
+      --warn-bg:  #fffbeb;
+      --note-bg:  #eff6ff;
+      --sidebar-w: 240px;
+      --header-h:  54px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    /* ── TOP BAR ── */
+    .topbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--header-h);
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 0 20px;
+      z-index: 200;
+      box-shadow: 0 1px 4px rgba(0,0,0,.06);
+    }
+    .topbar-logo {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--heading);
+      white-space: nowrap;
+      letter-spacing: -.01em;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+    .topbar-logo span { color: var(--accent); }
+    .topbar-logo:hover { color: var(--accent); }
+    .topbar-logo:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+    .topbar-divider { width:1px; height:22px; background:var(--border); flex-shrink:0; }
+
+    /* Search */
+    .search-wrap { flex:1; max-width:400px; position:relative; }
+    .search-wrap .ico {
+      position:absolute; left:10px; top:50%; transform:translateY(-50%);
+      color:var(--text3); pointer-events:none; font-size:14px;
+    }
+    #guideSearch {
+      width:100%; padding:7px 30px 7px 32px;
+      background:var(--bg3); border:1px solid var(--border);
+      border-radius:8px; color:var(--text);
+      font-family:inherit; font-size:13.5px; outline:none;
+      transition:border-color .15s, box-shadow .15s;
+    }
+    #guideSearch::placeholder { color:var(--text3); }
+    #guideSearch:focus { border-color:var(--accent); box-shadow:0 0 0 3px rgba(37,99,235,.12); }
+    #searchClear {
+      display:none; position:absolute; right:8px; top:50%; transform:translateY(-50%);
+      background:none; border:none; color:var(--text3); cursor:pointer; font-size:15px; padding:2px 4px;
+    }
+    #searchClear:hover { color:var(--text); }
+    #searchResults {
+      display:none; position:absolute; top:calc(100% + 6px); left:0; right:0;
+      background:#fff; border:1px solid var(--border2); border-radius:10px;
+      box-shadow:0 8px 32px rgba(0,0,0,.12); overflow:hidden; z-index:300;
+      max-height:320px; overflow-y:auto;
+    }
+    .sr-item { display:block; padding:10px 14px; border-bottom:1px solid var(--border); cursor:pointer; text-decoration:none; transition:background .1s; }
+    .sr-item:last-child { border-bottom:none; }
+    .sr-item:hover { background:var(--bg3); }
+    .sr-title { font-weight:600; font-size:13.5px; color:var(--heading); }
+    .sr-snip { font-size:12.5px; color:var(--text2); margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .sr-empty { padding:14px; text-align:center; color:var(--text2); font-size:13px; }
+    mark { background:rgba(37,99,235,.18); color:var(--heading); border-radius:2px; padding:0 1px; }
+
+    #sidebarToggle {
+      display:none; background:none; border:1px solid var(--border);
+      color:var(--text); border-radius:7px; padding:6px 10px; cursor:pointer; font-size:15px;
+    }
+
+    /* ── LAYOUT ── */
+    .layout { display:flex; padding-top:var(--header-h); min-height:100vh; }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      position:fixed; top:var(--header-h); left:0; bottom:0;
+      width:var(--sidebar-w); background:#fff;
+      border-right:1px solid var(--border);
+      overflow-y:auto; padding:16px 0 32px; z-index:100;
+      transition:transform .3s;
+    }
+    .sidebar::-webkit-scrollbar { width:4px; }
+    .sidebar::-webkit-scrollbar-thumb { background:var(--border2); border-radius:2px; }
+    .sidebar-label {
+      font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+      color:var(--text3); padding:0 16px 8px;
+    }
+    .nav-link {
+      display:flex; align-items:center; gap:9px;
+      padding:8px 16px; color:var(--text2); text-decoration:none;
+      font-size:13.5px; font-weight:500;
+      border-left:2px solid transparent;
+      transition:color .12s, background .12s, border-color .12s;
+    }
+    .nav-link:hover { color:var(--heading); background:var(--bg3); }
+    .nav-link.active { color:var(--accent); border-left-color:var(--accent); background:var(--accent-l); }
+    .nav-icon { width:16px; height:16px; flex-shrink:0; }
+
+    /* ── CONTENT ── */
+    .content {
+      margin-left:var(--sidebar-w);
+      flex:1;
+      padding:40px 0 calc(80px + 45vh);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+    }
+    .inner {
+      width:100%;
+      max-width:780px;
+      padding:0 36px;
+    }
+
+    /* ── PROGRESS ── */
+    #progress {
+      position:fixed; top:var(--header-h); left:0; height:2px;
+      background:var(--accent); transition:width .1s linear; z-index:201;
+    }
+
+    /* ── BANNER ── */
+    .banner {
+      border-radius:12px; overflow:hidden; margin-bottom:32px;
+      border:1px solid var(--border);
+      box-shadow:0 2px 12px rgba(0,0,0,.07);
+    }
+    .banner img { display:block; width:100%; height:auto; }
+
+    /* ── HERO ── */
+    .hero-title {
+      font-size:30px; font-weight:800; color:var(--heading);
+      line-height:1.18; margin-bottom:10px; letter-spacing:-.02em;
+    }
+    .hero-sub { font-size:15px; color:var(--text2); max-width:600px; margin-bottom:6px; }
+    .hero-note { font-size:12px; color:var(--text3); margin-bottom:36px; }
+
+    /* ── SECTIONS ── */
+    section {
+      width:100%; scroll-margin-top:calc(var(--header-h) + 20px);
+      margin-bottom:56px;
+    }
+    h2 {
+      font-size:20px; font-weight:700; color:var(--heading);
+      margin-bottom:14px; padding-bottom:12px;
+      border-bottom:2px solid var(--border);
+      display:flex; align-items:center; gap:10px;
+    }
+    .s-icon {
+      width:32px; height:32px; border-radius:8px;
+      background:var(--accent-l); color:var(--accent);
+      display:inline-flex; align-items:center; justify-content:center;
+      font-size:15px; flex-shrink:0;
+    }
+    h3 { font-size:14.5px; font-weight:700; color:var(--heading); margin:20px 0 7px; }
+    p { margin-bottom:12px; }
+    ul, ol { padding-left:22px; margin-bottom:14px; }
+    li { margin:5px 0; }
+
+    /* ── CALLOUTS ── */
+    .note, .tip, .warning {
+      border-radius:8px; padding:11px 14px 11px 40px;
+      margin:14px 0; font-size:13.5px; position:relative; line-height:1.55;
+    }
+    .note::before, .tip::before, .warning::before {
+      position:absolute; left:13px; top:12px; font-size:14px;
+    }
+    .note    { background:var(--note-bg); border:1px solid #bfdbfe; color:#1e40af; }
+    .tip     { background:var(--ok-bg);   border:1px solid #bbf7d0; color:#15803d; }
+    .warning { background:var(--warn-bg); border:1px solid #fde68a; color:var(--warn); }
+    .note::before    { content:'ℹ'; }
+    .tip::before     { content:'✦'; }
+    .warning::before { content:'⚠'; }
+
+    /* ── FIGURE ── */
+    figure {
+      margin:18px 0 26px; border:1px solid var(--border);
+      border-radius:10px; overflow:hidden; background:var(--bg3);
+    }
+    figure img { display:block; width:100%; height:auto; cursor:zoom-in; }
+    figcaption {
+      padding:8px 14px; font-size:12.5px; color:var(--text2);
+      border-top:1px solid var(--border); background:#fff;
+    }
+
+    /* ── GRID ── */
+    .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:14px 0 18px; }
+    .card {
+      background:#fff; border:1px solid var(--border);
+      border-radius:10px; padding:14px 16px;
+      transition:box-shadow .15s, border-color .15s;
+    }
+    .card:hover { border-color:var(--accent); box-shadow:0 2px 12px rgba(37,99,235,.08); }
+    .card h3 { margin-top:0; margin-bottom:6px; font-size:13.5px; }
+    .card p { font-size:13px; margin:0; color:var(--text2); }
+
+    /* ── BUTTON LABELS ── */
+    .btn {
+      display:inline-block; background:var(--bg3); border:1px solid var(--border2);
+      border-radius:5px; padding:1px 7px;
+      font-size:12.5px; font-weight:700; color:var(--accent2);
+      font-family:"Consolas","Courier New",monospace;
+      white-space:nowrap;
+    }
+    code {
+      background:var(--bg3); border:1px solid var(--border);
+      padding:1px 6px; border-radius:5px;
+      font-family:"Consolas","Courier New",monospace;
+      font-size:12.5px; color:var(--ok);
+    }
+
+    /* ── STEPS ── */
+    .steps { list-style:none; padding:0; counter-reset:steps; margin-bottom:14px; }
+    .steps li {
+      counter-increment:steps;
+      display:flex; gap:12px; align-items:flex-start;
+      padding:11px 0; border-bottom:1px solid var(--border);
+    }
+    .steps li:last-child { border-bottom:none; }
+    .steps li::before {
+      content:counter(steps);
+      min-width:26px; height:26px; background:var(--accent);
+      color:#fff; font-weight:700; font-size:12.5px; border-radius:50%;
+      display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px;
+    }
+
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      position:fixed; inset:0; z-index:999;
+      display:none; align-items:center; justify-content:center;
+      background:rgba(10,14,24,.82); padding:24px;
+    }
+    .lightbox.open { display:flex; }
+    .lightbox img {
+      max-width:min(96vw,1400px); max-height:90vh;
+      border-radius:8px; border:1px solid #444;
+      box-shadow:0 20px 60px rgba(0,0,0,.5); cursor:zoom-out;
+    }
+    .lb-close {
+      position:fixed; top:16px; right:20px;
+      background:#fff; border:none; border-radius:8px;
+      padding:7px 16px; font-size:13px; font-weight:600;
+      cursor:pointer; color:var(--heading);
+    }
+    .lb-close:hover { background:var(--bg3); }
+
+    /* ── BACK TO TOP ── */
+    #backTop {
+      position:fixed; bottom:24px; right:24px;
+      width:38px; height:38px; background:#fff;
+      border:1px solid var(--border2); border-radius:10px;
+      display:flex; align-items:center; justify-content:center;
+      cursor:pointer; color:var(--text2);
+      opacity:0; transform:translateY(8px);
+      transition:opacity .2s, transform .2s, color .15s;
+      z-index:150; box-shadow:0 2px 8px rgba(0,0,0,.1);
+    }
+    #backTop.show { opacity:1; transform:translateY(0); }
+    #backTop:hover { color:var(--accent); border-color:var(--accent); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width:860px) {
+      .sidebar { transform:translateX(-100%); }
+      .sidebar.open { transform:translateX(0); box-shadow:4px 0 20px rgba(0,0,0,.15); }
+      .content { margin-left:0; }
+      .inner { padding:0 20px; }
+      #sidebarToggle { display:block; }
+      .grid2 { grid-template-columns:1fr; }
+      .hero-title { font-size:24px; }
+    }
+  
+
+    /* ── LIGHT REDESIGN 2026-06 ── */
+    :root {
+      --bg: #f6f7fb;
+      --bg2: #ffffff;
+      --bg3: #f1f3f8;
+      --border: #e4e7ef;
+      --border2: #cfd5e2;
+      --text: #303447;
+      --text2: #5d6478;
+      --text3: #8b94aa;
+      --heading: #111827;
+      --accent: #ff3f8f;
+      --accent-l: #fff0f7;
+      --accent2: #6d5dfc;
+      --ok: #10a36f;
+    }
+    body {
+      background:
+        radial-gradient(circle at 8% 0%, rgba(255,63,143,.08), transparent 26rem),
+        radial-gradient(circle at 92% 8%, rgba(109,93,252,.10), transparent 26rem),
+        var(--bg);
+    }
+    .topbar {
+      background: rgba(255,255,255,.88);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 10px 30px rgba(17,24,39,.06);
+    }
+    .topbar-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+    }
+    .topbar-logo::before {
+      content: "";
+      width: 24px; height: 24px; border-radius: 8px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 8px 18px rgba(255,63,143,.28);
+    }
+    .topbar-logo span { color: var(--accent); }
+    .topbar-cta, .btn-primary, .btn-send {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 14px 30px rgba(255,63,143,.24);
+    }
+    .topbar-cta:hover, .btn-primary:hover, .btn-send:hover {
+      background: linear-gradient(135deg, #f0247c, #5b4be8) !important;
+    }
+    .layout { max-width: 1180px; }
+    .sidebar, .content-card, .guide-hero, .note, .warning, .steps li, .screenshot-card {
+      border-color: rgba(228,231,239,.95);
+      box-shadow: 0 12px 30px rgba(17,24,39,.05);
+    }
+    .guide-hero {
+      background: linear-gradient(135deg, rgba(255,255,255,.94), rgba(255,240,247,.72));
+    }
+    h1 em, .accent-text {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-style: normal;
+    }
+    .sidebar a:hover, .sidebar a.active { color: var(--accent); background: var(--accent-l); }
+
+    .site-footer {
+      margin-left: var(--sidebar-w);
+      background: #fff;
+      border-top: 1px solid var(--border);
+      padding: 28px 20px;
+      text-align: center;
+      color: var(--text3);
+      font-size: 13px;
+    }
+    .site-footer .footer-badge { margin: 0 0 12px; }
+    .site-footer .footer-badge a { display: inline-flex; align-items: center; opacity: .86; transition: opacity .15s, transform .15s; }
+    .site-footer .footer-badge a:hover { opacity: 1; transform: translateY(-1px); }
+    .site-footer .footer-badge img { display: block; max-width: 150px; height: auto; }
+
+    @media (max-width: 860px) {
+      .site-footer { margin-left: 0; }
+      .sidebar { box-shadow: none; }
+    }
+
+
+    /* ── SERIOUS CORPORATE HELP OVERRIDE 2026-06 ── */
+    :root {
+      --bg: #f6f8fb;
+      --bg2: #ffffff;
+      --bg3: #eef2f7;
+      --border: #dfe5ee;
+      --border2: #c8d0dc;
+      --text: #2f3543;
+      --text2: #596273;
+      --text3: #8a94a6;
+      --heading: #101828;
+      --accent: #0f4c81;
+      --accent-l: #eef6ff;
+      --accent2: #d98200;
+      --ok: #0f7a55;
+    }
+    body {
+      background:
+        radial-gradient(circle at 8% 0%, rgba(15,76,129,.07), transparent 30rem),
+        radial-gradient(circle at 92% 8%, rgba(217,130,0,.08), transparent 28rem),
+        var(--bg);
+    }
+    .topbar {
+      background: rgba(255,255,255,.94);
+      backdrop-filter: blur(10px);
+      border-bottom-color: rgba(223,229,238,.95);
+      box-shadow: 0 8px 24px rgba(16,24,40,.06);
+    }
+    .topbar-logo::before {
+      background: linear-gradient(135deg, #0b2239, var(--accent));
+      box-shadow: 0 8px 18px rgba(15,76,129,.18);
+    }
+    .topbar-logo span { color: var(--accent2); }
+    .layout {
+      width: 100%;
+      max-width: none;
+    }
+    .content {
+      margin-left: var(--sidebar-w);
+      width: calc(100% - var(--sidebar-w));
+      align-items: center;
+      padding-left: 32px;
+      padding-right: 32px;
+    }
+    .inner {
+      width: min(100%, 860px);
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 0;
+      padding-right: 0;
+    }
+    .guide-hero {
+      background: linear-gradient(135deg, rgba(255,255,255,.96), rgba(238,246,255,.82));
+    }
+    h1 em, .accent-text {
+      background: linear-gradient(135deg, #0f4c81, #d98200);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-style: normal;
+    }
+    .sidebar a:hover, .sidebar a.active { color: var(--accent); background: var(--accent-l); }
+    .sidebar, .content-card, .guide-hero, .note, .warning, .steps li, .screenshot-card {
+      box-shadow: 0 10px 28px rgba(16,24,40,.05);
+    }
+    #progress { background: var(--accent2); }
+    @media (max-width: 860px) {
+      .content { margin-left: 0; width: 100%; padding-left: 20px; padding-right: 20px; }
+      .inner { width: 100%; }
+    }
+
+
+    /* Keep short inline examples such as 1,3,5-8 together. */
+    .content code,
+    .content .inline-example {
+      display: inline-block;
+      white-space: nowrap;
+    }
+
+
+    /* Use the real application icon in the header logo */
+    .topbar-logo::before {
+      content: "";
+      width: 28px;
+      height: 28px;
+      flex: 0 0 28px;
+      border-radius: 6px;
+      background: url("assets/PRP.ico") center / contain no-repeat !important;
+      box-shadow: none !important;
+    }
+
+    .cookie-consent{position:fixed;left:18px;right:18px;bottom:18px;max-width:980px;margin:0 auto;display:none;align-items:center;justify-content:space-between;gap:18px;padding:16px 18px;background:rgba(255,255,255,.97);border:1px solid var(--border);border-radius:14px;box-shadow:0 18px 55px rgba(15,23,42,.18);z-index:1000;backdrop-filter:blur(12px)}
+    .cookie-consent.show{display:flex}
+    .cookie-consent p{margin:0;color:var(--text2);font-size:13.5px;line-height:1.55}
+    .cookie-consent strong{color:var(--ink)}
+    .cookie-actions{display:flex;gap:10px;flex-shrink:0;flex-wrap:wrap}
+    .cookie-btn{border:1px solid var(--border2);border-radius:9px;padding:9px 14px;font:inherit;font-size:13px;font-weight:700;cursor:pointer;background:#fff;color:var(--ink)}
+    .cookie-btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+    .policy-links{max-width:1120px;margin:0 auto;padding:0 18px 28px;text-align:center;font-size:13px;color:var(--muted)}
+    .policy-links a{color:var(--accent);text-decoration:none;font-weight:600}
+    .policy-links a:hover{text-decoration:underline}
+    @media(max-width:720px){.cookie-consent{align-items:stretch;flex-direction:column}.cookie-actions{width:100%}.cookie-btn{flex:1}}
+
+    .cookie-settings-modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 22px;
+      background: rgba(15, 23, 42, .55);
+      z-index: 1400;
+    }
+    .cookie-settings-modal.show { display: flex; }
+    .cookie-settings-panel {
+      width: min(520px, 100%);
+      background: #fff;
+      border: 1px solid var(--border, var(--line, #e2e6ee));
+      border-radius: 16px;
+      box-shadow: 0 28px 80px rgba(15,23,42,.30);
+      padding: 22px;
+      color: var(--text, var(--ink, #2c3245));
+    }
+    .cookie-settings-panel h2 {
+      margin: 0 0 8px;
+      color: var(--heading, var(--ink, #111827));
+      font-size: 22px;
+      line-height: 1.2;
+    }
+    .cookie-settings-panel p {
+      margin: 0 0 14px;
+      color: var(--text2, var(--muted, #5a6278));
+      font-size: 14px;
+      line-height: 1.55;
+    }
+    .cookie-status {
+      margin: 14px 0 18px;
+      padding: 12px 14px;
+      border-radius: 11px;
+      background: #f8fafc;
+      border: 1px solid var(--border, var(--line, #e2e6ee));
+      font-size: 13.5px;
+      color: var(--text2, var(--muted, #5a6278));
+    }
+    .cookie-status strong { color: var(--heading, var(--ink, #111827)); }
+    .cookie-settings-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+    .cookie-settings-actions .cookie-btn { min-width: 110px; }
+    @media (max-width: 540px) {
+      .cookie-settings-actions { flex-direction: column; }
+      .cookie-settings-actions .cookie-btn { width: 100%; }
+    }
+
+  </style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<!-- TOP BAR -->
+<header class="topbar">
+  <button id="sidebarToggle" aria-label="Menu">☰</button>
+  <a href="index.html" class="topbar-logo" aria-label="PDF Redactor Pro home">PDF Redactor <span>Pro</span></a>
+  <div class="topbar-divider"></div>
+  <div class="search-wrap">
+    <span class="ico">🔍</span>
+    <input type="search" id="guideSearch" placeholder="Search guide…" autocomplete="off" spellcheck="false">
+    <button id="searchClear" aria-label="Clear">✕</button>
+    <div id="searchResults"></div>
+  </div>
+</header>
+
+<!-- LAYOUT -->
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-label">Navigation</div>
+    <a href="#quick-start" class="nav-link" data-s="quick-start">
+      <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="3,2 14,8 3,14"/></svg>Quick Start
+    </a>
+    <a href="#files" class="nav-link" data-s="files">
+      <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 2h6l3 3v9H3z"/><path d="M9 2v3h3"/></svg>Files
+    </a>
+    <a href="#page-specific" class="nav-link" data-s="page-specific">
+      <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="5" height="5" rx="1"/><rect x="9" y="2" width="5" height="5" rx="1"/><rect x="2" y="9" width="5" height="5" rx="1"/><path d="M9 11l2 2 4-5"/></svg>Page-specific
+    </a>
+    <a href="#preview" class="nav-link" data-s="preview">
+      <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><ellipse cx="8" cy="8" rx="7" ry="4.5"/><circle cx="8" cy="8" r="2"/></svg>Live Preview
+    </a>
+    <a href="#search" class="nav-link" data-s="search">
+      <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="7" cy="7" r="5"/><path d="M11.5 11.5l3 3"/></svg>Search
+    </a>
+    <a href="#regex" class="nav-link" data-s="regex">
+      <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 4h12M2 8h6M2 12h12"/><path d="M11 6l3 2-3 2"/></svg>RegEx / Rules
+    </a>
+    <a href="#auto" class="nav-link" data-s="auto">
+      <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="1" y="1" width="6" height="6" rx="1"/><rect x="9" y="1" width="6" height="6" rx="1"/><rect x="1" y="9" width="6" height="6" rx="1"/><rect x="9" y="9" width="6" height="6" rx="1"/></svg>Auto Detection
+    </a>
+    <a href="#address" class="nav-link" data-s="address">
+      <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 1C5.5 1 4 3 4 5.5c0 3.5 4 8 4 8s4-4.5 4-8C12 3 10.5 1 8 1z"/><circle cx="8" cy="5.5" r="1.5"/></svg>Address Blocks
+    </a>
+    <a href="#allowlist" class="nav-link" data-s="allowlist">
+      <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 8l2 2 4-4"/><rect x="1" y="1" width="14" height="14" rx="2"/></svg>Allowlist
+    </a>
+    <a href="#faces" class="nav-link" data-s="faces">
+      <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="8" cy="8" r="6"/><circle cx="6" cy="7" r=".8" fill="currentColor"/><circle cx="10" cy="7" r=".8" fill="currentColor"/><path d="M5.5 10.5s1 1.5 2.5 1.5 2.5-1.5 2.5-1.5"/></svg>Face Detection
+    </a>
+    <a href="#objects" class="nav-link" data-s="objects">
+      <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="1" y="1" width="8" height="8" rx="1"/><rect x="7" y="7" width="8" height="8" rx="1"/></svg>Objects
+    </a>
+    <a href="#ocr" class="nav-link" data-s="ocr">
+      <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 4h12M2 8h8M2 12h10"/></svg>OCR
+    </a>
+    <a href="#options" class="nav-link" data-s="options">
+      <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="8" cy="8" r="2"/><path d="M8 2v2m0 8v2M2 8h2m8 0h2m-2.1-3.9-1.4 1.4M5.5 10.5l-1.4 1.4m0-7 1.4 1.4m4.1 4.1 1.4 1.4"/></svg>Options
+    </a>
+    <a href="#batch" class="nav-link" data-s="batch">
+      <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 4h12M2 8h12M2 12h7"/><path d="M11 10l4 2-4 2"/></svg>Batch Workflows
+    </a>
+    <a href="#troubleshooting" class="nav-link" data-s="troubleshooting">
+      <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="8" cy="8" r="6"/><path d="M8 5v4"/><circle cx="8" cy="11.5" r=".6" fill="currentColor"/></svg>Troubleshooting
+    </a>
+  </nav>
+
+  <!-- CONTENT -->
+  <main class="content">
+    <div class="inner">
+
+      <div class="banner">
+        <img src="assets/social-preview.png" alt="PDF Redactor Pro">
+      </div>
+
+      <h1 class="hero-title">PDF Redactor Pro<br>User Guide</h1>
+      <p class="hero-sub">A practical guide to manual redaction, text search, automatic detection, OCR, object inspection, batch processing and presets.</p>
+      <p class="hero-note">This guide is stored locally with the application. External links open only when you choose product, support or video tutorial buttons.</p>
+
+      <!-- QUICK START -->
+      <section id="quick-start">
+        <h2><span class="s-icon">▶</span> Quick Start</h2>
+        <ol class="steps">
+          <li>Open one PDF or choose a source folder and click <span class="btn">Find PDFs</span>.</li>
+          <li>Choose redaction tools: manual Draw areas, Search, Auto detection, Objects or OCR.</li>
+          <li>Turn on <span class="btn">Live Preview</span> to review detected areas before applying changes.</li>
+          <li>Use <span class="btn">Apply Redaction</span> to create redacted output files in the selected output folder.</li>
+        </ol>
+        <div class="warning"><strong>Always review the output PDF.</strong> Redaction permanently changes the generated copy. Keep original files unchanged.</div>
+      </section>
+
+      <!-- FILES -->
+      <section id="files">
+        <h2><span class="s-icon">📄</span> Files Tab</h2>
+        <p>The Files tab controls input/output folders, the file list, one-by-one processing, fill style and page mode.</p>
+        <figure>
+          <img src="assets/files.png" alt="Files tab">
+          <figcaption>Load folders or a single PDF, manage the file list, choose output folder and select page mode.</figcaption>
+        </figure>
+        <h3>File List</h3>
+        <ul>
+          <li><span class="btn">Find PDFs</span> scans the selected source folder.</li>
+          <li><span class="btn">Open Single PDF</span> loads one file for review.</li>
+          <li><span class="btn">Remove selected</span> and <span class="btn">Clear files</span> manage the list without changing files on disk.</li>
+        </ul>
+        <h3>Page Mode</h3>
+        <p>Choose whether redaction applies to the current page, all pages, a page range, or a custom page list such as <code>1,3,5-8</code>.</p>
+      </section>
+
+      <!-- PAGE-SPECIFIC -->
+      <section id="page-specific">
+        <h2><span class="s-icon">🗂️</span> Page-specific Draw and Page-specific Rules</h2>
+        <p>Use these options from the Files tab when a long PDF does not have the same layout on every page. They let you work page by page without losing the normal Search, Auto and Object workflows.</p>
+        <figure>
+          <img src="assets/page-specific-rules.png" alt="Page-specific Draw and Page-specific Rules">
+          <figcaption>Page-specific modes are useful for mixed-layout PDFs where different pages need different manual or automatic redaction settings.</figcaption>
+        </figure>
+        <div class="grid2">
+          <div class="card"><h3>Page-specific Draw</h3><p>Use this for long PDFs where different pages need different manual Draw areas. Draw areas are saved only for the page where they are drawn, while Search, Auto and Object rules still work normally across the document.</p></div>
+          <div class="card"><h3>Page-specific Rules</h3><p>Advanced mode for long PDFs. The app saves redaction settings separately for each page, including PII, Face Detect, Address Blocks, Search, RegEx, Currency, Objects and manual Draw areas.</p></div>
+          <div class="card"><h3>Pages without saved rules</h3><p>If a page has no saved page-specific rules, it uses the base settings. This keeps regular pages simple while allowing exceptions only where the layout changes.</p></div>
+          <div class="card"><h3>Performance note</h3><p>Page-specific Rules can make Live Preview and processing slower on very large documents because the app has to check saved settings page by page.</p></div>
+        </div>
+        <div class="tip">Practical workflow: start with Page-specific Draw for manual page-by-page rectangles. Use Page-specific Rules only when automatic settings also need to change between pages.</div>
+      </section>
+
+      <!-- LIVE PREVIEW -->
+      <section id="preview">
+        <h2><span class="s-icon">👁</span> Live Preview</h2>
+        <p>Live Preview shows the areas that will be redacted. Different detection types use different overlay colors, which can be changed in Options.</p>
+        <figure>
+          <img src="assets/live-preview.png" alt="Live Preview">
+          <figcaption>Manual, text search, PII, currency, address and object areas are shown before applying redaction.</figcaption>
+        </figure>
+        <ul>
+          <li><span class="btn">Area</span> selects and moves existing manual areas.</li>
+          <li><span class="btn">Draw</span> creates manual redaction areas.</li>
+          <li><span class="btn">Copy Text</span> copies selected PDF text to the clipboard.</li>
+          <li><span class="btn">Live Preview</span> toggles preview overlays.</li>
+          <li><span class="btn">Preset</span> opens quick preset selection.</li>
+        </ul>
+      </section>
+
+      <!-- SEARCH -->
+      <section id="search">
+        <h2><span class="s-icon">🔍</span> Search Tab</h2>
+        <p>The Search tab is for text-based redaction rules. It works best on normal text PDFs or OCR-searchable copies.</p>
+        <figure>
+          <img src="assets/search.png" alt="Search tab">
+          <figcaption>Exact phrase search, text-based area redaction, additional text-based area redaction and simple contextual search.</figcaption>
+        </figure>
+        <div class="grid2">
+          <div class="card"><h3>Exact Text Search</h3><p>Redacts exact words or phrases. Each line is treated as a separate search phrase. Multi-line matching can be enabled for phrases split across lines.</p></div>
+          <div class="card"><h3>Text-Based Area Redaction</h3><p>Finds a keyword and redacts an area near it. Use Auto-fit for value-like fields or set area width and height manually.</p></div>
+          <div class="card"><h3>Colon Label Redaction</h3><p>Use this for invoice-style fields where the value follows a label and colon, such as <em>Total:</em>, <em>Account:</em> or <em>Vendor No:</em>.</p></div>
+          <div class="card"><h3>Additional Text-Based Area</h3><p>A second independent keyword-to-area block for complex documents that need two different area rules.</p></div>
+          <div class="card"><h3>Simple Contextual Search</h3><p>Finds text near keywords at a specified distance. Useful for labels such as Total, Subtotal, Amount and similar fields.</p></div>
+        </div>
+      </section>
+
+      <!-- REGEX / RULES -->
+      <section id="regex">
+        <h2><span class="s-icon">🧩</span> RegEx and Area Rules</h2>
+        <p>Version 2.79 adds more control for pattern-based redaction and structured document layouts. Use these tools when simple text search is not enough.</p>
+        <div class="grid2">
+          <div class="card"><h3>RegEx Area Redaction</h3><p>Find a regular-expression match and redact an area next to, above or below it. This is useful for account numbers, invoice fields and IDs that appear near stable labels.</p></div>
+          <div class="card"><h3>Send to RegEx Module</h3><p>When a RegEx rule already exists, additional rules should be added on a new line. Keep one pattern per line for easier review and testing.</p></div>
+          <div class="card"><h3>Currency Codes</h3><p>Currency amount detection can include symbols and ISO-like currency codes. Review selected codes to avoid hiding unrelated short words.</p></div>
+          <div class="card"><h3>RegEx match only</h3><p>Use match-only mode when the pattern itself is the sensitive value. Use directional area modes when the sensitive value is near a stable RegEx anchor.</p></div>
+        </div>
+        <figure>
+          <img src="assets/regex-area-redaction.gif" alt="RegEx Area Redaction">
+          <figcaption>RegEx-based area redaction is best for structured documents with repeatable labels and values.</figcaption>
+        </figure>
+        <div class="tip">Best practice: test RegEx rules on one PDF first, check Live Preview, then save the settings as a preset before batch processing.</div>
+      </section>
+
+      <!-- AUTO -->
+      <section id="auto">
+        <h2><span class="s-icon">⚡</span> Auto Detection Tab</h2>
+        <p>The Auto tab groups automatic detectors: PII, currency amounts, address blocks, custom RegEx, allowlist protection and tables.</p>
+        <figure>
+          <img src="assets/auto.png" alt="Auto tab">
+          <figcaption>Automatic detection can be combined with Search and manual Draw areas.</figcaption>
+        </figure>
+        <h3>PII Detection</h3>
+        <p>Detects common personal data such as email addresses, phone numbers, SSNs, card-like numbers, dates and faces. Use date format selection to reduce false positives.</p>
+        <h3>Currency Amounts</h3>
+        <p>Finds money values using selected currency symbols, currency codes and extended matching methods. In v2.79, review currency-code selections carefully when documents contain short uppercase abbreviations.</p>
+        <figure>
+          <img src="assets/currency-codes.png" alt="Currency codes">
+          <figcaption>Currency-code matching is useful for invoices, statements and financial reports.</figcaption>
+        </figure>
+        <h3>Custom Pattern Detection (RegEx)</h3>
+        <p>Use regular expressions for document-specific formats, such as account numbers, custom IDs or phone formats not covered by PII presets. Keep rules readable and place separate patterns on separate lines.</p>
+      </section>
+
+      <!-- ADDRESS -->
+      <section id="address">
+        <h2><span class="s-icon">📍</span> Address Blocks</h2>
+        <p>Address Blocks detect address-like text using labels, postal codes, street words and optional user-provided address words.</p>
+        <figure>
+          <img src="assets/address-blocks.png" alt="Address Blocks">
+          <figcaption>Address detection can find complete address lines and blocks rather than only a single postal code.</figcaption>
+        </figure>
+        <ul>
+          <li><strong>Profile</strong> selects regional address rules.</li>
+          <li><strong>Mode</strong> controls detection strictness.</li>
+          <li><strong>Expand above / below</strong> lets you include nearby lines manually.</li>
+          <li><strong>Keep same column</strong> helps avoid grabbing unrelated text in adjacent columns.</li>
+        </ul>
+        <div class="tip">If a block is not detected automatically, add reliable address words or use Search tab area redaction for that document type.</div>
+      </section>
+
+      <!-- ALLOWLIST -->
+      <section id="allowlist">
+        <h2><span class="s-icon">✅</span> Keep Visible / Allowlist</h2>
+        <p>The Allowlist protects specific values from automatic redaction. This is useful when you need to hide all matching values except one approved number, email, account code or reference.</p>
+        <figure>
+          <img src="assets/allowlist.png" alt="Allowlist">
+          <figcaption>Detected phone numbers are hidden while the allowlisted number remains visible.</figcaption>
+        </figure>
+        <ul>
+          <li>Enter one value per line.</li>
+          <li>Enable normalization for phone and number formatting when documents use inconsistent spacing or punctuation.</li>
+          <li>Dense documents can take longer because every automatic match is checked against the allowlist.</li>
+        </ul>
+      </section>
+
+      <!-- FACES -->
+      <section id="faces">
+        <h2><span class="s-icon">🫥</span> Face Detection</h2>
+        <p>Face Detection is part of automatic PII redaction. It is designed to affect photos or scanned images containing human faces, not all images in the document.</p>
+        <figure>
+          <img src="assets/face-detection.gif" alt="Face Detection">
+          <figcaption>Use face detection for resumes, ID-like documents and files containing photos.</figcaption>
+        </figure>
+        <ul>
+          <li><strong>Scan DPI</strong> controls detection quality and speed.</li>
+          <li><strong>Shape</strong> can use rectangle or oval-style redaction preview.</li>
+          <li><strong>Effect</strong> controls final redaction style where supported.</li>
+        </ul>
+        <div class="warning">Review Face Detection results carefully. Photos, logos and graphic layouts vary, and no automatic visual detector is perfect.</div>
+      </section>
+
+      <!-- OBJECTS -->
+      <section id="objects">
+        <h2><span class="s-icon">🔲</span> Objects Tab</h2>
+        <p>The Objects tab handles images, PDF annotations/stamps, visible object inspection, headers and footers.</p>
+        <figure>
+          <img src="assets/safe-annotation-delete_object-inspector.png" alt="Objects tab">
+          <figcaption>Visible Object Inspector helps review objects before adding them to Draw areas or safely deleting supported annotation types.</figcaption>
+        </figure>
+        <h3>Image Handling</h3>
+        <p>Hide all images or filter images by pixel dimensions. Use full-page image handling only when you intentionally need to process scanned-image pages.</p>
+        <h3>Annotations / Stamps</h3>
+        <p>Removes supported PDF annotation objects such as Stamp, FreeText, Ink and markup annotations. These are separate PDF objects and can often be removed without covering page content underneath.</p>
+        <h3>Visible Object Inspector</h3>
+        <ul>
+          <li><span class="btn">Scan</span> lists visible objects on the current page.</li>
+          <li><span class="btn">Pick</span> helps select an object from the page.</li>
+          <li><span class="btn">Add</span> adds selected object rectangles to normal Draw areas for review.</li>
+          <li><span class="btn">Delete</span> safely deletes supported annotation objects when available. It is intended for real PDF annotations/stamps, not for ordinary page text.</li>
+          <li><span class="btn">Clear</span> clears the inspector list.</li>
+        </ul>
+        <h3>Safe Annotation Delete</h3>
+        <p>Safe Delete removes supported visible annotation objects directly. After deleting, use Undo/Redo where available or reload the PDF if you need to compare the result with the original.</p>
+      </section>
+
+      <!-- OCR -->
+      <section id="ocr">
+        <h2><span class="s-icon">🔤</span> OCR for Scanned PDFs</h2>
+        <p>OCR creates searchable PDF copies from scanned PDFs. After OCR, use the searchable copies like normal text PDFs with Search, Auto Detection and presets.</p>
+        <figure>
+          <img src="assets/ocr.png" alt="OCR tab">
+          <figcaption>OCR workflow, optional scan filters, searchable-copy controls and diagnostics.</figcaption>
+        </figure>
+        <h3>OCR Diagnostics</h3>
+        <p>The diagnostics view helps check OCR availability, language data and workflow problems before processing many files.</p>
+        <figure>
+          <img src="assets/ocr-diagnostics.png" alt="OCR Diagnostics">
+          <figcaption>Use diagnostics when OCR does not start, languages are missing, or searchable copies are not created as expected.</figcaption>
+        </figure>
+        <h3>Recommended OCR Workflow</h3>
+        <ol class="steps">
+          <li>Use Balanced OCR quality for most documents.</li>
+          <li>Create searchable copies first. Originals remain unchanged.</li>
+          <li>Redact the searchable copies like normal text PDFs.</li>
+        </ol>
+        <h3>Languages</h3>
+        <p>OCR supports the installed bundled language data, including English, German, French, Spanish, Portuguese and Italian when included in the application package.</p>
+        <h3>Scan Filters for OCR Copies</h3>
+        <div class="warning"><strong>Optional use only when needed.</strong> Leave scan filters off for normal scans. Enable them for tilted, faded or low-contrast pages.</div>
+        <ul>
+          <li><strong>Deskew scanned pages</strong> attempts to straighten tilted scans.</li>
+          <li><strong>Improve contrast for OCR</strong> can help faded text recognition.</li>
+          <li><strong>Binarize / black-and-white cleanup</strong> may improve poor scans but changes the visible appearance of OCR copies.</li>
+          <li><strong>Preserve color when possible</strong> keeps visual color when compatible with the selected filter.</li>
+        </ul>
+      </section>
+
+      <!-- OPTIONS -->
+      <section id="options">
+        <h2><span class="s-icon">⚙</span> Options Tab</h2>
+        <p>The Options tab contains processing settings, Live Preview colors, preset templates and product information buttons.</p>
+        <figure>
+          <img src="assets/options.png" alt="Options tab">
+          <figcaption>Processing, custom overlay colors, presets and Help/Product Info.</figcaption>
+        </figure>
+        <h3>Processing Options</h3>
+        <ul>
+          <li><strong>Extra lossless compression</strong> can reduce size slightly but may be slower.</li>
+          <li><strong>Deep clean hidden data</strong> removes hidden content and metadata from generated output where supported.</li>
+          <li><strong>Parallel processing</strong> speeds up batch work on capable computers.</li>
+          <li><strong>Generate report</strong> creates a processing report when enabled.</li>
+        </ul>
+        <h3>Preset Templates</h3>
+        <p>Presets are editable starting points. They can fill Search, Auto, OCR and layout-related settings. Select a document language before applying a preset when language-specific keywords are available.</p>
+        <figure>
+          <img src="assets/template-v279.png" alt="Preset Templates">
+          <figcaption>Templates make repeated workflows faster and reduce setup errors in batch jobs.</figcaption>
+        </figure>
+        <h3>Help &amp; Product Info</h3>
+        <p>Use these buttons to open the local User Guide, purchase/update page, YouTube channel, contact page, or About dialog.</p>
+      </section>
+
+      <!-- BATCH -->
+      <section id="batch">
+        <h2><span class="s-icon">📦</span> Batch Workflows</h2>
+        <p>PDF Redactor Pro can process multiple files at once or one file at a time.</p>
+        <ul>
+          <li>Use <strong>All files</strong> for repeatable settings across a folder.</li>
+          <li>Use <strong>Process files one at a time</strong> when you need to inspect or adjust each document before saving.</li>
+          <li>Save templates for repeated document types.</li>
+        </ul>
+      </section>
+
+      <!-- TROUBLESHOOTING -->
+      <section id="troubleshooting">
+        <h2><span class="s-icon">❓</span> Troubleshooting</h2>
+        <h3>Search or Auto Detection Finds Nothing</h3>
+        <p>The PDF may be a scanned image. Create an OCR searchable copy first, then run Search or Auto Detection again.</p>
+        <h3>OCR Output Looks Different</h3>
+        <p>Scan filters can change the visible appearance of the generated OCR copy. Use them only for poor scans and keep originals unchanged.</p>
+        <h3>Face or Address Detection Has False Positives</h3>
+        <p>Automatic detection is a helper, not a replacement for review. Adjust strictness, profiles, expansion, or remove unwanted manual Draw areas before applying redaction.</p>
+        <h3>Output Must Be Verified</h3>
+        <p>Open the redacted PDF and confirm that sensitive content is permanently removed before sharing.</p>
+      </section>
+
+    </div><!-- /inner -->
+  </main>
+</div>
+
+<footer class="site-footer">
+    <div class="footer-badge" aria-label="Approved on SaaSHub">
+      <a href="https://www.saashub.com/pdf-redactor-pro?utm_source=badge&utm_campaign=badge&utm_content=pdf-redactor-pro&badge_variant=color&badge_kind=approved" target="_blank" rel="noopener noreferrer">
+        <img src="https://cdn-b.saashub.com/img/badges/approved-color.png?v=1" alt="PDF Redactor Pro approved on SaaSHub" loading="lazy">
+      </a>
+    </div>
+    © 2026 PDF Redactor Pro. All rights reserved.
+  </footer>
+
+<div class="policy-links"><a href="privacy.html">Privacy Policy</a> · <a href="#" onclick="prpOpenCookieSettings(); return false;">Cookie Settings</a></div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lb-close" id="lbClose">✕ Close</button>
+  <img id="lbImg" src="" alt="">
+</div>
+
+<!-- BACK TO TOP -->
+<button id="backTop" title="Back to top">
+  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M2 9l5-5 5 5"/></svg>
+</button>
+
+<div class="cookie-consent" id="cookieConsent" role="dialog" aria-live="polite" aria-label="Cookie consent">
+  <p><strong>Privacy choices.</strong> We use essential storage to make this website work. With your consent, we also use Google Analytics to understand visits and improve PDF Redactor Pro. <a href="privacy.html">Privacy Policy</a></p>
+  <div class="cookie-actions">
+    <button type="button" class="cookie-btn" id="cookieReject">Reject</button>
+    <button type="button" class="cookie-btn primary" id="cookieAccept">Accept analytics</button>
+  </div>
+</div>
+
+
+<div class="cookie-settings-modal" id="cookieSettingsModal" role="dialog" aria-modal="true" aria-labelledby="cookieSettingsTitle">
+  <div class="cookie-settings-panel">
+    <h2 id="cookieSettingsTitle">Cookie Settings</h2>
+    <p>Essential storage is used only to remember your choice. Google Analytics runs only if you accept analytics.</p>
+    <div class="cookie-status" id="cookieStatus">Current choice: <strong>not selected yet</strong></div>
+    <div class="cookie-settings-actions">
+      <button type="button" class="cookie-btn" id="settingsReject">Reject</button>
+      <button type="button" class="cookie-btn primary" id="settingsAccept">Accept analytics</button>
+      <button type="button" class="cookie-btn" id="settingsClose">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var prpCookieChoiceKey = window.PRP_COOKIE_CHOICE_KEY || 'prp_analytics_consent';
+  var cookieBanner = document.getElementById('cookieConsent');
+  var cookieAccept = document.getElementById('cookieAccept');
+  var cookieReject = document.getElementById('cookieReject');
+  function hideCookieBanner(){ if(cookieBanner) cookieBanner.classList.remove('show'); }
+  function showCookieBanner(){ if(cookieBanner) cookieBanner.classList.add('show'); }
+
+  var cookieSettingsModal = document.getElementById('cookieSettingsModal');
+  var cookieStatus = document.getElementById('cookieStatus');
+  var settingsAccept = document.getElementById('settingsAccept');
+  var settingsReject = document.getElementById('settingsReject');
+  var settingsClose = document.getElementById('settingsClose');
+  function getCookieChoice(){ try{return localStorage.getItem(prpCookieChoiceKey);}catch(e){return null;} }
+  function updateCookieStatus(){
+    if(!cookieStatus) return;
+    var choice = getCookieChoice();
+    var label = choice === 'accepted' ? 'analytics accepted' : choice === 'rejected' ? 'analytics rejected' : 'not selected yet';
+    cookieStatus.innerHTML = 'Current choice: <strong>' + label + '</strong>';
+  }
+  function openCookieSettingsModal(){ updateCookieStatus(); if(cookieSettingsModal) cookieSettingsModal.classList.add('show'); }
+  function closeCookieSettingsModal(){ if(cookieSettingsModal) cookieSettingsModal.classList.remove('show'); }
+  window.prpOpenCookieSettings = function(){ openCookieSettingsModal(); };
+  function acceptAnalyticsChoice(){ try{localStorage.setItem(prpCookieChoiceKey,'accepted');}catch(e){} if(typeof window.prpLoadAnalytics === 'function') window.prpLoadAnalytics(); if(typeof window.gtag === 'function') window.gtag('event','analytics_consent_accept'); hideCookieBanner(); updateCookieStatus(); closeCookieSettingsModal(); }
+  function rejectAnalyticsChoice(){ try{localStorage.setItem(prpCookieChoiceKey,'rejected');}catch(e){} hideCookieBanner(); updateCookieStatus(); closeCookieSettingsModal(); }
+  if(settingsAccept) settingsAccept.addEventListener('click', acceptAnalyticsChoice);
+  if(settingsReject) settingsReject.addEventListener('click', rejectAnalyticsChoice);
+  if(settingsClose) settingsClose.addEventListener('click', closeCookieSettingsModal);
+  if(cookieSettingsModal) cookieSettingsModal.addEventListener('click', function(e){ if(e.target === cookieSettingsModal) closeCookieSettingsModal(); });
+  try { if (!localStorage.getItem(prpCookieChoiceKey)) showCookieBanner(); } catch(e) { showCookieBanner(); }
+  if (cookieAccept) cookieAccept.addEventListener('click', acceptAnalyticsChoice);
+  if (cookieReject) cookieReject.addEventListener('click', rejectAnalyticsChoice);
+
+  // --- SEARCH INDEX ---
+  var secs = [];
+  document.querySelectorAll('section[id]').forEach(function(sec){
+    var h = sec.querySelector('h2');
+    var title = h ? h.innerText.replace(/[^\w\s]/g,'').trim() : sec.id;
+    secs.push({ id: sec.id, title: title, text: sec.innerText || '', el: sec });
+  });
+
+  var inp = document.getElementById('guideSearch');
+  var res = document.getElementById('searchResults');
+  var clr = document.getElementById('searchClear');
+
+  function esc(s){ return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
+  function hl(s,q){ return s.replace(new RegExp('('+esc(q)+')','gi'),'<mark>$1</mark>'); }
+  function snip(txt,q){
+    var i=txt.toLowerCase().indexOf(q.toLowerCase());
+    if(i<0) return txt.slice(0,80)+'…';
+    var s=Math.max(0,i-30), e=Math.min(txt.length,i+q.length+60);
+    return (s?'…':'')+txt.slice(s,e)+(e<txt.length?'…':'');
+  }
+
+  inp.addEventListener('input',function(){
+    var q=this.value.trim();
+    clr.style.display=q?'block':'none';
+    if(!q){ res.style.display='none'; return; }
+    var hits=secs.filter(function(s){ return s.text.toLowerCase().includes(q.toLowerCase()); });
+    res.innerHTML = hits.length
+      ? hits.map(function(s){
+          return '<a class="sr-item" href="#'+s.id+'">'
+            +'<div class="sr-title">'+hl(s.title,q)+'</div>'
+            +'<div class="sr-snip">'+hl(snip(s.text,q),q)+'</div>'
+            +'</a>';
+        }).join('')
+      : '<div class="sr-empty">No results for "'+q+'"</div>';
+    res.style.display='block';
+  });
+
+  clr.addEventListener('click',function(){ inp.value=''; clr.style.display='none'; res.style.display='none'; });
+  document.addEventListener('click',function(e){ if(!e.target.closest('.search-wrap')) res.style.display='none'; });
+  res.addEventListener('click',function(e){ if(e.target.closest('.sr-item')){ res.style.display='none'; inp.value=''; clr.style.display='none'; } });
+
+  // --- LIGHTBOX ---
+  var lb=document.getElementById('lightbox'), lbImg=document.getElementById('lbImg'), lbClose=document.getElementById('lbClose');
+  document.querySelectorAll('figure img, .banner img').forEach(function(img){
+    img.title='Click to enlarge';
+    img.addEventListener('click',function(){ lbImg.src=img.src; lbImg.alt=img.alt; lb.classList.add('open'); });
+  });
+  lbClose.addEventListener('click',function(){ lb.classList.remove('open'); });
+  lb.addEventListener('click',function(e){ if(e.target===lb||e.target===lbImg) lb.classList.remove('open'); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') lb.classList.remove('open'); });
+
+  // --- ACTIVE NAV + PROGRESS + BACK TO TOP ---
+  var links=document.querySelectorAll('.nav-link[data-s]');
+  var pb=document.getElementById('progress');
+  var bt=document.getElementById('backTop');
+
+  function setActiveSection(cur){
+    links.forEach(function(a){ a.classList.toggle('active',a.dataset.s===cur); });
+  }
+
+  function tick(){
+    var sy=window.scrollY;
+    var dh=document.documentElement.scrollHeight-window.innerHeight;
+    pb.style.width=(dh>0?sy/dh*100:0)+'%';
+    bt.classList.toggle('show',sy>280);
+
+    var cur='';
+    var anchorOffset=90;
+    secs.forEach(function(s){
+      var top=s.el.getBoundingClientRect().top + sy;
+      if(sy>=top-anchorOffset) cur=s.id;
+    });
+
+    // When the user jumps to a short section near the bottom of the guide,
+    // the browser may not be able to place that section at the top because
+    // the page has reached its scroll limit. In that case, keep the clicked
+    // hash section active if it is visible on screen.
+    if(window.location.hash){
+      var hashId=window.location.hash.slice(1);
+      var hashSec=document.getElementById(hashId);
+      if(hashSec){
+        var r=hashSec.getBoundingClientRect();
+        var visible=r.bottom>anchorOffset && r.top<window.innerHeight-40;
+        if(visible) cur=hashId;
+      }
+    }
+
+    setActiveSection(cur);
+  }
+  window.addEventListener('scroll',tick,{passive:true});
+  window.addEventListener('hashchange',tick);
+  tick();
+
+  bt.addEventListener('click',function(){ window.scrollTo({top:0,behavior:'smooth'}); });
+
+  // --- MOBILE SIDEBAR ---
+  var sb=document.getElementById('sidebar'), tog=document.getElementById('sidebarToggle');
+  tog.addEventListener('click',function(){ sb.classList.toggle('open'); });
+  sb.querySelectorAll('.nav-link').forEach(function(a){
+    a.addEventListener('click',function(){ if(window.innerWidth<=860) sb.classList.remove('open'); });
+  });
+
+})();
+</script>
+</body>
+</html>
+
+
