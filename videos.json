@@ -3,6 +3,14 @@
   "channelUrl": "https://www.youtube.com/@PDFRedactPro/videos",
   "videos": [
     {
+      "id": "Xi1gAQN_U30",
+      "title": "PDF Redactor Pro v2.79 - Regex_Address_Search",
+      "description": "This video demonstrates how to use PDF Redactor Pro v2.79 to automatically detect and permanently redact sensitive information in PDF documents.",
+      "published": "2026-06-19T13:07:50+00:00",
+      "url": "https://www.youtube.com/watch?v=Xi1gAQN_U30",
+      "thumbnail": "https://i.ytimg.com/vi/Xi1gAQN_U30/hqdefault.jpg"
+    },
+    {
       "id": "2iBdrQqoMTA",
       "title": "PDF Redactor Pro v2.77 Allowlist demo",
       "description": "See how phone numbers can be detected across a multi-page document while one selected allowlisted number remains visible.",
@@ -25,15 +33,7 @@
       "published": "2026-05-01T21:43:41+00:00",
       "url": "https://www.youtube.com/watch?v=8x2g2mPH73g",
       "thumbnail": "https://i.ytimg.com/vi/8x2g2mPH73g/hqdefault.jpg"
-    },
-    {
-      "id": "xa6ZLOOg6Mk",
-      "title": "PDF Redactor Pro - Example of use",
-      "description": "A quick introduction to offline PDF redaction for confidential documents, including automatic detection and batch workflows.",
-      "published": "2026-03-13T17:12:02+00:00",
-      "url": "https://www.youtube.com/watch?v=xa6ZLOOg6Mk",
-      "thumbnail": "https://i.ytimg.com/vi/xa6ZLOOg6Mk/hqdefault.jpg"
     }
   ],
-  "updatedAt": "2026-06-03T11:25:58.100Z"
+  "updatedAt": "2026-06-19T19:29:56.890Z"
 }
