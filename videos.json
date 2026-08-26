@@ -3,6 +3,14 @@
   "channelUrl": "https://www.youtube.com/@PDFRedactPro/videos",
   "videos": [
     {
+      "id": "YuAVucOLD78",
+      "title": "Coming Soon: PDF Redact & Extract Pro v3.0 – New Data Extraction & Smarter Redaction",
+      "description": "PDF Redact & Extract Pro v3.0 is coming soon.",
+      "published": "2026-08-18T13:04:41+00:00",
+      "url": "https://www.youtube.com/watch?v=YuAVucOLD78",
+      "thumbnail": "https://i.ytimg.com/vi/YuAVucOLD78/hqdefault.jpg"
+    },
+    {
       "id": "Xi1gAQN_U30",
       "title": "PDF Redactor Pro v2.79 - Regex_Address_Search",
       "description": "This video demonstrates how to use PDF Redactor Pro v2.79 to automatically detect and permanently redact sensitive information in PDF documents.",
@@ -25,15 +33,7 @@
       "published": "2026-05-08T17:46:16+00:00",
       "url": "https://www.youtube.com/watch?v=92quwcHEtMM",
       "thumbnail": "https://i.ytimg.com/vi/92quwcHEtMM/hqdefault.jpg"
-    },
-    {
-      "id": "8x2g2mPH73g",
-      "title": "PDF Redactor Pro v2.75 - Demo Fictional Invoice",
-      "description": "Open a sample invoice, apply a saved redaction template, export a protected PDF, and verify the result in Adobe Acrobat.",
-      "published": "2026-05-01T21:43:41+00:00",
-      "url": "https://www.youtube.com/watch?v=8x2g2mPH73g",
-      "thumbnail": "https://i.ytimg.com/vi/8x2g2mPH73g/hqdefault.jpg"
     }
   ],
-  "updatedAt": "2026-06-19T19:12:27.536Z"
+  "updatedAt": "2026-08-26T20:03:25.118Z"
 }
