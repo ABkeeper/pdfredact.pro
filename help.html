@@ -1,0 +1,881 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PDF Redact &amp; Extract Pro v3.0 — User Guide</title>
+  <meta name="description" content="PDF Redact & Extract Pro v3.0 user guide for PDF redaction, structured extraction to Excel, OCR, page-specific rules, RegEx, batch processing and templates.">
+  <meta name="color-scheme" content="light">
+  
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://pdfredact.pro/help.html">
+  <link rel="icon" href="assets/PRP.ico">
+  <meta property="og:title" content="PDF Redact &amp; Extract Pro v3.0 — User Guide">
+  <meta property="og:description" content="User guide for PDF redaction, PDF to Excel extraction, OCR, Search, RegEx, page-specific workflows, tables, Split/Merge and Excel Preview.">
+  <meta property="og:url" content="https://pdfredact.pro/help.html">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://pdfredact.pro/assets/social-preview.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PDF Redact &amp; Extract Pro v3.0 — User Guide">
+  <meta name="twitter:description" content="Redaction, OCR and PDF to Excel extraction documentation for PDF Redact &amp; Extract Pro.">
+  <meta name="twitter:image" content="https://pdfredact.pro/assets/social-preview.png">
+  <script>
+    window.PRP_GA_ID = 'G-NYWCCW67BT';
+    window.PRP_COOKIE_CHOICE_KEY = 'prp_analytics_consent';
+    function prpIsProductionHost() {
+      return location.hostname === 'pdfredact.pro' || location.hostname === 'www.pdfredact.pro';
+    }
+    function prpLoadAnalytics() {
+      if (!prpIsProductionHost() || window.PRP_ANALYTICS_LOADED) return;
+      window.PRP_ANALYTICS_LOADED = true;
+      var gaScript = document.createElement('script');
+      gaScript.async = true;
+      gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=' + window.PRP_GA_ID;
+      document.head.appendChild(gaScript);
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function(){ dataLayer.push(arguments); };
+      gtag('js', new Date());
+      gtag('config', window.PRP_GA_ID, { anonymize_ip: true });
+    }
+    try {
+      if (localStorage.getItem(window.PRP_COOKIE_CHOICE_KEY) === 'accepted') {
+        prpLoadAnalytics();
+      }
+    } catch (e) {}
+  </script>
+
+  <style>
+    :root{
+      --bg:#f5f6f8; --panel:#ffffff; --panel2:#fafafa; --line:#e3e5e8;
+      --text:#26282d; --muted:#656b75; --faint:#9298a3; --accent:#e69834;
+      --accent-dark:#b96908; --accent-soft:#fff4e3; --blue:#2f7fd8; --blue-soft:#edf5ff;
+      --green:#18864b; --green-soft:#eefaf3; --red:#c64343; --red-soft:#fff1f1;
+      --ink:#15171a; --sidebar:272px; --top:62px; --shadow:0 10px 30px rgba(20,24,33,.08);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:"Segoe UI",Arial,sans-serif;font-size:15px;line-height:1.68}
+    a{color:var(--blue)}
+    code,kbd{font-family:Consolas,"SFMono-Regular",monospace}
+    code{background:#f0f1f3;border:1px solid #e2e4e7;border-radius:5px;padding:1px 5px;font-size:.92em}
+    kbd{background:#fff;border:1px solid #cfd3d8;border-bottom-width:2px;border-radius:5px;padding:2px 6px;font-size:12px;color:#353941}
+
+    .topbar{position:fixed;inset:0 0 auto 0;height:var(--top);background:rgba(255,255,255,.97);border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 18px;z-index:50;backdrop-filter:blur(10px)}
+    .brand{display:flex;align-items:center;gap:11px;min-width:var(--sidebar)}
+    .brandmark{width:34px;height:34px;border-radius:9px;background:linear-gradient(145deg,#ef4444,#b91c1c);display:grid;place-items:center;box-shadow:0 5px 14px rgba(198,67,67,.26)}
+    .brandmark svg{width:21px;height:21px}
+    .brand-name{font-weight:760;color:var(--ink);letter-spacing:-.01em}
+    .version{font-size:11px;font-weight:700;color:#8b530d;background:var(--accent-soft);border:1px solid #f5d5a8;border-radius:999px;padding:2px 7px;margin-left:4px}
+    .top-actions{flex:1;display:flex;align-items:center;gap:10px;max-width:840px}
+    .search{position:relative;flex:1;max-width:520px}
+    .search input{width:100%;height:36px;padding:0 38px 0 36px;border:1px solid #d9dde2;border-radius:9px;background:#f6f7f9;outline:none;font:inherit;font-size:13.5px}
+    .search input:focus{border-color:#e2a354;box-shadow:0 0 0 3px rgba(230,152,52,.16);background:#fff}
+    .search .mag{position:absolute;left:12px;top:8px;color:var(--faint)}
+    .search button{position:absolute;right:8px;top:7px;border:0;background:transparent;color:#8b9098;cursor:pointer;font-size:16px;display:none}
+    .search-results{position:absolute;top:43px;left:0;right:0;max-height:380px;overflow:auto;background:#fff;border:1px solid #d9dde2;border-radius:10px;box-shadow:var(--shadow);display:none;z-index:90}
+    .search-results a{display:block;text-decoration:none;padding:10px 13px;border-bottom:1px solid #eee;color:var(--text)}
+    .search-results a:last-child{border-bottom:0}.search-results a:hover{background:#faf6ef}
+    .search-results strong{display:block;font-size:13.5px;color:var(--ink)}
+    .search-results span{display:block;font-size:12.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .top-btn{height:34px;border:1px solid #d6d9de;background:#fff;border-radius:8px;padding:0 11px;color:#4e535b;font:inherit;font-size:12.5px;cursor:pointer;white-space:nowrap}.top-btn:hover{border-color:#c7a06d;background:#fffaf4}
+    #menuBtn{display:none}
+
+    .layout{display:flex;padding-top:var(--top);min-height:100vh}
+    .sidebar{position:fixed;top:var(--top);left:0;bottom:0;width:var(--sidebar);background:#fff;border-right:1px solid var(--line);overflow:auto;padding:17px 12px 34px;z-index:30}
+    .sidebar::-webkit-scrollbar{width:5px}.sidebar::-webkit-scrollbar-thumb{background:#d8dbe0;border-radius:99px}
+    .nav-group{margin:15px 6px 7px;font-size:10px;font-weight:800;letter-spacing:.11em;color:#9a9fa8;text-transform:uppercase}
+    .nav a{display:flex;align-items:center;gap:9px;text-decoration:none;color:#5b616b;font-size:13px;font-weight:600;padding:7px 9px;border-radius:7px;margin:1px 0;border:1px solid transparent}
+    .nav a:hover{background:#f7f7f8;color:#222}.nav a.active{background:var(--accent-soft);border-color:#f3d8b3;color:#8f560f}
+    .nav .dot{width:7px;height:7px;border-radius:50%;background:#c7cbd1}.nav a.active .dot{background:var(--accent)}
+
+    main{margin-left:var(--sidebar);width:calc(100% - var(--sidebar));padding:36px 34px 90px}
+    .content{max-width:1100px;margin:0 auto}
+    .hero{background:#1d2025;color:#fff;border-radius:18px;overflow:hidden;box-shadow:var(--shadow);margin-bottom:30px;display:grid;grid-template-columns:minmax(0,1fr) 46%;min-height:330px}
+    .hero-copy{padding:38px 40px;display:flex;flex-direction:column;justify-content:center;background:radial-gradient(circle at 15% 20%,rgba(230,152,52,.18),transparent 38%),#1d2025}
+    .eyebrow{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#ffc77f;margin-bottom:9px}
+    h1{font-size:38px;line-height:1.12;margin:0 0 14px;letter-spacing:-.025em}.hero p{color:#d9dde2;font-size:16px;margin:0 0 19px;max-width:590px}
+    .hero-badges{display:flex;flex-wrap:wrap;gap:7px}.hero-badges span{font-size:11.5px;border:1px solid #4c5159;border-radius:999px;padding:4px 8px;color:#e6e8eb;background:#292d33}
+    .hero-image{background:#d9d9d9;display:flex;align-items:center;justify-content:center;overflow:hidden}.hero-image img{width:100%;height:100%;object-fit:cover;object-position:center}
+
+    .quick-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0 30px}.quick-card{background:#fff;border:1px solid var(--line);border-radius:11px;padding:16px}.quick-card b{display:block;color:var(--ink);margin-bottom:4px}.quick-card span{font-size:13px;color:var(--muted)}
+    section{scroll-margin-top:82px;margin:0 0 58px}.section-head{display:flex;align-items:flex-start;gap:12px;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:18px}.section-num{flex:0 0 auto;width:31px;height:31px;border-radius:9px;background:var(--accent-soft);color:#a45f0a;display:grid;place-items:center;font-weight:800;font-size:12px;border:1px solid #f1d4ad}.section-head h2{margin:0;color:var(--ink);font-size:24px;line-height:1.25;letter-spacing:-.015em}.section-head p{margin:4px 0 0;color:var(--muted);font-size:13.5px}
+    h3{font-size:16px;color:var(--ink);margin:22px 0 8px}h4{font-size:14px;color:var(--ink);margin:16px 0 6px}p{margin:0 0 12px}ul,ol{margin:8px 0 14px;padding-left:23px}li{margin:5px 0}
+    .lead{font-size:16px;color:#4f5560;max-width:900px}
+    .callout{border-radius:10px;padding:13px 15px;margin:16px 0;border:1px solid}.callout b{color:inherit}.note{background:var(--blue-soft);border-color:#cfe2fa;color:#2c5d94}.tip{background:var(--green-soft);border-color:#cbead8;color:#236641}.warn{background:var(--red-soft);border-color:#f0cece;color:#893333}.orange{background:var(--accent-soft);border-color:#f2d5ad;color:#89530d}
+    .steps{counter-reset:s}.steps li{list-style:none;position:relative;margin:0 0 10px;padding:12px 14px 12px 47px;background:#fff;border:1px solid var(--line);border-radius:10px}.steps li:before{counter-increment:s;content:counter(s);position:absolute;left:13px;top:11px;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:#24272b;color:#fff;font-size:11px;font-weight:800}
+    .cards2,.cards3{display:grid;gap:12px;margin:14px 0}.cards2{grid-template-columns:repeat(2,1fr)}.cards3{grid-template-columns:repeat(3,1fr)}.card{background:#fff;border:1px solid var(--line);border-radius:11px;padding:15px}.card h3,.card h4{margin-top:0}.card p:last-child{margin-bottom:0}.card small{color:var(--muted)}
+    .mini-table{width:100%;border-collapse:separate;border-spacing:0;background:#fff;border:1px solid var(--line);border-radius:11px;overflow:hidden;margin:14px 0 20px}.mini-table th,.mini-table td{padding:9px 11px;border-bottom:1px solid #eceef0;text-align:left;vertical-align:top;font-size:13px}.mini-table th{background:#f7f8f9;color:#454a52;font-size:12px}.mini-table tr:last-child td{border-bottom:0}
+
+    figure{margin:18px 0 26px;background:#fff;border:1px solid var(--line);border-radius:13px;overflow:hidden;box-shadow:0 4px 18px rgba(19,23,29,.045)}figure img{display:block;width:100%;height:auto;cursor:zoom-in}figcaption{padding:9px 13px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted);background:#fbfbfc}.media-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0 26px}.media-grid figure{margin:0}.video-card{background:#17191d;border-radius:13px;overflow:hidden;border:1px solid #25282e;margin:18px 0 26px}.video-card video{width:100%;display:block;background:#111}.video-caption{padding:11px 14px;background:#fff;color:var(--muted);font-size:12.5px;border-top:1px solid var(--line)}
+    .badge{display:inline-block;font-size:11px;font-weight:750;border-radius:999px;padding:2px 7px;margin-left:5px;vertical-align:1px}.badge-new{background:#eef8f1;color:#277044;border:1px solid #cfe8d6}.badge-pro{background:#fff4e3;color:#8f560f;border:1px solid #f1d5ae}
+    .button-name{display:inline-block;border:1px solid #cfd3d7;background:#f7f7f7;border-radius:5px;padding:1px 6px;font-size:.92em;font-weight:600;color:#4f5358}
+    .shortcut-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:12px 0}.shortcut{display:flex;justify-content:space-between;gap:12px;background:#fff;border:1px solid var(--line);border-radius:8px;padding:9px 11px;font-size:13px}
+    details{background:#fff;border:1px solid var(--line);border-radius:9px;margin:8px 0}summary{cursor:pointer;font-weight:700;color:#3f444c;padding:10px 12px}details>div{padding:0 12px 12px;color:#565c65;font-size:13.5px}
+    .footer{margin-top:70px;border-top:1px solid var(--line);padding:24px 0 0;color:#858b94;font-size:12.5px;display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}.footer a{text-decoration:none}
+    #progress{position:fixed;top:var(--top);left:0;height:2px;background:var(--accent);z-index:70;width:0}
+    #backTop{position:fixed;right:22px;bottom:22px;width:38px;height:38px;border-radius:10px;border:1px solid #d8dbe0;background:#fff;box-shadow:var(--shadow);cursor:pointer;display:none;color:#545961;font-size:18px}
+    .lightbox{position:fixed;inset:0;background:rgba(9,11,14,.92);z-index:200;display:none;align-items:center;justify-content:center;padding:24px}.lightbox.open{display:flex}.lightbox img{max-width:96vw;max-height:92vh;box-shadow:0 20px 70px rgba(0,0,0,.45)}.lightbox button{position:absolute;right:20px;top:16px;border:1px solid #777;background:#222;color:#fff;border-radius:8px;padding:8px 11px;cursor:pointer}
+    .annotation-key{display:flex;gap:12px;align-items:center;flex-wrap:wrap;font-size:12.5px;color:var(--muted);margin:8px 0 16px}.red-dot{width:21px;height:21px;border-radius:50%;display:inline-grid;place-items:center;background:#ef2929;color:#fff;font-size:10px;font-weight:800}.red-arrow{display:inline-block;width:32px;height:3px;background:#ef2929;position:relative}.red-arrow:after{content:"";position:absolute;right:-1px;top:-4px;border-left:8px solid #ef2929;border-top:5px solid transparent;border-bottom:5px solid transparent}
+
+    @media(max-width:980px){:root{--sidebar:230px}.hero{grid-template-columns:1fr}.hero-image{max-height:340px}.cards3{grid-template-columns:1fr 1fr}.top-btn.print{display:none}}
+    @media(max-width:760px){.topbar{padding:0 10px}.brand{min-width:auto}.brand-name{display:none}.version{display:none}#menuBtn{display:block}.sidebar{transform:translateX(-102%);box-shadow:12px 0 30px rgba(0,0,0,.12)}.sidebar.open{transform:translateX(0)}main{margin-left:0;width:100%;padding:24px 14px 70px}.hero-copy{padding:28px 24px}h1{font-size:31px}.quick-grid,.cards2,.cards3,.media-grid{grid-template-columns:1fr}.shortcut-grid{grid-template-columns:1fr}.top-actions{gap:6px}.top-btn{padding:0 8px}}
+    @media print{.topbar,.sidebar,#backTop,#progress,.video-card{display:none!important}main{margin:0;width:100%;padding:0}.content{max-width:none}.hero{box-shadow:none;break-inside:avoid}section{break-inside:auto}figure,.card,.callout{break-inside:avoid}.lightbox{display:none!important}}
+  
+/* v3.0 Help refinement: documentation header, not marketing hero */
+.doc-intro{
+  margin:0 0 24px;
+  padding:24px 26px 22px;
+  background:#ffffff;
+  border:1px solid #e5e7eb;
+  border-radius:16px;
+  box-shadow:0 8px 24px rgba(17,24,39,.06);
+}
+.doc-brand-row{display:flex;align-items:center;gap:14px}
+.doc-logo{
+  width:42px;height:42px;display:grid;place-items:center;
+  border-radius:11px;background:#c62828;color:#fff;
+  font-size:24px;font-weight:800;line-height:1;
+  box-shadow:0 5px 14px rgba(198,40,40,.20);
+}
+.doc-kicker{
+  font-size:11px;font-weight:800;letter-spacing:.11em;
+  color:#c62828;margin-bottom:4px;
+}
+.doc-intro h1{
+  margin:0;font-size:30px;line-height:1.12;color:#17191d;
+  letter-spacing:-.02em;
+}
+.doc-lead{
+  max-width:820px;margin:14px 0 16px;color:#4b5563;
+  font-size:15px;line-height:1.65;
+}
+.doc-chips{display:flex;flex-wrap:wrap;gap:7px}
+.doc-chips span{
+  display:inline-flex;align-items:center;min-height:28px;
+  padding:4px 10px;border:1px solid #d9dde3;border-radius:999px;
+  background:#f8fafc;color:#374151;font-size:12px;font-weight:600;
+}
+
+/* Important callouts */
+.important, .callout-important{
+  position:relative;
+  margin:18px 0;
+  padding:16px 18px 16px 48px;
+  border:1px solid #f0c36a !important;
+  border-left:5px solid #d98200 !important;
+  border-radius:12px;
+  background:#fff8e8 !important;
+  color:#2f3338;
+  box-shadow:0 3px 10px rgba(80,55,0,.05);
+}
+.important::before, .callout-important::before{
+  content:"!";
+  position:absolute;left:15px;top:15px;
+  width:22px;height:22px;border-radius:50%;
+  display:grid;place-items:center;
+  background:#d98200;color:#fff;font-weight:800;font-size:14px;
+}
+.important strong:first-child, .callout-important strong:first-child{
+  color:#8a5200;
+}
+kbd{
+  display:inline-block;padding:1px 6px;border:1px solid #c9ccd1;
+  border-bottom-width:2px;border-radius:5px;background:#fff;
+  font:600 12px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;
+  color:#24272c;box-shadow:0 1px 0 rgba(0,0,0,.03);
+}
+
+/* suppress old oversized hero if it survives under known class names */
+.hero, .hero-card, .guide-hero, .cover-hero{
+  background:none;
+}
+
+
+/* Layout integrity fix */
+main{
+  min-width:0;
+  overflow-x:clip;
+}
+.content{
+  width:100%;
+  max-width:1100px;
+  min-width:0;
+  margin-left:auto;
+  margin-right:auto;
+}
+.content > section,
+.content section,
+.quick-grid,
+.cards2,.cards3,
+.media-grid,
+figure,.video-card,
+.mini-table,
+.shortcut-grid{
+  min-width:0;
+  max-width:100%;
+}
+figure img,
+.video-card video{
+  display:block;
+  max-width:100%;
+  height:auto;
+}
+.quick-grid > *,
+.cards2 > *,.cards3 > *,
+.media-grid > *{
+  min-width:0;
+}
+.quick-card,.card,figcaption,p,li,details,summary{
+  overflow-wrap:anywhere;
+}
+.overview-shot{
+  margin:22px auto 26px;
+  max-width:860px;
+}
+.overview-shot img,
+.overview-shot video{
+  width:100%;
+  display:block;
+  height:auto;
+  object-fit:contain;
+}
+.overview-shot video{
+  background:#111;
+}
+@media (max-width:1200px){
+  main{padding-left:24px;padding-right:24px}
+  .quick-grid{grid-template-columns:1fr}
+}
+
+
+/* Page-specific mode chooser */
+.mode-choice{
+  margin:18px 0;
+  padding:15px 16px;
+  background:#fff8e8;
+  border:1px solid #efcf8c;
+  border-left:5px solid #d98200;
+  border-radius:11px;
+}
+.mode-choice-title{
+  font-weight:800;
+  color:#835000;
+  margin-bottom:8px;
+}
+.mode-choice-row{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:18px;
+  padding:6px 0;
+  border-top:1px solid rgba(181,120,17,.15);
+  font-size:13.5px;
+}
+.mode-choice-row:first-of-type{border-top:0}
+.mode-choice-row span{
+  color:#8a5200;
+  font-weight:750;
+  white-space:nowrap;
+}
+@media (max-width:760px){
+  .mode-choice-row{grid-template-columns:1fr;gap:2px}
+  .mode-choice-row span{white-space:normal}
+}
+
+
+.video-card{margin:18px 0 24px}
+.video-card video{display:block;width:100%;max-width:100%;height:auto;border-radius:14px;border:1px solid #dde3ea;background:#111;box-shadow:0 8px 24px rgba(15,23,42,.08)}
+
+
+/* Online website Help additions */
+.top-btn.site-home{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  text-decoration:none;
+  font-weight:650;
+}
+.policy-links{
+  margin:14px 0 0;
+  text-align:center;
+  color:var(--muted);
+  font-size:12.5px;
+}
+.policy-links a{color:inherit}
+.cookie-consent{
+  position:fixed;left:18px;right:18px;bottom:18px;max-width:920px;margin:0 auto;
+  display:none;align-items:center;justify-content:space-between;gap:18px;
+  padding:15px 17px;background:rgba(255,255,255,.98);border:1px solid var(--line);
+  border-radius:12px;box-shadow:0 18px 55px rgba(15,23,42,.18);z-index:1000;
+}
+.cookie-consent.show{display:flex}
+.cookie-consent p{margin:0;color:var(--muted);font-size:13px;line-height:1.55}
+.cookie-actions{display:flex;gap:9px;flex-shrink:0}
+.cookie-btn{
+  border:1px solid #d6d9de;border-radius:8px;padding:8px 12px;background:#fff;
+  color:var(--ink);font:inherit;font-size:12.5px;font-weight:700;cursor:pointer
+}
+.cookie-btn.primary{background:#c62828;border-color:#c62828;color:#fff}
+.cookie-settings-modal{
+  position:fixed;inset:0;background:rgba(15,23,42,.46);display:none;align-items:center;
+  justify-content:center;padding:20px;z-index:1100
+}
+.cookie-settings-modal.show{display:flex}
+.cookie-settings-panel{
+  width:min(460px,100%);background:#fff;border:1px solid var(--line);border-radius:14px;
+  padding:22px;box-shadow:0 20px 70px rgba(15,23,42,.22)
+}
+.cookie-settings-panel h2{margin:0 0 8px;font-size:22px}
+.cookie-settings-panel p{margin:0 0 14px;color:var(--muted)}
+.cookie-status{padding:10px 12px;background:#f7f8fa;border:1px solid var(--line);border-radius:8px;margin-bottom:14px}
+.cookie-settings-actions{display:flex;gap:8px;flex-wrap:wrap}
+@media(max-width:760px){
+  .cookie-consent{align-items:stretch;flex-direction:column}
+  .cookie-actions{width:100%}
+  .cookie-btn{flex:1}
+  .top-btn.site-home{padding:0 8px}
+}
+@media print{
+  .cookie-consent,.cookie-settings-modal,.policy-links{display:none!important}
+}
+
+
+.continuous-view-line{display:block;margin-top:7px}
+.brandmark-home{text-decoration:none;cursor:pointer;transition:transform .15s ease,box-shadow .15s ease}
+.brandmark-home:hover{transform:translateY(-1px);box-shadow:0 7px 18px rgba(198,67,67,.34)}
+.brandmark-home:focus-visible{outline:2px solid #c62828;outline-offset:3px}
+
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<header class="topbar">
+  <div class="brand">
+    <button id="menuBtn" class="top-btn" aria-label="Open navigation">☰</button>
+    <a class="brandmark brandmark-home" href="index.html" aria-label="Back to PDF Redact &amp; Extract Pro website"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 3h8l4 4v14H6z" stroke="white" stroke-width="1.8"/><path d="M14 3v5h5" stroke="white" stroke-width="1.8"/><rect x="8.3" y="12" width="7.4" height="5.8" rx="1.2" stroke="white" stroke-width="1.6"/><path d="M10 12v-1.1a2 2 0 0 1 4 0V12" stroke="white" stroke-width="1.6"/></svg></a>
+    <span class="brand-name">PDF Redact &amp; Extract Pro <span class="version">v3.0</span></span>
+  </div>
+  <div class="top-actions">
+    <div class="search">
+      <span class="mag">⌕</span><input id="guideSearch" type="search" placeholder="Search the guide…" autocomplete="off"><button id="searchClear" aria-label="Clear search">×</button><div class="search-results" id="searchResults"></div>
+    </div>
+    <a class="top-btn site-home" href="index.html">Website</a>
+    <button class="top-btn print" onclick="window.print()">Print / Save PDF</button>
+  </div>
+</header>
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <nav class="nav" id="nav">
+    <div class="nav-group">Start</div>
+    <a href="#overview"><span class="dot"></span>Overview</a>
+    <a href="#quick-start"><span class="dot"></span>Quick Start</a>
+    <a href="#files"><span class="dot"></span>Files &amp; Batch</a>
+    <a href="#viewer"><span class="dot"></span>Preview &amp; Tools</a>
+    <div class="nav-group">Redaction</div>
+    <a href="#search"><span class="dot"></span>Search</a>
+    <a href="#regex-builder"><span class="dot"></span>RegEx Builder</a>
+    <a href="#auto"><span class="dot"></span>Auto Detection</a>
+    <a href="#objects"><span class="dot"></span>Objects</a>
+    <a href="#page-specific"><span class="dot"></span>Page-specific</a>
+    <div class="nav-group">Extraction</div>
+    <a href="#table"><span class="dot"></span>Table Workspace</a>
+    <a href="#table-columns"><span class="dot"></span>Physical Columns</a>
+    <a href="#split-merge"><span class="dot"></span>Split &amp; Merge</a>
+    <a href="#excel-preview"><span class="dot"></span>Excel Preview</a>
+    <div class="nav-group">Workflow</div>
+    <a href="#ocr"><span class="dot"></span>OCR</a>
+    <a href="#templates"><span class="dot"></span>Templates</a>
+    <a href="#apply"><span class="dot"></span>Apply / Output</a>
+    <a href="#options"><span class="dot"></span>Options</a>
+    <div class="nav-group">Reference</div>
+    <a href="#shortcuts"><span class="dot"></span>Shortcuts</a>
+    <a href="#protected"><span class="dot"></span>Protected PDFs</a>
+    <a href="#troubleshooting"><span class="dot"></span>Troubleshooting</a>
+  </nav>
+</aside>
+<main>
+<div class="content">
+
+  <section id="overview" data-title="Overview">
+    <section class="doc-intro">
+      <div class="doc-intro-main">
+        <div class="doc-brand-row">
+          <div class="doc-logo" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 2.8h7l4 4V21H7z"/>
+              <path d="M14 2.8v4h4"/>
+              <rect x="9.3" y="11.2" width="6.4" height="5.4" rx="1.1"/>
+              <path d="M11 11.2V9.8a1.5 1.5 0 0 1 3 0v1.4"/>
+            </svg>
+          </div>
+          <div>
+            <div class="doc-kicker">USER GUIDE • VERSION 3.0</div>
+            <h1>PDF Redact &amp; Extract Pro</h1>
+          </div>
+        </div>
+        <p class="doc-lead">Offline PDF redaction, OCR and structured data extraction to Excel — with visual review before applying changes.</p>
+        <div class="doc-chips">
+          <span>Manual Draw</span><span>Search</span><span>PII</span><span>RegEx</span><span>OCR</span><span>Table → Excel</span><span>Batch</span>
+        </div>
+      </div>
+    </section>
+
+    <p class="lead">This guide covers both redaction and extraction workflows. PDF Redact &amp; Extract Pro works locally on your PC; use Live Preview and Excel Preview to verify rules before creating final output.</p>
+
+    <div class="quick-grid">
+      <div class="quick-card"><b>Need to hide sensitive data?</b><span>Use Draw, Search, Auto Detection, RegEx or Objects, then review Live Preview and Apply Redaction.</span></div>
+      <div class="quick-card"><b>Need structured Excel data?</b><span>Use Search and Table cards, Split/Merge output fields, review Excel Preview, then Apply Extract.</span></div>
+      <div class="quick-card"><b>Working with scans?</b><span>Create searchable OCR copies first, then use the normal Search, Auto and Table workflows.</span></div>
+    </div>
+
+    <div class="callout warn"><b>Verification matters.</b> Redaction and extraction rules can behave differently across layouts. Review the PDF preview and generated output before sharing or archiving results.</div>
+
+    <figure class="overview-shot">
+      <img src="help-assets/01_main_interface_overview.png" alt="PDF Redact &amp; Extract Pro v3.0 main interface">
+      <figcaption>Main workspace: controls on the left, PDF preview on the right, with Redaction and Extract actions always available at the bottom.</figcaption>
+    </figure>
+  </section>
+
+
+
+  <section id="quick-start" data-title="Quick Start">
+    <div class="section-head"><span class="section-num">01</span><div><h2>Quick Start</h2><p>A reliable first workflow for a new document.</p></div></div>
+    <ol class="steps">
+      <li>Open a single PDF or add a source folder and build the file list.</li>
+      <li>Choose the right rule type: manual Draw, Search, automatic detection, RegEx, Objects, or Table extraction.</li>
+      <li>Turn on <span class="button-name">Live Preview</span>. For extraction, also switch Preview to <span class="button-name">Extracted Table</span> when needed.</li>
+      <li>Adjust rules until the overlays and Excel Preview show the intended content.</li>
+      <li>Use <span class="button-name">APPLY REDACTION</span> or <span class="button-name">APPLY EXTRACT</span> to create output files.</li>
+    </ol>
+    <div class="cards3">
+      <div class="card"><h4>Fixed visual area</h4><p>Use <b>Draw</b>. Choose Page-specific Draw if the rectangles differ by page.</p></div>
+      <div class="card"><h4>Stable labels / values</h4><p>Use <b>Search</b> and directional capture. Auto-fit can trim the result to found text.</p></div>
+      <div class="card"><h4>Structured repeated rows</h4><p>Use <b>Table</b>, define physical columns, then shape output with Split and Merge.</p></div>
+    </div>
+  </section>
+
+  <section id="files" data-title="Files and Batch Processing">
+    <div class="section-head"><span class="section-num">02</span><div><h2>Files, Batch Queue and Page Mode</h2><p>Choose what to process and where results are saved.</p></div></div>
+    <figure><img src="help-assets/02_files_batch_queue.png" alt="Files tab and batch queue"><figcaption>The Files tab manages source/output folders, the PDF queue, one-by-one processing, fill style and page scope.</figcaption></figure>
+    <div class="cards2">
+      <div class="card"><h4>Batch queue</h4><p><span class="button-name">Find PDFs</span> scans the source folder. <span class="button-name">Open Single PDF</span> loads one document directly. Removing an item from the list does not delete the source file.</p></div>
+      <div class="card"><h4>One-by-one mode</h4><p>Use <b>Process files one at a time</b> when each PDF needs inspection or different rules. The current file can be redacted or extracted before moving to the next item.</p></div>
+    </div>
+    <figure><img src="help-assets/22_page_mode_range.png" alt="Page mode controls"><figcaption>Process the Current page, All pages, a Range, or a custom page list such as <code>1,3,5-8</code>.</figcaption></figure>
+    <figure><img src="help-assets/31_one_by_one_mode.png" alt="One-by-one batch processing"><figcaption>One-by-one mode keeps the batch available while you review files individually.</figcaption></figure>
+  </section>
+
+  <section id="viewer" data-title="PDF Preview, navigation and manual tools">
+    <div class="section-head"><span class="section-num">03</span><div><h2>PDF Preview, Navigation and Manual Tools</h2><p>The preview is the central verification surface.</p></div></div>
+    <figure><img src="help-assets/06_live_preview_search.png" alt="Live Preview search overlays"><figcaption>Live Preview shows detected areas before redaction is applied.</figcaption></figure>
+    <ul>
+      <li><span class="button-name">Area</span> selects and moves existing manual areas.</li>
+      <li><span class="button-name">Draw</span> creates manual redaction rectangles.</li>
+      <li><span class="button-name">Copy Text</span> selects text from the PDF text layer.</li>
+      <li><span class="button-name">Live Preview</span> toggles detection overlays.</li>
+      <li><span class="button-name">Locate Row</span> links a table record in the PDF with the corresponding Excel Preview row.</li>
+      <li>Use <b>Single Page</b> or <b>Continuous</b> view. Zoom and Fit affect only the viewer, not the stored page-local Draw coordinates.</li>
+    </ul>
+    <figure><img src="help-assets/07_live_preview_custom_colors.png" alt="Custom Live Preview colors"><figcaption>Overlay colors can be customized by detection type in Options.</figcaption></figure>
+    <div class="annotation-key"><span class="red-dot">1</span> Numbered red markers in screenshots indicate steps or controls. <span class="red-arrow"></span> Red arrows point to the relevant UI element.</div>
+  </section>
+
+  <section id="search" data-title="Search tab text and contextual capture">
+    <div class="section-head"><span class="section-num">04</span><div><h2>Search Tab</h2><p>Find known text, labels and nearby values.</p></div></div>
+    <figure><img src="help-assets/03_search_keywords_blocks.png" alt="Keyword and block search"><figcaption>Keyword-based rules can capture nearby values with independent line flow, line count, Join and Fit settings.</figcaption></figure>
+    <div class="cards2">
+      <div class="card"><h4>Text / RegEx Search</h4><p>Use exact text, phrases or RegEx patterns. Enable multiline phrase matching when a known phrase is split across PDF lines.</p></div>
+      <div class="card"><h4>Text-Based Area Redaction</h4><p>Find a tag and capture an area Right, Left, Above or Below it. Area width/height define the search envelope when Auto-fit is off.</p></div>
+      <div class="card"><h4>Additional Text-Based Area</h4><p>A second independent text-area source that can be used for redaction or added to Table extraction output.</p></div>
+      <div class="card"><h4>Simple / Advanced Context</h4><p>Simple Context uses Distance around a keyword. Advanced Context supports multiple labels with independent capture profiles.</p></div>
+    </div>
+    <figure><img src="help-assets/04_search_advanced_context.png" alt="Advanced contextual search"><figcaption>Advanced Context is useful when different labels on the same document need different capture rules.</figcaption></figure>
+    <figure><img src="help-assets/05_search_multiline_capture.png" alt="Multiline capture settings"><figcaption>Capture multiple lines and choose how they are joined in the output.</figcaption></figure>
+    <h3>Auto-fit and Fit mode</h3>
+    <p><b>Auto-fit value</b> trims a captured area to detected text. The configured width still matters as the search envelope. <b>Smart</b> prefers a compact nearby value; <b>Width</b> searches across the configured width and then trims to the found text. Use Width when the value can extend far across the row.</p>
+    <div class="callout tip"><b>Template behavior.</b> Search settings such as Auto-fit, Distance, case sensitivity and source hiding are stored with the template so the same capture behavior is restored after restarting the program.</div>
+  
+
+    <div class="callout tip">
+      <b>From Search to Extract.</b> Search modules can be expanded or collapsed individually to keep the workspace compact. When a Search result should also become part of the extraction output, click <b>Add to Extract</b>. The corresponding Extract cards are then created in the Table workspace, and their output is reflected in Excel Preview.
+    </div>
+
+    <figure class="video-card">
+      <video controls preload="metadata" playsinline>
+        <source src="help-assets/from-search-to-extract-demo-v2.mp4" type="video/mp4">
+      </video>
+      <figcaption><b>From Search to Extract:</b> expand or collapse Search panels, add a Search result to Extract, open the Table workspace, then review the generated Extract cards and the resulting data in Excel Preview.</figcaption>
+    </figure>
+</section>
+
+  <section id="regex-builder" data-title="RegEx Builder and Text Mask Generator">
+    <div class="section-head"><span class="section-num">05</span><div><h2>RegEx Builder / Text Mask Generator <span class="badge badge-new">v3.0</span></h2><p>Build and test structured detection and selective-redaction patterns visually.</p></div></div>
+    <figure><img src="help-assets/10_regex_builder.png" alt="RegEx Builder controls"><figcaption>Paste source text, choose Flexible structure or Exact value, then generate Detection and Redaction RegEx patterns.</figcaption></figure>
+    <ul>
+      <li><b>Flexible structure</b> generalizes variable digits or text while keeping the visible structure.</li>
+      <li><b>Exact value</b> escapes the supplied value for an exact-match pattern.</li>
+      <li><b>Mask</b> can redact the entire value or preserve selected leading/trailing characters.</li>
+      <li><span class="button-name">Copy Detection</span> and <span class="button-name">Copy Redaction</span> copy the generated patterns.</li>
+      <li><span class="button-name">Send Detection to Auto</span> / <span class="button-name">Send Redaction to Auto</span> move the generated rule into the automatic RegEx module.</li>
+    </ul>
+    <h3>Multiple source examples</h3>
+    <p>When you paste multiple non-empty examples on separate lines, each line is treated as an alternative value. The generated Detection pattern joins them with RegEx OR (<code>|</code>) instead of forcing the examples to appear sequentially.</p>
+    <figure><img src="help-assets/10w_regex_builder.png" alt="RegEx Builder multiple values"><figcaption>Multiple line examples are generated as independent alternatives, making one rule usable across several ID formats.</figcaption></figure>
+    <div class="callout note"><b>Best practice:</b> generate the rule, verify the green test panel, then test it in Live Preview on a representative PDF before batch processing.</div>
+  </section>
+
+  <section id="auto" data-title="Auto Detection PII faces currency addresses allowlist">
+    <div class="section-head"><span class="section-num">06</span><div><h2>Auto Detection</h2><p>Combine common detectors with manual and Search rules.</p></div></div>
+    <figure><img src="help-assets/08_auto_detection.png" alt="Automatic detection modules"><figcaption>PII, currency amounts, address blocks, custom RegEx and allowlist protection are grouped in the Auto tab.</figcaption></figure>
+    <div class="cards3">
+      <div class="card"><h4>PII</h4><p>Detect email addresses, web/phone-like values, SSNs, cards, dates and faces. Date formats can be constrained to reduce false positives.</p></div>
+      <div class="card"><h4>Currency</h4><p>Detect configured symbols and extended currency formats. Review short currency codes on dense documents.</p></div>
+      <div class="card"><h4>Address Blocks</h4><p>Use profile, detection mode, labels, postal codes, street words, expansion and same-column constraints.</p></div>
+      <div class="card"><h4>Custom RegEx</h4><p>Use document-specific patterns that are not covered by the built-in PII detectors.</p></div>
+      <div class="card"><h4>Keep Visible / Allowlist</h4><p>Protect approved values from automatic redaction; optional normalization helps with phone/number formatting differences.</p></div>
+      <div class="card"><h4>Faces / Images</h4><p>Face detection supports scan DPI, shape and masking effects. Image handling can hide or filter images separately.</p></div>
+    </div>
+    <figure><img src="help-assets/29_redaction_faces_images.png" alt="Face and image redaction"><figcaption>Face and image detection can use solid, blur or pixelation masking where supported.</figcaption></figure>
+    <div class="callout warn"><b>Automatic detection is a helper, not a substitute for review.</b> Photos, unusual fonts, dense layouts and OCR errors can produce misses or false positives.</div>
+  </section>
+
+  <section id="objects" data-title="Objects Inspector annotations stamps images headers footers">
+    <div class="section-head"><span class="section-num">07</span><div><h2>Objects and Visible Object Inspector</h2><p>Inspect images and PDF objects that are not handled like normal text.</p></div></div>
+    <figure><img src="help-assets/09_objects_inspector.png" alt="Visible Object Inspector"><figcaption>Scan or pick visible objects, add them to Draw areas, or safely delete supported annotation objects.</figcaption></figure>
+    <ul>
+      <li><b>Image handling</b> can hide images or filter by size. Use full-page image handling only when intentionally working with image-based pages.</li>
+      <li><b>Annotations / stamps</b> are independent PDF objects and can often be removed without covering the page content beneath them.</li>
+      <li><b>Visible Object Inspector</b> provides Scan, Pick, Add, Delete and Clear actions for supported objects.</li>
+      <li><b>Headers / footers</b> can be excluded from extraction or hidden during redaction when the document repeats the same page furniture.</li>
+    </ul>
+  </section>
+
+  <section id="page-specific" data-title="Page-specific Draw and Page-specific Rules">
+    <div class="section-head">
+      <span class="section-num">08</span>
+      <div>
+        <h2>Page-specific Draw and Page-specific Rules <span class="badge badge-pro">Advanced</span></h2>
+        <p>Use different manual areas or different rule profiles on individual pages of the same PDF.</p>
+      </div>
+    </div>
+
+    <div class="cards2">
+      <div class="card">
+        <h4>Page-specific Draw</h4>
+        <p><b>Only manually drawn rectangles become page-specific.</b> Each Draw area belongs to the page where it was created and is not repeated on other pages.</p>
+        <p>Other active Search, Auto, PII, RegEx and detection settings continue to apply normally across the document. If those settings also need to differ from page to page, use <b>Page-specific Rules</b>.</p>
+      </div>
+
+      <div class="card">
+        <h4>Page-specific Rules</h4>
+        <p><b>The rule settings themselves can vary by page.</b> Use this mode when different pages require different Search, Auto, PII, RegEx, Table, extraction or other supported rule settings.</p>
+        <p>When you move to another page, the program saves the profile of the page you leave and restores the stored profile for the newly active page.</p>
+      </div>
+    </div>
+
+    <div class="mode-choice">
+      <div class="mode-choice-title">Which mode should I use?</div>
+      <div class="mode-choice-row"><b>Different manual rectangles only</b><span>→ Page-specific Draw</span></div>
+      <div class="mode-choice-row"><b>Different Search / Auto / detection / extraction rules</b><span>→ Page-specific Rules</span></div>
+      <div class="mode-choice-row"><b>Need both</b><span>→ Enable both modes</span></div>
+    </div>
+
+    <div class="callout tip">
+      <b>Recommended view: Single Page.</b> For page-specific work, Single Page is usually easier because it is always clear which page you are editing.<span class="continuous-view-line"><b>Continuous View is also fully supported</b> and can be useful when comparing adjacent pages or reviewing several page profiles while scrolling.</span>
+    </div>
+
+    <div class="media-grid">
+      <figure>
+        <img src="help-assets/page-specific-draw-1.png" alt="Page-specific Draw first page">
+        <figcaption>Page-specific Draw: manual rectangles created on this page belong only to this page.</figcaption>
+      </figure>
+      <figure>
+        <img src="help-assets/page-specific-draw-2.png" alt="Page-specific Draw second page">
+        <figcaption>A different page can keep a completely different set of manual Draw areas.</figcaption>
+      </figure>
+    </div>
+
+    <figure>
+      <img src="help-assets/23_page_specific_rules.png" alt="Page-specific rules">
+      <figcaption>Page-specific Rules are intended for mixed-layout documents where Search, Auto, Table or other rule settings also need to change between pages.</figcaption>
+    </figure>
+
+    <div class="callout note">
+      <b>Continuous View detail.</b> Page-specific Draw areas remain anchored to their original PDF page, so zooming and scrolling do not change their intended position.
+    </div>
+  </section>
+
+
+<section id="table" data-title="Table workspace Manual Table Geometry separators header first row Fixed Auto Shift Page Mode structured PDF extraction">
+    <div class="section-head"><span class="section-num">09</span><div><h2>Table Workspace</h2><p>Extract physical table columns and combine them with values captured elsewhere on the page.</p></div></div>
+    <figure><img src="help-assets/11_table_full_workspace.png" alt="Table workspace"><figcaption>The Table workspace combines Table Options, Physical Table Columns, PDF geometry and Excel Preview.</figcaption></figure>
+    <h3>Table Options</h3>
+    <p>Choose row detection, key position, flow/layout behavior, start/end markers, header handling, continuation behavior and optional boundaries. Use these controls to tell the extractor where records begin and how table segments continue across pages.</p>
+
+    <h3>Manual Table Geometry</h3>
+    <p><b>Manual Table Geometry</b> is one editing mode for the complete physical table shape. It owns the outer table area, the vertical column separators and the header divider shown in PDF Preview. Automatic detection can provide the initial geometry; enable Manual Table Geometry when you need to correct it directly.</p>
+    <figure><img src="help-assets/12_table_manual_geometry.png" alt="Manual Table Geometry"><figcaption>Manual Table Geometry lets you draw or adjust the table area and edit its column separators directly on the PDF preview.</figcaption></figure>
+    <table class="mini-table">
+      <tr><th>Control</th><th>What it does</th></tr>
+      <tr><td><b>Manual Table Geometry</b></td><td>Enables direct editing of the physical table geometry. The orange horizontal geometry is reused on applicable pages; vertical table bounds are determined per page.</td></tr>
+      <tr><td><b>Draw</b></td><td>Drag a rectangle around the table body in PDF Preview. This rectangle belongs to Table extraction/redaction geometry; it is not a normal redaction rectangle.</td></tr>
+      <tr><td><b>+ Separator</b></td><td>Click inside the orange table area to add vertical column separators. Repeat for every required column. Existing separators and outer boundaries can then be dragged.</td></tr>
+      <tr><td><b>Clear</b></td><td>Removes only the internal vertical separators. The outer table area and Header are kept. Physical cards collapse to the remaining first column and can be restored with Undo.</td></tr>
+      <tr><td><b>Reset</b></td><td>Resets the outer table area, Header band and all manual separators. Column-card configuration is retained; confirmation and Undo are available.</td></tr>
+      <tr><td><b>Rescan</b></td><td>Reads column captions and geometry again from the current manual area. Existing card settings are preserved when the column names still match.</td></tr>
+    </table>
+    <div class="callout tip"><b>Editing sequence.</b> For a difficult table, enable Manual Table Geometry → Draw the table area → add or drag separators → set Header / First row → Rescan if you want the program to read captions from the corrected geometry → Refresh Preview.</div>
+
+    <h3>Header and First row</h3>
+    <div class="cards2">
+      <div class="card"><h4>Has header</h4><p>The configured <b>First row</b> height is treated as the column-heading band. It is used for column names and is not exported as a data record. You can also drag the lower edge of the header band directly in PDF Preview.</p></div>
+      <div class="card"><h4>No header</h4><p>The first row remains data. The physical columns use generic names such as <b>Column 1</b>, <b>Column 2</b>, and so on until you rename them.</p></div>
+    </div>
+    <p><b>First row</b> is measured in points and defines the first-row/header band inside the manually drawn area. <b>Continue without headers</b> allows following pages without repeated headings to be accepted only after the program checks the Key column, column positions, configured data types and several matching rows.</p>
+    <figure><img src="help-assets/13_table_header_line.png" alt="Draggable table header line"><figcaption>The orange header boundary separates the heading band from data rows when Header is set to Has header.</figcaption></figure>
+
+    <h3>Page scope, Fixed and Auto Shift</h3>
+    <p>Manual Table Geometry has one predictable document-wide geometry scope; there are no separate Reuse-up / Reuse-down controls in v3.0. The <b>Page Mode</b> on the Files tab still decides which pages are actually processed: Current page, All pages, Range or a custom page list.</p>
+    <div class="cards2">
+      <div class="card"><h4>Fixed</h4><p>Reuses the same horizontal table position and column geometry on every applicable page.</p></div>
+      <div class="card"><h4>Auto Shift</h4><p>Keeps the same table shape and individual column widths, but may relocate the complete geometry when a matching header or strong typed-column structure is detected at a shifted position.</p></div>
+    </div>
+    <figure><img src="help-assets/16_table_auto_shift.png" alt="Auto Shift table alignment"><figcaption>Auto Shift moves the table geometry as one rigid shape; it does not independently resize individual columns.</figcaption></figure>
+    <div class="callout note"><b>Preview before export.</b> After changing geometry, Header / First row, Fixed / Auto Shift or Page Mode, use <b>Refresh Preview</b> and verify representative pages before Apply Extract. Undo / Redo covers Table / Extract configuration changes, but cannot reverse an Excel file already written to disk.</div>
+  </section>
+
+  <section id="table-columns" data-title="Physical Table Columns types formats multiline gaps alignment">
+    <div class="section-head"><span class="section-num">10</span><div><h2>Physical Table Columns</h2><p>Configure each detected column independently.</p></div></div>
+    <figure><img src="help-assets/14_table_physical_columns.png" alt="Physical Table Column cards"><figcaption>Each card can be enabled, made a Key, renamed, typed, formatted, aligned, split and reordered.</figcaption></figure>
+    <table class="mini-table">
+      <tr><th>Setting</th><th>Purpose</th></tr>
+      <tr><td><b>Use</b></td><td>Includes the column in output.</td></tr>
+      <tr><td><b>Key</b></td><td>Marks a field that can define/validate physical record boundaries.</td></tr>
+      <tr><td><b>Type</b></td><td>Text, Date, Number or Currency. Data types can filter invalid values during extraction.</td></tr>
+      <tr><td><b>Format</b></td><td>Controls final value formatting, including date/number formats.</td></tr>
+      <tr><td><b>Multiline</b></td><td>Controls how continuation lines are joined in the output.</td></tr>
+      <tr><td><b>Gap ↑ / Gap ↓</b></td><td>Adjusts how nearby lines are assigned to the current record.</td></tr>
+      <tr><td><b>Anchor</b></td><td>Controls how the column is anchored to the record.</td></tr>
+      <tr><td><b>Alignment</b></td><td>Left, Center or Right alignment used by Excel Preview and final Excel output.</td></tr>
+    </table>
+    <figure><img src="help-assets/15_table_multiline_gap.png" alt="Table multiline and gap settings"><figcaption>Multiline and Gap controls are useful for descriptions that span several PDF lines.</figcaption></figure>
+    <h3>Add values outside the physical table</h3>
+    <p>Search sources can be added to Extract and then displayed as cards below Physical Table Columns. This makes it possible to combine each table row with account numbers, periods, totals, customer data or other values located elsewhere in the document.</p>
+    <figure><img src="help-assets/17_table_additional_text_area.png" alt="Additional text values in Table extraction"><figcaption>Document-level or page-level Search values can be combined with physical table records.</figcaption></figure>
+  </section>
+
+  <section id="split-merge" data-title="Split and Merge extracted fields">
+    <div class="section-head"><span class="section-num">11</span><div><h2>Split and Merge Output Fields</h2><p>Transform captured values without changing the source PDF.</p></div></div>
+    <h3>Split</h3>
+    <p>Split one captured value into multiple output cards. Use literal separators, occurrences or visual-gap splitting depending on the source structure. Each child card can then have its own Type, Format, Key and alignment settings.</p>
+    <div class="video-card">
+      <video controls muted playsinline preload="metadata" poster="assets/18b_table_split_output.png"><source src="help-assets/split-fields-demo.mp4" type="video/mp4">Your browser does not support embedded MP4 video.</video>
+      <div class="video-caption">Short Split demo: configure the split, create child fields, and see the new Excel Preview columns.</div>
+    </div>
+    <div class="media-grid">
+      <figure><img src="help-assets/18a_table_split_input.png" alt="Split input"><figcaption>Before: one combined captured field.</figcaption></figure>
+      <figure><img src="help-assets/18b_table_split_output.png" alt="Split output"><figcaption>After: child output cards and separate Excel columns.</figcaption></figure>
+    </div>
+    <h3>Merge</h3>
+    <p>Select compatible output cards and use <span class="button-name">Merge</span> to combine related values into one output field. The merged card can be used like a normal output card, including as a Key. Excel Preview and final Excel output use the same merged value and order.</p>
+    <figure><img src="help-assets/19_table_merge_fields.png" alt="Merge extracted fields"><figcaption>Merge combines multiple output components into one result field while preserving the underlying source provenance for Locate Row.</figcaption></figure>
+  </section>
+
+  <section id="excel-preview" data-title="Excel Preview and Locate Row">
+    <div class="section-head"><span class="section-num">12</span><div><h2>Excel Preview and Locate Row</h2><p>Review the exact structured output before creating the workbook.</p></div></div>
+    <figure><img src="help-assets/20_excel_preview.png" alt="Excel Preview"><figcaption>Excel Preview shows physical table rows plus document/page-level fields in their final output order.</figcaption></figure>
+    <ul>
+      <li>Use <b>Pages per preview</b>, From/To and Refresh Preview to limit expensive preview work on long PDFs.</li>
+      <li>Column order follows the configured output order, including Split and Merge fields.</li>
+      <li>Column alignment reflects the alignment selected in the corresponding output card.</li>
+      <li>Source PDF name/page columns can be included when required by the export workflow.</li>
+    </ul>
+    <figure><img src="help-assets/21_excel_preview_locate_row.png" alt="Locate Row from Excel Preview"><figcaption>Locate Row links a selected Excel cell/record back to the corresponding PDF location for verification.</figcaption></figure>
+    <div class="callout tip"><b>Use Preview as a validation step.</b> If a split, merge, data type or record boundary is wrong, fix the card configuration before Apply Extract rather than repairing the workbook afterward.</div>
+  </section>
+
+  <section id="ocr" data-title="OCR scanned PDFs searchable copies">
+    <div class="section-head"><span class="section-num">13</span><div><h2>OCR for Scanned PDFs</h2><p>Create searchable copies while preserving the page image whenever possible.</p></div></div>
+    <figure><img src="help-assets/27_ocr_settings.png" alt="OCR settings"><figcaption>Choose OCR mode, language, quality, optional scan filters and searchable-copy workflow.</figcaption></figure>
+    <ol class="steps">
+      <li>Use <b>Auto — scanned pages only</b> for mixed documents unless you intentionally need a different mode.</li>
+      <li>Choose the document language and Balanced quality for a normal first attempt.</li>
+      <li>Create searchable copies for the current, selected or all files. OCR copies are saved in an OCR subfolder inside the output folder.</li>
+      <li>If desired, <b>Replace Files list with searchable copies</b> replaces the entries in the application list — not the original files on disk.</li>
+      <li>Run Search, Auto Detection or Table extraction on the searchable copies.</li>
+    </ol>
+    <h3>Optional scan filters</h3>
+    <p>Deskew, contrast improvement and binarization can help poor scans, but may alter the visible appearance of generated OCR copies. Leave them off for normal scans and enable them only when recognition needs help.</p>
+    <div class="media-grid">
+      <figure><img src="help-assets/28a_ocr_before_after.png" alt="OCR before"><figcaption>Before: image-based content may not support normal text search.</figcaption></figure>
+      <figure><img src="help-assets/28b_ocr_before_after.png" alt="OCR after"><figcaption>After: the page remains visually similar while a searchable text layer is available.</figcaption></figure>
+    </div>
+  </section>
+
+  <section id="templates" data-title="Save and Load Templates presets">
+    <div class="section-head"><span class="section-num">14</span><div><h2>Templates and Presets</h2><p>Reuse complete processing setups for recurring document types.</p></div></div>
+    <figure><img src="help-assets/24_template_save_load.png" alt="Save and Load Template"><figcaption>Save Template stores the configured workflow; Load Template restores it later.</figcaption></figure>
+    <ul>
+      <li>Templates can include Search, Auto, OCR, Table extraction, Split/Merge output cards, page scope and other workflow settings.</li>
+      <li>Stateful controls such as Auto-fit, Distance, case sensitivity, column alignment and Table output settings are restored with the template.</li>
+      <li>Page-specific Draw areas and Page-specific Rules profiles are stored when those modes are used.</li>
+      <li>Preset Templates in Options are editable starting points; use Save Template for your own exact reusable configuration.</li>
+    </ul>
+    <div class="callout note"><b>After major layout changes in a source document, re-check the template on one file before processing a batch.</b></div>
+  </section>
+
+  <section id="apply" data-title="Apply Redaction Apply Extract output results">
+    <div class="section-head"><span class="section-num">15</span><div><h2>Apply Redaction, Apply Extract and Output</h2><p>Create the final PDF or Excel result after preview verification.</p></div></div>
+    <div class="media-grid">
+      <figure><img src="help-assets/26_apply_redaction.png" alt="Apply Redaction"><figcaption>Apply Redaction creates processed PDF output from the reviewed redaction areas.</figcaption></figure>
+      <figure><img src="help-assets/25_apply_extract_output.png" alt="Apply Extract"><figcaption>Apply Extract creates Excel output using the configured extraction cards and Table settings.</figcaption></figure>
+    </div>
+    <figure><img src="help-assets/34_output_folder_results.png" alt="Output folder results"><figcaption>Processed PDFs and Excel files are written as separate output results so originals can remain unchanged.</figcaption></figure>
+    <div class="callout warn"><b>Redaction is final in the generated copy.</b> Open the output PDF and confirm that sensitive content cannot be recovered or selected before sharing it.</div>
+  </section>
+
+  <section id="options" data-title="Options processing memory preview colors presets">
+    <div class="section-head"><span class="section-num">16</span><div><h2>Options, Performance and Preview Colors</h2><p>Control processing behavior, memory use and visual overlays.</p></div></div>
+    <figure><img src="help-assets/30_options_processing.png" alt="Options and processing settings"><figcaption>Processing Options, Memory / Preview Performance, Live Preview Colors, presets and Help/Product Info.</figcaption></figure>
+    <div class="cards2">
+      <div class="card"><h4>Processing</h4><p>Optional extra lossless compression, deep clean hidden data, parallel processing and report generation can be enabled here.</p></div>
+      <div class="card"><h4>Memory / Preview Performance</h4><p>Auto is recommended. Lower memory protects older PCs; higher settings keep more previously visited PDF pages ready on systems with ample RAM.</p></div>
+      <div class="card"><h4>Live Preview Colors</h4><p>Enable custom overlay colors and assign a color for Draw, Search, Text-Based Area, PII, Faces, Tables and other detection types.</p></div>
+      <div class="card"><h4>Help &amp; Product Info</h4><p>Open this local User Guide, Buy / Updates, the YouTube channel, Contact / Bulk or the About dialog.</p></div>
+    </div>
+  </section>
+
+  <section id="shortcuts" data-title="Keyboard shortcuts">
+    <div class="section-head"><span class="section-num">17</span><div><h2>Keyboard Shortcuts</h2><p>Frequently used viewer and editing commands.</p></div></div>
+    <div class="shortcut-grid">
+      <div class="shortcut"><span>Area / Select mode</span><kbd>Ctrl+1</kbd></div>
+      <div class="shortcut"><span>Draw mode</span><kbd>Ctrl+2</kbd></div>
+      <div class="shortcut"><span>Copy Text mode</span><kbd>Ctrl+3</kbd></div>
+      <div class="shortcut"><span>Locate Row</span><kbd>Ctrl+4</kbd></div>
+      <div class="shortcut"><span>Find in PDF</span><kbd>Ctrl+F</kbd></div>
+      <div class="shortcut"><span>Fit PDF to window</span><kbd>Ctrl+Shift+F</kbd></div>
+      <div class="shortcut"><span>Toggle Live Preview</span><kbd>Ctrl+L</kbd></div>
+      <div class="shortcut"><span>Undo</span><kbd>Ctrl+Z</kbd></div>
+      <div class="shortcut"><span>Redo</span><span><kbd>Ctrl+Y</kbd> / <kbd>Ctrl+Shift+Z</kbd></span></div>
+      <div class="shortcut"><span>Show / hide left panel</span><kbd>F9</kbd></div>
+    </div>
+    <div class="callout info"><b>Undo / Redo scope.</b> <kbd>Ctrl+Z</kbd> / <kbd>Ctrl+Y</kbd> applies to Manual Draw areas, Safe Delete actions in Objects, and Table / Extract configuration changes. It does not undo ordinary Search / Auto control changes, and it cannot reverse PDF or Excel files already written by Apply Redaction or Apply Extract.</div>
+  </section>
+
+  <section id="protected" data-title="Password protected PDFs licensing">
+    <div class="section-head"><span class="section-num">18</span><div><h2>Password-protected PDFs and Licensing</h2><p>Open protected documents without storing passwords in templates.</p></div></div>
+    <figure><img src="help-assets/32_password_protected_pdf.png" alt="Password protected PDF"><figcaption>Enter the session password when a protected PDF requires it. Avoid showing real passwords in screenshots, templates or support files.</figcaption></figure>
+    <figure><img src="help-assets/33_license_status.png" alt="Licensed status"><figcaption>A valid license is shown in the application title bar as LICENSED.</figcaption></figure>
+  </section>
+
+  <section id="troubleshooting" data-title="Troubleshooting common problems">
+    <div class="section-head"><span class="section-num">19</span><div><h2>Troubleshooting</h2><p>Common workflow checks before assuming a rule is broken.</p></div></div>
+    <details open><summary>Search or Auto Detection finds nothing</summary><div>The PDF may be image-only. Use Copy Text or Find to confirm there is a usable text layer. If not, create an OCR searchable copy and run the rule again.</div></details>
+    <details><summary>Auto-fit captures too little text</summary><div>Check the configured Area width and Fit mode. Smart prefers a compact nearby value; Width searches across the configured width before trimming to the found text. For Simple Contextual Search, also verify Distance.</div></details>
+    <details><summary>Excel Preview does not match the intended output</summary><div>Check Key selection, row mode, data Type, Split/Merge configuration, output order and column alignment. Use Locate Row to trace the incorrect cell back to its PDF source.</div></details>
+    <details><summary>A multi-line table value is attached to the wrong record</summary><div>Review Multiline, Gap ↑ / Gap ↓, Anchor and row boundaries. If the physical table itself is offset, adjust Manual Table Geometry or Auto Shift before changing output transforms.</div></details>
+    <details><summary>Manual Table Geometry works on one page but is offset on another</summary><div>Check Page Mode first. With Layout = Fixed, the same horizontal geometry is reused on every applicable page. If the whole table moves between pages, use Auto Shift; it relocates the geometry as one rigid shape while preserving individual column widths. Then Refresh Preview and verify the affected pages.</div></details>
+    <details><summary>Page-specific settings appear on the wrong page</summary><div>Confirm whether Page-specific Draw or Page-specific Rules is enabled. In Continuous View, scroll to the intended page before editing. Use Page-specific Draw for manual rectangles only; use Page-specific Rules when the rule controls themselves must differ.</div></details>
+    <details><summary>OCR result looks visually different</summary><div>Optional preprocessing filters can change the generated OCR copy. Disable Deskew/Contrast/Binarize unless the scan actually needs them, and keep the original document unchanged.</div></details>
+    <details><summary>Face, address or PII detection has false positives</summary><div>Adjust detector settings, reduce aggressive/extended modes where appropriate, use the allowlist, or replace automatic detection with a more specific Search/RegEx rule for that document type.</div></details>
+    <details><summary>The output must be verified</summary><div>Always open the generated PDF or Excel file and check the result independently. For redaction, verify that hidden content cannot be selected, copied or recovered from the output.</div></details>
+  </section>
+
+  <footer class="footer">
+    <span>PDF Redact &amp; Extract Pro v3.0 — Local User Guide · © 2026</span>
+    <span><a href="index.html">Product website</a> · <a href="https://www.youtube.com/@PDFRedactPro">YouTube</a> · <a href="https://payhip.com/pdfredact/contact">Contact / Bulk</a></span>
+  </footer>
+  <div class="policy-links"><a href="privacy.html">Privacy Policy</a> · <a href="#" onclick="prpOpenCookieSettings(); return false;">Cookie Settings</a></div>
+</div>
+</main>
+</div>
+<button id="backTop" title="Back to top">↑</button>
+
+<div class="cookie-consent" id="cookieConsent" role="dialog" aria-live="polite" aria-label="Cookie consent">
+  <p><strong>Privacy choices.</strong> Essential storage remembers your choice. With your consent, Google Analytics helps us understand visits and improve PDF Redact &amp; Extract Pro. <a href="privacy.html">Privacy Policy</a></p>
+  <div class="cookie-actions">
+    <button type="button" class="cookie-btn" id="cookieReject">Reject</button>
+    <button type="button" class="cookie-btn primary" id="cookieAccept">Accept analytics</button>
+  </div>
+</div>
+<div class="cookie-settings-modal" id="cookieSettingsModal" role="dialog" aria-modal="true" aria-labelledby="cookieSettingsTitle">
+  <div class="cookie-settings-panel">
+    <h2 id="cookieSettingsTitle">Cookie Settings</h2>
+    <p>Essential storage is used only to remember your choice. Google Analytics runs only if you accept analytics.</p>
+    <div class="cookie-status" id="cookieStatus">Current choice: <strong>not selected yet</strong></div>
+    <div class="cookie-settings-actions">
+      <button type="button" class="cookie-btn" id="settingsReject">Reject</button>
+      <button type="button" class="cookie-btn primary" id="settingsAccept">Accept analytics</button>
+      <button type="button" class="cookie-btn" id="settingsClose">Close</button>
+    </div>
+  </div>
+</div>
+
+<div class="lightbox" id="lightbox" aria-hidden="true"><button id="lbClose">✕ Close</button><img id="lbImg" src="" alt=""></div>
+<script>
+(function(){
+  const sidebar=document.getElementById('sidebar'), menuBtn=document.getElementById('menuBtn');
+  menuBtn.addEventListener('click',()=>sidebar.classList.toggle('open'));
+  document.querySelectorAll('.nav a').forEach(a=>a.addEventListener('click',()=>sidebar.classList.remove('open')));
+
+  const links=[...document.querySelectorAll('.nav a')];
+  const sections=[...document.querySelectorAll('main section[id]')];
+  const spy=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id));}})}, {rootMargin:'-20% 0px -68% 0px',threshold:0});
+  sections.forEach(s=>spy.observe(s));
+
+  const progress=document.getElementById('progress'), back=document.getElementById('backTop');
+  function onScroll(){const d=document.documentElement;const max=d.scrollHeight-d.clientHeight;progress.style.width=(max?100*d.scrollTop/max:0)+'%';back.style.display=d.scrollTop>700?'block':'none'}
+  addEventListener('scroll',onScroll,{passive:true}); onScroll(); back.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
+
+  const lb=document.getElementById('lightbox'), lbImg=document.getElementById('lbImg'), lbClose=document.getElementById('lbClose');
+  document.querySelectorAll('figure img').forEach(img=>img.addEventListener('click',()=>{lbImg.src=img.src;lbImg.alt=img.alt;lb.classList.add('open');lb.setAttribute('aria-hidden','false')}));
+  function closeLb(){lb.classList.remove('open');lb.setAttribute('aria-hidden','true');lbImg.src=''}
+  lbClose.addEventListener('click',closeLb);lb.addEventListener('click',e=>{if(e.target===lb)closeLb()});addEventListener('keydown',e=>{if(e.key==='Escape')closeLb()});
+
+  const input=document.getElementById('guideSearch'), results=document.getElementById('searchResults'), clear=document.getElementById('searchClear');
+  const index=sections.filter(s=>s.id!=='overview').map(s=>({id:s.id,title:s.dataset.title||s.querySelector('h2')?.textContent.trim()||s.id,text:s.textContent.replace(/\s+/g,' ').trim()}));
+  function esc(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+  function run(){const q=input.value.trim().toLowerCase();clear.style.display=q?'block':'none';if(!q){results.style.display='none';results.innerHTML='';return}const words=q.split(/\s+/).filter(Boolean);const hits=index.map(x=>{const hay=(x.title+' '+x.text).toLowerCase();let score=0;words.forEach(w=>{if(x.title.toLowerCase().includes(w))score+=5;if(hay.includes(w))score+=1});return {...x,score}}).filter(x=>x.score>=words.length).sort((a,b)=>b.score-a.score).slice(0,10);results.innerHTML=hits.length?hits.map(x=>{let pos=x.text.toLowerCase().indexOf(words[0]);if(pos<0)pos=0;let sn=x.text.slice(Math.max(0,pos-55),pos+150);return `<a href="#${x.id}"><strong>${esc(x.title)}</strong><span>${esc(sn)}</span></a>`}).join(''):'<a href="#troubleshooting"><strong>No direct match</strong><span>Try a shorter term or open Troubleshooting.</span></a>';results.style.display='block';results.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{results.style.display='none';input.blur()}))}
+  input.addEventListener('input',run);input.addEventListener('focus',run);clear.addEventListener('click',()=>{input.value='';run();input.focus()});document.addEventListener('click',e=>{if(!e.target.closest('.search'))results.style.display='none'});
+})();
+</script>
+
+<script>
+(function(){
+  var key = window.PRP_COOKIE_CHOICE_KEY || 'prp_analytics_consent';
+  var banner = document.getElementById('cookieConsent');
+  var modal = document.getElementById('cookieSettingsModal');
+  var status = document.getElementById('cookieStatus');
+  function choice(){ try{return localStorage.getItem(key);}catch(e){return null;} }
+  function setStatus(){
+    if(!status) return;
+    var c=choice();
+    var label=c==='accepted'?'analytics accepted':c==='rejected'?'analytics rejected':'not selected yet';
+    status.innerHTML='Current choice: <strong>'+label+'</strong>';
+  }
+  function closeBanner(){ if(banner) banner.classList.remove('show'); }
+  function openModal(){ setStatus(); if(modal) modal.classList.add('show'); }
+  function closeModal(){ if(modal) modal.classList.remove('show'); }
+  function accept(){
+    try{localStorage.setItem(key,'accepted');}catch(e){}
+    if(typeof window.prpLoadAnalytics==='function') window.prpLoadAnalytics();
+    closeBanner(); setStatus(); closeModal();
+  }
+  function reject(){
+    try{localStorage.setItem(key,'rejected');}catch(e){}
+    closeBanner(); setStatus(); closeModal();
+  }
+  window.prpOpenCookieSettings=openModal;
+  var a=document.getElementById('cookieAccept'), r=document.getElementById('cookieReject');
+  var sa=document.getElementById('settingsAccept'), sr=document.getElementById('settingsReject'), sc=document.getElementById('settingsClose');
+  if(a)a.addEventListener('click',accept);
+  if(r)r.addEventListener('click',reject);
+  if(sa)sa.addEventListener('click',accept);
+  if(sr)sr.addEventListener('click',reject);
+  if(sc)sc.addEventListener('click',closeModal);
+  if(modal)modal.addEventListener('click',function(e){if(e.target===modal)closeModal();});
+  try{ if(!localStorage.getItem(key) && banner) banner.classList.add('show'); }catch(e){ if(banner) banner.classList.add('show'); }
+})();
+</script>
+
+</body>
+</html>

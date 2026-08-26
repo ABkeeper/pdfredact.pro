@@ -1,0 +1,39 @@
+{
+  "channelId": "UCcNacWxoIqggm88GFW0x0gQ",
+  "channelUrl": "https://www.youtube.com/@PDFRedactPro/videos",
+  "videos": [
+    {
+      "id": "Xi1gAQN_U30",
+      "title": "PDF Redactor Pro v2.79 - Regex_Address_Search",
+      "description": "This video demonstrates how to use PDF Redactor Pro v2.79 to automatically detect and permanently redact sensitive information in PDF documents.",
+      "published": "2026-06-19T13:07:50+00:00",
+      "url": "https://www.youtube.com/watch?v=Xi1gAQN_U30",
+      "thumbnail": "https://i.ytimg.com/vi/Xi1gAQN_U30/hqdefault.jpg"
+    },
+    {
+      "id": "2iBdrQqoMTA",
+      "title": "PDF Redactor Pro v2.77 Allowlist demo",
+      "description": "See how phone numbers can be detected across a multi-page document while one selected allowlisted number remains visible.",
+      "published": "2026-05-25T20:52:21+00:00",
+      "url": "https://www.youtube.com/watch?v=2iBdrQqoMTA",
+      "thumbnail": "https://i.ytimg.com/vi/2iBdrQqoMTA/hqdefault.jpg"
+    },
+    {
+      "id": "92quwcHEtMM",
+      "title": "How to Redact Scanned PDFs with OCR | PDF Redactor Pro Beta",
+      "description": "A practical OCR workflow for converting scanned PDFs into searchable copies and redacting them like normal text-based documents.",
+      "published": "2026-05-08T17:46:16+00:00",
+      "url": "https://www.youtube.com/watch?v=92quwcHEtMM",
+      "thumbnail": "https://i.ytimg.com/vi/92quwcHEtMM/hqdefault.jpg"
+    },
+    {
+      "id": "8x2g2mPH73g",
+      "title": "PDF Redactor Pro v2.75 - Demo Fictional Invoice",
+      "description": "Open a sample invoice, apply a saved redaction template, export a protected PDF, and verify the result in Adobe Acrobat.",
+      "published": "2026-05-01T21:43:41+00:00",
+      "url": "https://www.youtube.com/watch?v=8x2g2mPH73g",
+      "thumbnail": "https://i.ytimg.com/vi/8x2g2mPH73g/hqdefault.jpg"
+    }
+  ],
+  "updatedAt": "2026-06-19T19:12:27.536Z"
+}

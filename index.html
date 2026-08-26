@@ -1,0 +1,741 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PDF to Excel &amp; PDF Redaction Software | PDF Redact &amp; Extract Pro</title>
+  <meta name="description" content="Redact PDFs, OCR scanned documents, and convert PDF data and tables to Excel with PDF Redact &amp; Extract Pro. Offline Windows PDF redaction and extraction software with visual preview.">
+  <meta name="keywords" content="PDF to Excel, Convert PDF to Excel, PDF data extraction, PDF table extraction, extract data from PDF, PDF redaction software, redact PDF, OCR PDF, offline PDF tool, Windows PDF redaction, PDF extractor">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://pdfredact.pro/">
+  <link rel="icon" href="assets/PRP.ico">
+  <meta property="og:title" content="PDF Redact &amp; Extract Pro v3.0">
+  <meta property="og:description" content="Redact PDFs and extract structured data or tables to Excel. Offline Windows software with OCR and visual review.">
+  <meta property="og:url" content="https://pdfredact.pro/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://pdfredact.pro/assets/social-preview.png">
+  <meta property="og:image:alt" content="PDF Redact &amp; Extract Pro v3.0 — offline PDF redaction and Excel extraction">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PDF Redact &amp; Extract Pro v3.0">
+  <meta name="twitter:description" content="Redact PDFs. Extract data. Convert PDF tables to Excel — locally on Windows.">
+  <meta name="twitter:image" content="https://pdfredact.pro/assets/social-preview.png">
+
+  <script>
+    window.PRP_GA_ID = 'G-NYWCCW67BT';
+    window.PRP_COOKIE_CHOICE_KEY = 'prp_analytics_consent';
+    function prpIsProductionHost() {
+      return location.hostname === 'pdfredact.pro' || location.hostname === 'www.pdfredact.pro';
+    }
+    function prpLoadAnalytics() {
+      if (!prpIsProductionHost() || window.PRP_ANALYTICS_LOADED) return;
+      window.PRP_ANALYTICS_LOADED = true;
+      var gaScript = document.createElement('script');
+      gaScript.async = true;
+      gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=' + window.PRP_GA_ID;
+      document.head.appendChild(gaScript);
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function(){ dataLayer.push(arguments); };
+      gtag('js', new Date());
+      gtag('config', window.PRP_GA_ID, { anonymize_ip: true });
+    }
+    try {
+      if (localStorage.getItem(window.PRP_COOKIE_CHOICE_KEY) === 'accepted') prpLoadAnalytics();
+    } catch (e) {}
+  </script>
+
+  <style>
+    :root{
+      --bg:#f6f7f9;
+      --surface:#ffffff;
+      --surface-soft:#fbfaf8;
+      --ink:#17202b;
+      --muted:#647080;
+      --line:#e3e6ea;
+      --line-strong:#d4d9df;
+      --brand:#c62828;
+      --brand-dark:#a91f1f;
+      --brand-soft:#fff1f1;
+      --warm:#c77d18;
+      --warm-soft:#fff7e9;
+      --navy:#223448;
+      --green:#2f7d4b;
+      --shadow:0 18px 55px rgba(22,32,43,.10);
+      --shadow-soft:0 10px 30px rgba(22,32,43,.07);
+      --radius:18px;
+      --max:1180px;
+      --header:68px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;background:var(--bg);color:var(--ink);
+      font-family:"Aptos","Segoe UI",Arial,Helvetica,sans-serif;
+      font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;
+    }
+    img,video{max-width:100%}
+    a{color:inherit}
+    button,input,textarea{font:inherit}
+    .wrap{width:min(var(--max),calc(100% - 48px));margin:0 auto}
+    .topbar{
+      position:sticky;top:0;z-index:100;height:var(--header);background:rgba(255,255,255,.94);
+      border-bottom:1px solid rgba(227,230,234,.9);backdrop-filter:blur(14px);
+    }
+    .nav{height:100%;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:flex;align-items:center;gap:11px;text-decoration:none;font-weight:650;letter-spacing:-.01em;white-space:nowrap}
+    .brand-mark{width:36px;height:36px;display:grid;place-items:center;filter:drop-shadow(0 6px 10px rgba(120,30,55,.16))}
+    .brand-mark img{width:36px;height:36px;display:block}
+    .brand small{font-size:11px;font-weight:700;color:var(--warm);margin-left:3px;letter-spacing:.03em}
+    .nav-links{display:flex;align-items:center;gap:4px}
+    .nav-links a{font-size:14px;text-decoration:none;color:#526071;padding:9px 11px;border-radius:9px;font-weight:600}
+    .nav-links a:hover{background:#f2f4f6;color:var(--ink)}
+    .nav-actions{display:flex;gap:9px;align-items:center}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 18px;border-radius:11px;text-decoration:none;font-weight:650;font-size:14px;border:1px solid transparent;transition:.18s ease;cursor:pointer}
+    .btn:hover{transform:translateY(-1px)}
+    .btn-primary{background:var(--brand);color:#fff;box-shadow:0 8px 20px rgba(198,40,40,.20)}
+    .btn-primary:hover{background:var(--brand-dark)}
+    .btn-secondary{background:#fff;border-color:var(--line-strong);color:var(--ink)}
+    .btn-secondary:hover{border-color:#aeb7c2;background:#fafbfc}
+    .btn-soft{background:var(--brand-soft);color:var(--brand);border-color:#f2c9c9}
+    .mobile-menu-btn{display:none;background:transparent;border:0;font-size:24px;color:var(--ink)}
+
+    .hero{padding:70px 0 58px;overflow:hidden;position:relative}
+    .hero:before{content:"";position:absolute;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(198,40,40,.09),rgba(198,40,40,0) 68%);right:-110px;top:-190px;pointer-events:none}
+    .hero-grid{display:grid;grid-template-columns:minmax(0,.90fr) minmax(520px,1.10fr);gap:52px;align-items:center}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;color:#4f5d6b;font-weight:650;font-size:12.5px;letter-spacing:.025em;background:#fff;border:1px solid var(--line-strong);padding:6px 11px;border-radius:999px;margin-bottom:20px}
+    .eyebrow-dot{width:7px;height:7px;border-radius:50%;background:var(--brand)}
+    h1{font-family:"Aptos Display","Aptos","Segoe UI",Arial,Helvetica,sans-serif;font-size:clamp(42px,4.35vw,58px);line-height:1.06;letter-spacing:-.025em;margin:0 0 22px;font-weight:650;color:#17202b} .hero-line{display:block;white-space:nowrap}.hero-word-redact{color:var(--brand);font-weight:700}.hero-word-extract{color:#a9650e;font-weight:700}.hero-local{color:#253343}
+    .hero-copy{font-size:17px;line-height:1.62;color:#566272;max-width:610px;margin:0 0 28px}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:11px;margin-bottom:25px}
+    .hero-notes{display:flex;flex-wrap:wrap;gap:9px 18px;color:#5d6977;font-size:13.5px;font-weight:570}
+    .hero-notes span{display:flex;align-items:center;gap:6px}.check{color:var(--green);font-weight:800}
+    .hero-price-note{margin-top:12px;font-size:13px;color:#7a8592}
+    .hero-security-link{margin-top:7px;font-size:12.5px;line-height:1.45;color:#657180}
+    .hero-security-link a{
+      color:#566373;text-decoration:none;font-weight:700;
+      border-bottom:1px solid #c3c9d0;padding-bottom:1px;
+    }
+    .hero-security-link a:hover{color:#293440;border-bottom-color:#818c98}
+    .hero-security-link strong{font-weight:850;color:#394450}
+    .app-stage{position:relative;padding:15px;background:linear-gradient(145deg,#fff,#f0f2f4);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow)}
+    .app-stage:before{content:"Actual v3.0 interface";position:absolute;top:-13px;right:20px;background:var(--navy);color:#fff;border-radius:999px;padding:5px 10px;font-size:11px;font-weight:700;letter-spacing:.03em;z-index:3}
+    .app-stage img,.app-stage video{display:block;width:100%;border-radius:12px;border:1px solid #d4d8dd;background:#fff}
+    .app-stage video{height:auto;aspect-ratio:16/9;object-fit:cover}
+    .micro-card{position:absolute;left:-34px;bottom:30px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 15px;box-shadow:var(--shadow-soft);font-size:12.5px;color:#4d5968;font-weight:650}
+    .micro-card strong{display:block;color:var(--ink);font-size:13.5px;margin-bottom:2px}
+
+    .trust-strip{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .trust-row{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+    .trust-cell{padding:20px 24px;border-right:1px solid var(--line);display:flex;align-items:center;gap:12px}
+    .trust-cell:last-child{border-right:0}
+    .trust-icon{width:35px;height:35px;border-radius:10px;background:#f3f5f7;display:grid;place-items:center;color:var(--navy);font-weight:800}
+    .trust-cell b{display:block;font-size:14px}.trust-cell span{display:block;color:var(--muted);font-size:12.5px;margin-top:1px}
+
+    .section{padding:82px 0}.section.white{background:#fff}.section.warm{background:var(--surface-soft)}
+    .section-head{max-width:760px;margin-bottom:36px}.section-head.center{text-align:center;margin-left:auto;margin-right:auto;max-width:860px}
+    .kicker{color:var(--brand);font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:800;margin-bottom:8px}
+    h2{font-family:"Aptos Display","Aptos","Segoe UI",Arial,Helvetica,sans-serif;font-size:clamp(29px,2.75vw,38px);line-height:1.16;letter-spacing:-.02em;margin:0 0 13px;font-weight:650}
+    .section-head p{margin:0;color:var(--muted);font-size:16.5px}
+
+    .workflow-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+    .workflow-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:28px;box-shadow:var(--shadow-soft);overflow:hidden}
+    .workflow-card.redact{border-top:4px solid var(--brand)}.workflow-card.extract{border-top:4px solid var(--warm)}
+    .workflow-top{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:18px}
+    .workflow-top h3{font-size:23px;margin:0 0 7px;letter-spacing:-.01em;font-weight:650}.workflow-top p{margin:0;color:var(--muted);font-size:14.5px}
+    .workflow-pill{flex:0 0 auto;border-radius:999px;padding:6px 10px;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.06em}
+    .redact .workflow-pill{background:var(--brand-soft);color:var(--brand)}.extract .workflow-pill{background:var(--warm-soft);color:#9b5b0a}
+    .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:9px 18px;margin:0 0 23px;padding:0;list-style:none;font-size:13.5px;color:#4e5b69}
+    .feature-list li:before{content:"✓";color:var(--green);font-weight:850;margin-right:7px}
+    .workflow-media{border-radius:13px;overflow:hidden;border:1px solid var(--line);background:#f1f2f4}.workflow-media img{display:block;width:100%}
+
+    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .step{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px}
+    .step-num{width:34px;height:34px;border-radius:10px;background:var(--brand-soft);color:var(--brand);display:grid;place-items:center;font-weight:800;margin-bottom:17px}
+    .step h3{font-size:18px;margin:0 0 7px}.step p{margin:0;color:var(--muted);font-size:14px}
+
+    .showcase{display:grid;grid-template-columns:.9fr 1.1fr;gap:44px;align-items:center}
+    .showcase.reverse{grid-template-columns:1.1fr .9fr}.showcase.reverse .showcase-copy{order:2}.showcase.reverse .showcase-media{order:1}
+    .showcase-copy h3{font-size:30px;letter-spacing:-.03em;margin:0 0 12px}.showcase-copy p{color:var(--muted);margin:0 0 18px}
+    .bullet-stack{display:grid;gap:10px}.bullet{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:#455260}.bullet i{font-style:normal;color:var(--brand);font-weight:800;margin-top:1px}
+    .showcase-media{background:#fff;border:1px solid var(--line);border-radius:18px;padding:12px;box-shadow:var(--shadow-soft)}
+    .showcase-media img,.showcase-media video{display:block;width:100%;border-radius:10px;background:#eee}
+    .media-caption{font-size:12px;color:#7c8794;padding:9px 4px 1px}
+
+    .feature-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .feature-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px;min-height:180px}
+    .feature-card .icon{width:38px;height:38px;border-radius:11px;background:#f3f5f7;display:grid;place-items:center;color:var(--brand);font-weight:850;margin-bottom:15px}
+    .feature-card h3{font-size:17px;margin:0 0 7px}.feature-card p{font-size:13.5px;color:var(--muted);margin:0}
+
+    .video-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .video-card{display:block;background:#fff;border:1px solid var(--line);border-radius:15px;overflow:hidden;text-decoration:none;transition:.18s;box-shadow:0 5px 18px rgba(22,32,43,.04)}
+    .video-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-soft)}
+    .video-thumb{position:relative;aspect-ratio:16/9;background:#e9ecef;overflow:hidden}.video-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+    .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;background:rgba(198,40,40,.92);display:grid;place-items:center;color:#fff;font-size:16px}
+    .video-body{padding:15px}.video-title{font-weight:750;line-height:1.35;font-size:14px;margin-bottom:7px}.video-desc{font-size:12.5px;color:var(--muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.video-meta{display:flex;justify-content:space-between;gap:8px;margin-top:10px;color:#8b95a1;font-size:11px}
+
+    .pricing-shell{max-width:800px;margin:0 auto;background:#fff;border:1px solid var(--line);border-radius:22px;padding:34px;box-shadow:var(--shadow);display:grid;grid-template-columns:.9fr 1.1fr;gap:34px;align-items:center;position:relative;overflow:hidden}
+    .pricing-shell:before{content:"";position:absolute;width:230px;height:230px;border-radius:50%;background:var(--brand-soft);right:-100px;top:-120px}
+    .price-label{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--brand);font-weight:850;margin-bottom:6px}
+    .price{font-size:58px;line-height:1;font-weight:720;letter-spacing:-.05em;margin-bottom:8px}.regular-price{font-size:18px;color:#9aa3ad;text-decoration:line-through;margin-left:8px;font-weight:500}.price-pending{font-size:18px;line-height:1.3;font-weight:650;letter-spacing:0;color:var(--muted)}
+    .price-note{color:var(--muted);font-size:13.5px;margin-bottom:20px}.price-actions{display:grid;gap:10px}
+    .price-list{list-style:none;padding:0;margin:0;display:grid;gap:10px;font-size:14px;color:#465362}.price-list li:before{content:"✓";color:var(--green);font-weight:850;margin-right:8px}
+    .secure{font-size:11.5px;color:#8a94a0;margin-top:12px}
+    .windows-security-note{
+      scroll-margin-top:118px;
+      max-width:800px;margin:16px auto 0;padding:14px 16px;
+      display:flex;gap:12px;align-items:flex-start;
+      background:#fffaf1;border:1px solid #ead9bd;border-radius:13px;
+      box-shadow:0 5px 18px rgba(22,32,43,.035);
+    }
+    .windows-security-note .security-icon{
+      width:28px;height:28px;min-width:28px;border-radius:9px;
+      display:grid;place-items:center;background:#fff0cf;color:#8b5a12;
+      font-size:14px;font-weight:900;line-height:1;
+    }
+    .windows-security-note .security-copy{min-width:0}
+    .windows-security-note .security-title{
+      margin:0 0 3px;font-size:13.5px;font-weight:850;color:#303b47;
+    }
+    .windows-security-note p{
+      margin:0;color:#626e7a;font-size:12.5px;line-height:1.55;
+    }
+    .windows-security-note strong{
+      color:#3b4652;font-weight:850;
+    }
+    .windows-security-note a{
+      color:#566373;font-weight:800;text-decoration:underline;
+      text-underline-offset:2px;
+    }
+
+    .faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.faq-item{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px}.faq-item h3{font-size:15px;margin:0 0 6px}.faq-item p{font-size:13.5px;color:var(--muted);margin:0}
+
+    .contact-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:26px}.contact-card,.contact-form{background:#fff;border:1px solid var(--line);border-radius:18px;padding:26px}
+    .contact-card h3{margin:0 0 8px;font-size:21px}.contact-card p{color:var(--muted);font-size:14px;margin:0 0 18px}.contact-links{display:grid;gap:8px}.contact-links a{text-decoration:none;padding:10px 12px;border:1px solid var(--line);border-radius:10px;font-size:13.5px;font-weight:650}.contact-links a:hover{border-color:#b9c1ca;background:#fafbfc}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{display:grid;gap:6px;margin-bottom:12px}.field label{font-size:12.5px;font-weight:700;color:#465362}.field input,.field textarea{width:100%;border:1px solid var(--line-strong);border-radius:10px;padding:11px 12px;color:var(--ink);background:#fff;outline:0}.field textarea{min-height:120px;resize:vertical}.field input:focus,.field textarea:focus{border-color:#c79a9a;box-shadow:0 0 0 3px rgba(198,40,40,.07)}.form-ok{display:none;margin-top:12px;color:var(--green);font-size:13px;font-weight:700}
+
+    footer{background:#17202b;color:#d9dee5;padding:34px 0}.footer-row{display:flex;justify-content:space-between;gap:24px;align-items:center}.footer-brand{font-weight:760}.footer-brand span{color:#f2b257}.footer-links{display:flex;gap:16px;flex-wrap:wrap}.footer-links a{font-size:12.5px;color:#b8c0ca;text-decoration:none}.footer-links a:hover{color:#fff}.footer-copy{font-size:11.5px;color:#8f9aa7;margin-top:12px}
+
+    .cookie{position:fixed;left:20px;right:20px;bottom:20px;z-index:300;max-width:900px;margin:auto;background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px 18px;box-shadow:0 20px 70px rgba(0,0,0,.18);display:none;grid-template-columns:1fr auto;gap:18px;align-items:center}.cookie.show{display:grid}.cookie p{font-size:12.5px;color:#5f6b78;margin:0}.cookie-actions{display:flex;gap:8px}.cookie-btn{border:1px solid var(--line-strong);background:#fff;border-radius:9px;padding:8px 12px;font-size:12px;font-weight:700;cursor:pointer}.cookie-btn.primary{background:var(--brand);border-color:var(--brand);color:#fff}
+    .modal{position:fixed;inset:0;background:rgba(17,24,39,.52);display:none;align-items:center;justify-content:center;z-index:400;padding:20px}.modal.show{display:flex}.modal-card{background:#fff;border-radius:16px;padding:24px;max-width:520px;width:100%;box-shadow:var(--shadow)}.modal-card h2{font-size:22px;margin-bottom:8px}.modal-card p{font-size:13px;color:var(--muted)}.modal-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+
+    @media(max-width:1050px){
+      .nav-links{display:none}.hero-grid{grid-template-columns:1fr;gap:38px}.hero-copy{max-width:760px}.app-stage{max-width:860px}.micro-card{left:18px}.trust-row{grid-template-columns:1fr 1fr}.trust-cell:nth-child(2){border-right:0}.trust-cell:nth-child(-n+2){border-bottom:1px solid var(--line)}
+      .feature-cards{grid-template-columns:1fr 1fr}.video-grid{grid-template-columns:1fr 1fr}.showcase,.showcase.reverse{grid-template-columns:1fr;gap:24px}.showcase.reverse .showcase-copy,.showcase.reverse .showcase-media{order:initial}
+    }
+    @media(max-width:760px){
+      .windows-security-note{scroll-margin-top:88px;padding:13px 14px;gap:10px}
+      .windows-security-note .security-icon{width:26px;height:26px;min-width:26px}
+      .windows-security-note .security-title{font-size:13px}
+      .windows-security-note p{font-size:12.25px}
+      .wrap{width:min(100% - 28px,var(--max))}.topbar{height:62px}.nav-actions .btn-secondary{display:none}.brand small{display:none}.hero{padding:48px 0 44px}.hero-grid{grid-template-columns:1fr}.hero-actions{display:grid}.hero-actions .btn{width:100%}h1{font-size:40px}.hero-copy{font-size:16px}.app-stage{padding:8px;border-radius:15px}.app-stage:before,.micro-card{display:none}.trust-row{grid-template-columns:1fr}.trust-cell{border-right:0!important;border-bottom:1px solid var(--line)!important}.trust-cell:last-child{border-bottom:0!important}.section{padding:62px 0}.workflow-grid,.steps,.feature-cards,.video-grid,.pricing-shell,.faq-grid,.contact-grid{grid-template-columns:1fr}.feature-list{grid-template-columns:1fr}.pricing-shell{padding:26px}.price{font-size:50px}.form-row{grid-template-columns:1fr}.footer-row{align-items:flex-start;flex-direction:column}.cookie{grid-template-columns:1fr;left:10px;right:10px;bottom:10px}.cookie-actions{width:100%}.cookie-btn{flex:1}
+    }
+    @media(max-width:420px){h1{font-size:35px}.nav-actions .btn-primary{padding:0 12px}.brand{font-size:14px}}
+  
+/* v6 mobile usability patch */
+.mobile-nav-trial{display:none!important}
+.cookie-copy-mobile{display:none}
+
+@media(max-width:1050px){
+  .nav{position:relative}
+  .mobile-menu-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:40px;
+    height:40px;
+    min-width:40px;
+    margin-left:auto;
+    padding:0;
+    border:1px solid var(--line-strong);
+    border-radius:10px;
+    background:#fff;
+    color:var(--ink);
+    font-size:21px;
+    line-height:1;
+    cursor:pointer;
+  }
+  .mobile-menu-btn:hover{background:#f5f7f9}
+  .mobile-menu-btn:focus-visible{outline:3px solid rgba(198,40,40,.18);outline-offset:2px}
+  .nav-links{
+    display:none;
+    position:absolute;
+    top:calc(100% + 9px);
+    right:0;
+    width:min(300px,calc(100vw - 28px));
+    padding:8px;
+    flex-direction:column;
+    align-items:stretch;
+    gap:2px;
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:13px;
+    box-shadow:0 18px 55px rgba(20,31,43,.16);
+    z-index:120;
+  }
+  .nav-links.open{display:flex}
+  .nav-links a{
+    display:block;
+    width:100%;
+    padding:11px 12px;
+    border-radius:9px;
+  }
+  .nav-links .mobile-nav-trial{
+    display:block!important;
+    margin-top:5px;
+    border-top:1px solid var(--line);
+    padding-top:12px;
+    color:var(--brand);
+    font-weight:700;
+  }
+}
+
+@media(max-width:820px){
+  .hero-grid{gap:0}
+  .hero-copy-stack{display:contents}
+  .hero-copy-stack .eyebrow{order:1;justify-self:start}
+  .hero-copy-stack h1{order:2}
+  .hero-copy-stack .hero-copy{order:3}
+  .hero-copy-stack .hero-actions{order:4;margin-bottom:18px}
+  .app-stage{order:5;margin:0 0 21px}
+  .hero-copy-stack .hero-notes{order:6}
+  .hero-copy-stack .hero-price-note{order:7}
+}
+
+@media(max-width:760px){
+  .nav{gap:8px}
+  .brand{gap:8px;font-size:13px}
+  .brand-mark,.brand-mark img{width:32px;height:32px}
+  .mobile-menu-btn{width:38px;height:38px;min-width:38px;font-size:20px}
+  .nav-actions{gap:6px}
+  .nav-actions .btn-primary{min-height:40px;padding:0 11px;font-size:13px}
+  .hero{padding:42px 0 38px}
+  .eyebrow{margin-bottom:16px}
+  h1{margin-bottom:17px}
+  .hero-copy{margin-bottom:21px}
+  .app-stage{margin-bottom:18px}
+  .hero-notes{gap:7px 14px}
+  .hero-price-note{margin-top:9px}
+
+  .cookie{
+    left:8px;
+    right:8px;
+    bottom:8px;
+    padding:10px 11px;
+    gap:9px;
+    border-radius:12px;
+    box-shadow:0 14px 45px rgba(0,0,0,.17);
+  }
+  .cookie p{font-size:11.5px;line-height:1.38}
+  .cookie-copy-desktop{display:none}
+  .cookie-copy-mobile{display:inline}
+  .cookie-actions{gap:7px}
+  .cookie-btn{min-height:36px;padding:7px 9px;font-size:11.5px}
+}
+
+@media(max-width:370px){
+  .brand span:last-child{display:none}
+}
+
+
+/* v7 announcement hero video + click-to-expand */
+.app-stage{cursor:default}
+.app-stage #heroProductVideo{cursor:zoom-in}
+.video-zoom-hint{
+  position:absolute;right:18px;bottom:16px;z-index:4;
+  display:inline-flex;align-items:center;min-height:28px;padding:5px 9px;
+  border:1px solid rgba(255,255,255,.35);border-radius:999px;
+  background:rgba(23,34,47,.82);color:#fff;font-size:10.5px;font-weight:700;
+  letter-spacing:.02em;pointer-events:none;opacity:.88;backdrop-filter:blur(5px)
+}
+.video-zoom-hint .hint-close{display:none}
+body.hero-video-open{overflow:hidden}
+body.hero-video-open::after{
+  content:"";position:fixed;inset:0;z-index:1980;background:rgba(13,22,32,.78);
+  backdrop-filter:blur(5px)
+}
+.app-stage.is-expanded{
+  position:fixed;inset:3vh 3vw;z-index:2000;max-width:none!important;margin:0!important;
+  display:flex;align-items:center;justify-content:center;padding:12px;
+  border-radius:18px;background:#e9edf0;box-shadow:0 28px 90px rgba(0,0,0,.42);
+  cursor:zoom-out
+}
+.app-stage.is-expanded::before{display:none}
+.app-stage.is-expanded #heroProductVideo{
+  width:auto;max-width:100%;height:auto;max-height:calc(94vh - 24px);aspect-ratio:auto;
+  object-fit:contain;border-radius:10px;cursor:zoom-out;background:#eef0f2
+}
+.app-stage.is-expanded .micro-card{display:none}
+.app-stage.is-expanded .video-zoom-hint{right:22px;bottom:18px;opacity:.96}
+.app-stage.is-expanded .video-zoom-hint .hint-open{display:none}
+.app-stage.is-expanded .video-zoom-hint .hint-close{display:inline}
+@media(max-width:760px){
+  .video-zoom-hint{right:12px;bottom:10px;font-size:10px;min-height:25px;padding:4px 8px}
+  .app-stage.is-expanded{inset:10px;padding:6px;border-radius:13px}
+  .app-stage.is-expanded #heroProductVideo{max-height:calc(100vh - 20px)}
+}
+@media(prefers-reduced-motion:reduce){
+  .app-stage #heroProductVideo{scroll-behavior:auto}
+}
+
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap nav">
+    <a class="brand" href="index.html" aria-label="PDF Redact & Extract Pro home">
+      <span class="brand-mark" aria-hidden="true"><img src="assets/PRP.ico" alt=""></span>
+      <span>PDF Redact &amp; Extract Pro <small>v3.0</small></span>
+    </a>
+    <nav class="nav-links" id="mobileNav" aria-label="Main navigation">
+      <a href="#workflows">Workflows</a><a href="#features">Features</a><a href="#videos">Videos</a><a href="#pricing">Pricing</a><a href="help.html">Help</a>
+      <a class="mobile-nav-trial" href="trial/" target="_blank" rel="noopener noreferrer" data-analytics="trial_download_click">Download Trial</a>
+    </nav>
+    <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Open navigation" aria-controls="mobileNav" aria-expanded="false"><span aria-hidden="true">☰</span></button>
+    <div class="nav-actions">
+      <a class="btn btn-secondary" href="trial/" target="_blank" rel="noopener noreferrer" data-analytics="trial_download_click">Download Trial</a>
+      <a class="btn btn-primary" href="#pricing" data-buy-link data-analytics="buy_click">Buy <span data-product-price hidden></span></a>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy-stack">
+      <div class="eyebrow"><span class="eyebrow-dot"></span> PDF Redaction + PDF to Excel · Windows</div>
+      <h1 aria-label="Redact PDFs. Extract Data. Work Locally.">
+        <span class="hero-line"><span class="hero-word-redact">Redact</span> PDFs.</span>
+        <span class="hero-line"><span class="hero-word-extract">Extract</span> Data.</span>
+        <span class="hero-line hero-local">Work Locally.</span>
+      </h1>
+      <p class="hero-copy">Redact confidential content and extract structured data or tables to Excel. OCR scanned PDFs, review both workflows visually, and create output only when you are ready.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#pricing" data-buy-link data-analytics="buy_click">Buy once<span data-product-price-wrap hidden> — <span data-product-price></span></span></a>
+        <a class="btn btn-secondary" href="trial/" target="_blank" rel="noopener noreferrer" data-analytics="trial_download_click">Download Trial</a>
+      </div>
+      <div class="hero-notes">
+        <span><b class="check">✓</b> No subscription</span>
+        <span><b class="check">✓</b> No cloud upload</span>
+        <span><b class="check">✓</b> Windows 10 / 11</span>
+        <span><b class="check">✓</b> OCR + Excel extraction</span>
+      </div>
+      <div class="hero-price-note">One-time license.<span data-product-price-wrap hidden> Current launch price: <strong data-product-price></strong>.</span></div>
+      <div class="hero-security-link">
+        <a href="#windows-security-notice">Windows security note: current build is <strong>not yet digitally code-signed</strong>. Learn more →</a>
+      </div>
+    </div>
+    <div class="app-stage">
+      <video id="heroProductVideo" autoplay muted loop playsinline preload="metadata" poster="assets/01_main_interface_overview.png" role="button" tabindex="0" aria-expanded="false" aria-label="Product preview. Click to enlarge; click again or press Escape to return.">
+        <source src="assets/v3-announcement-hero-loop.mp4" type="video/mp4">
+        <img src="assets/01_main_interface_overview.png" alt="PDF Redact & Extract Pro v3.0 main interface">
+      </video>
+      <span class="video-zoom-hint" aria-hidden="true"><span class="hint-open">Click to enlarge</span><span class="hint-close">Click to return · Esc</span></span>
+      <div class="micro-card"><strong>Redact + Extract</strong>One workspace, two output workflows.</div>
+    </div>
+  </div>
+</section>
+
+<section class="trust-strip" aria-label="Key product benefits">
+  <div class="wrap trust-row">
+    <div class="trust-cell"><div class="trust-icon">PC</div><div><b>Local processing</b><span>Your files stay on your computer</span></div></div>
+    <div class="trust-cell"><div class="trust-icon">OCR</div><div><b>Scanned PDFs</b><span>Create searchable OCR copies</span></div></div>
+    <div class="trust-cell"><div class="trust-icon">XLS</div><div><b>PDF → Excel</b><span>Extract structured fields and tables</span></div></div>
+    <div class="trust-cell"><div class="trust-icon">∞</div><div><b>One-time purchase</b><span>No recurring subscription</span></div></div>
+  </div>
+</section>
+
+<section class="section white" id="workflows">
+  <div class="wrap">
+    <div class="section-head center">
+      <div class="kicker">Redact + Extract</div>
+      <h2>Two Core Workflows. One Application.</h2>
+      <p>Redact sensitive PDF content or extract structured information to Excel. Both workflows use visual review before final output.</p>
+    </div>
+    <div class="workflow-grid">
+      <article class="workflow-card redact">
+        <div class="workflow-top"><div><h3>Redact PDFs</h3><p>Manual, search-based and automatic tools for confidential text, PII, images and visible PDF objects.</p></div><span class="workflow-pill">Redact</span></div>
+        <ul class="feature-list"><li>Manual Draw</li><li>Search & Context</li><li>PII & Currency</li><li>RegEx Builder</li><li>Faces & Images</li><li>Live Preview</li></ul>
+        <div class="workflow-media"><img src="assets/06_live_preview_search.png" alt="Live Preview showing search-based redaction" loading="lazy"></div>
+      </article>
+      <article class="workflow-card extract">
+        <div class="workflow-top"><div><h3>Extract PDF Data</h3><p>Extract fields and tables, configure structured output, then verify the result in Excel Preview.</p></div><span class="workflow-pill">Extract</span></div>
+        <ul class="feature-list"><li>Add to Extract</li><li>Physical columns</li><li>Split & Merge</li><li>Data types</li><li>Locate Row</li><li>Excel Preview</li></ul>
+        <div class="workflow-media"><img src="assets/20_excel_preview.png" alt="Extracted Table Excel Preview" loading="lazy"></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section warm">
+  <div class="wrap">
+    <div class="section-head"><div class="kicker">Controlled workflow</div><h2>Review Results. Then Create Output.</h2><p>Check redaction overlays and extracted values visually before creating the final PDF or Excel file.</p></div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><h3>Load your PDFs</h3><p>Open one file, a folder, or a batch. OCR scanned documents when a searchable text layer is needed.</p></div>
+      <div class="step"><div class="step-num">2</div><h3>Build and verify rules</h3><p>Use Draw, Search, Auto, RegEx or Table tools. Check Live Preview and Excel Preview before output.</p></div>
+      <div class="step"><div class="step-num">3</div><h3>Apply Redaction or Extract</h3><p>Create protected PDFs, Excel output, or both — while keeping the source documents under your control.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section white" id="features">
+  <div class="wrap">
+    <div class="showcase">
+      <div class="showcase-copy">
+        <div class="kicker">Search → Extract</div>
+        <h3>Turn detected values into structured output.</h3>
+        <p>Search modules stay focused on finding the right content. Add the result to Extract, configure the output card, then confirm the final values in Excel Preview.</p>
+        <div class="bullet-stack">
+          <div class="bullet"><i>✓</i><span>Collapsible Search modules keep a complex workflow manageable.</span></div>
+          <div class="bullet"><i>✓</i><span><b>Add to Extract</b> creates configurable extraction output from a Search result.</span></div>
+          <div class="bullet"><i>✓</i><span><b>Locate Row</b> links Excel Preview back to the source area in the PDF.</span></div>
+        </div>
+      </div>
+      <div class="showcase-media">
+        <video controls muted playsinline preload="metadata" poster="assets/21_excel_preview_locate_row.png">
+          <source src="assets/from-search-to-extract-demo-v2.mp4" type="video/mp4">
+        </video>
+        <div class="media-caption">From Search to Extract: collapse/expand, Add to Extract, Table cards, Locate Row and Excel Preview.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="showcase reverse">
+      <div class="showcase-copy">
+        <div class="kicker">PDF to Excel</div>
+        <h3>Convert PDF Tables to Excel with Control.</h3>
+        <p>Define table geometry, physical columns and output structure, then convert PDF data to Excel with Split, Merge, typing and visual verification.</p>
+        <div class="bullet-stack">
+          <div class="bullet"><i>✓</i><span>Manual table geometry, headers and page ranges.</span></div>
+          <div class="bullet"><i>✓</i><span>Physical columns with output alignment and type controls.</span></div>
+          <div class="bullet"><i>✓</i><span>Split multiline values and merge related fields before export.</span></div>
+        </div>
+      </div>
+      <div class="showcase-media">
+        <img src="assets/11_table_full_workspace.png" alt="Table workspace in PDF Redact & Extract Pro v3.0" loading="lazy">
+        <div class="media-caption">Table workspace with PDF preview, extraction controls and output configuration.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section white">
+  <div class="wrap">
+    <div class="section-head center"><div class="kicker">Designed for real documents</div><h2>Built for Real-World PDFs.</h2><p>Work with scans, changing page layouts and repeated jobs — from a single manual rectangle to reusable page-specific and batch workflows.</p></div>
+    <div class="feature-cards">
+      <article class="feature-card"><div class="icon">OCR</div><h3>OCR for scans</h3><p>Create a searchable text layer, then use the normal Search, Auto and Table workflows.</p></article>
+      <article class="feature-card"><div class="icon">Pg</div><h3>Page-specific modes</h3><p>Keep manual Draw areas or supported rule profiles different on individual pages when layouts change.</p></article>
+      <article class="feature-card"><div class="icon">↻</div><h3>Templates & batch</h3><p>Save reusable configurations and process multiple PDFs or one file at a time.</p></article>
+      <article class="feature-card"><div class="icon">👁</div><h3>Visual verification</h3><p>Review redaction overlays and extracted values before creating the final PDF or Excel file.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="section warm" id="videos">
+  <div class="wrap">
+    <div class="section-head"><div class="kicker">Product videos</div><h2>See Redaction and Extraction in Action.</h2><p>Demonstrations and tutorials for PDF Redact &amp; Extract Pro workflows.</p></div>
+    <div class="video-grid" id="videoGrid" aria-live="polite"></div>
+    <div style="margin-top:20px"><a class="btn btn-secondary" href="https://www.youtube.com/@PDFRedactPro/videos" target="_blank" rel="noopener noreferrer" data-analytics="youtube_channel_click">View YouTube channel</a></div>
+  </div>
+</section>
+
+<section class="section white" id="pricing">
+  <div class="wrap">
+    <div class="section-head center"><div class="kicker">Pricing</div><h2>One license. No subscription.</h2><p>A straightforward one-time purchase for the full Windows version.</p></div>
+    <div class="pricing-shell">
+      <div>
+        <div class="price-label">Launch price</div>
+        <div class="price"><span class="price-pending" data-price-loading>Current price</span><span data-product-price hidden></span><span class="regular-price" data-regular-price hidden></span></div>
+        <div class="price-note">One-time payment · Instant download via Payhip</div>
+        <div class="price-actions">
+          <a class="btn btn-primary" href="#pricing" data-buy-link data-analytics="buy_click">Buy &amp; Download<span data-product-price-wrap hidden> — <span data-product-price></span></span></a>
+          <a class="btn btn-secondary" href="trial/" target="_blank" rel="noopener noreferrer" data-analytics="trial_download_click">Download Trial</a>
+        </div>
+        <div class="secure">Secure payment via Payhip · PayPal and cards accepted</div>
+      </div>
+      <ul class="price-list">
+        <li>Full redaction workflow</li><li>Table & structured Excel extraction</li><li>OCR for scanned PDFs</li><li>Batch and one-by-one modes</li><li>Templates and page-specific tools</li><li>Windows 10 / 11</li><li>Free updates</li>
+      </ul>
+    </div>
+    <div class="windows-security-note" id="windows-security-notice" role="note" aria-label="Windows security compatibility notice">
+      <div class="security-icon" aria-hidden="true">i</div>
+      <div class="security-copy">
+        <div class="security-title">Windows security compatibility</div>
+        <p>The current Windows build is <strong>not yet digitally code-signed</strong>. Windows Smart App Control and some corporate security policies may block unsigned applications. Code signing is planned for a future release. <strong>If your environment requires digitally signed software, the current version may not be suitable for your system.</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="faq">
+  <div class="wrap">
+    <div class="section-head"><div class="kicker">FAQ</div><h2>Before you download.</h2></div>
+    <div class="faq-grid">
+      <div class="faq-item"><h3>Does the app upload PDFs to a cloud service?</h3><p>No. The application is designed to process documents locally on your Windows PC.</p></div>
+      <div class="faq-item"><h3>Can it work with scanned PDFs?</h3><p>Yes. Use the OCR workflow to create searchable copies, then apply Search, Auto and Table tools.</p></div>
+      <div class="faq-item"><h3>Can I convert PDF data and tables to Excel?</h3><p>Yes. Use Search-to-Extract or Table tools to extract PDF data, structure it with Split/Merge, review it in Excel Preview, and create the final Excel output with Apply Extract.</p></div>
+      <div class="faq-item"><h3>Is this a subscription?</h3><p>No. The full version is sold as a one-time purchase.</p></div>
+      <div class="faq-item" id="windows-signing"><h3>Is the Windows app digitally code-signed?</h3><p>Not yet. The current release is an unsigned Windows application, so Windows Smart App Control or restrictive corporate security policies may prevent it from running. Code signing is planned for a future release. <strong>If your organization only permits digitally signed applications, please wait for a future signed release.</strong></p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section white" id="contact">
+  <div class="wrap">
+    <div class="section-head"><div class="kicker">Contact</div><h2>Have a question?</h2><p>Ask about the app, licensing, payment or a workflow you want to confirm before buying.</p></div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <h3>Useful links</h3><p>Try the app, read the guide or watch demonstrations before deciding.</p>
+        <div class="contact-links">
+          <a href="help.html" data-analytics="help_click">User Guide / Help</a>
+          <a href="trial/" target="_blank" rel="noopener noreferrer" data-analytics="trial_download_click">Download Trial</a>
+          <a href="https://www.youtube.com/@PDFRedactPro/videos" target="_blank" rel="noopener noreferrer" data-analytics="youtube_channel_click">YouTube Channel</a>
+          <a href="#pricing" data-buy-link data-analytics="buy_click">Buy on Payhip</a>
+        </div>
+      </div>
+      <form class="contact-form" id="contactForm" action="https://formspree.io/f/mrevzjag" method="POST">
+        <div class="form-row"><div class="field"><label for="name">Your name</label><input id="name" name="name" type="text" required></div><div class="field"><label for="email">Email address</label><input id="email" name="email" type="email" required></div></div>
+        <div class="field"><label for="message">Message</label><textarea id="message" name="message" required></textarea></div>
+        <button class="btn btn-primary" type="submit">Send Message</button><div class="form-ok" id="formOk">✓ Message sent. Thank you.</div>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap"><div class="footer-row"><div class="footer-brand">PDF Redact &amp; Extract <span>Pro v3.0</span></div><div class="footer-links"><a href="help.html">Help</a><a href="privacy.html">Privacy</a><a href="#pricing">Pricing</a><a href="#contact">Contact</a><a href="#" onclick="prpOpenCookieSettings();return false;">Cookie settings</a></div></div><div class="footer-copy">© 2026 PDF Redact &amp; Extract Pro. All rights reserved.</div></div>
+</footer>
+
+<div class="cookie" id="cookieConsent" role="dialog" aria-label="Cookie consent">
+  <p><strong>Privacy choices.</strong> <span class="cookie-copy-desktop">Essential storage keeps the website working. With your consent, Google Analytics helps us understand visits and improve the site.</span><span class="cookie-copy-mobile">Analytics runs only if you accept.</span> <a href="privacy.html">Privacy Policy</a></p>
+  <div class="cookie-actions"><button class="cookie-btn" id="cookieReject" type="button">Reject</button><button class="cookie-btn primary" id="cookieAccept" type="button">Accept analytics</button></div>
+</div>
+<div class="modal" id="cookieSettingsModal" role="dialog" aria-modal="true" aria-labelledby="cookieSettingsTitle">
+  <div class="modal-card"><h2 id="cookieSettingsTitle">Cookie Settings</h2><p>Essential browser storage is used for your privacy choice. Google Analytics loads only after you accept analytics cookies.</p><p id="cookieStatus"></p><div class="modal-actions"><button class="cookie-btn primary" id="settingsAccept" type="button">Accept analytics</button><button class="cookie-btn" id="settingsReject" type="button">Reject analytics</button><button class="cookie-btn" id="settingsClose" type="button">Close</button></div></div>
+</div>
+
+<script>
+  const PRODUCT_DEFAULTS = { regularPrice:null, currency:'USD', saleActive:false };
+  const formatMoney = (value, currency='USD') => new Intl.NumberFormat('en-US',{style:'currency',currency,minimumFractionDigits:2,maximumFractionDigits:2}).format(Number(value));
+  function normalizeProduct(product){
+    const p = {...PRODUCT_DEFAULTS, ...(product || {})};
+    const price = Number(p.price);
+    if(!Number.isFinite(price) || price < 0 || typeof p.payhipUrl !== 'string' || !p.payhipUrl.trim()) throw new Error('Invalid product.json');
+    p.price = price;
+    p.currency = String(p.currency || 'USD').toUpperCase();
+    p.payhipUrl = p.payhipUrl.trim();
+    return p;
+  }
+  function applyProduct(product){
+    const p = normalizeProduct(product);
+    document.querySelectorAll('[data-product-price]').forEach(el => { el.textContent = formatMoney(p.price,p.currency); el.hidden=false; });
+    document.querySelectorAll('[data-product-price-wrap]').forEach(el => { el.hidden=false; });
+    document.querySelectorAll('[data-price-loading]').forEach(el => { el.hidden=true; });
+    document.querySelectorAll('[data-buy-link]').forEach(el => { el.href = p.payhipUrl; el.target='_blank'; el.rel='noopener noreferrer'; });
+    document.querySelectorAll('[data-regular-price]').forEach(el => {
+      if(p.saleActive && p.regularPrice){ el.textContent = formatMoney(p.regularPrice,p.currency); el.hidden=false; } else { el.hidden=true; }
+    });
+    const old = document.getElementById('productSchema'); if(old) old.remove();
+    const schema = document.createElement('script'); schema.id='productSchema'; schema.type='application/ld+json';
+    schema.textContent = JSON.stringify({
+      '@context':'https://schema.org','@type':'SoftwareApplication','name':'PDF Redact & Extract Pro','applicationCategory':'BusinessApplication',
+      'operatingSystem':'Windows 10, Windows 11','url':'https://pdfredact.pro/',
+      'description':'Offline Windows software to redact PDFs, OCR scanned documents, extract PDF data, and convert PDF tables to Excel with visual review.',
+      'keywords':'PDF to Excel, Convert PDF to Excel, PDF data extraction, PDF table extraction, PDF redaction software, OCR PDF, offline PDF tool, Windows PDF redaction',
+      'offers':{'@type':'Offer','price':p.price.toFixed(2),'priceCurrency':p.currency,'url':p.payhipUrl},
+      'featureList':['PDF redaction software','Convert PDF to Excel','PDF data extraction','PDF table extraction','OCR for scanned PDFs','Automatic PII detection','Search and RegEx workflows','Excel Preview','Split and Merge output fields','Batch processing','Page-specific Draw and Rules']
+    }); document.head.appendChild(schema);
+  }
+  function markProductUnavailable(){
+    document.querySelectorAll('[data-price-loading]').forEach(el => { el.hidden=false; el.textContent='Current price'; });
+  }
+  // Local file:// preview only. The deployed site always uses product.json as the
+  // authoritative price source; this fallback exists solely because browsers block
+  // fetch('product.json') for direct local-file previews.
+  const LOCAL_PREVIEW_PRICE = { price:39.90, currency:'USD' };
+  function applyLocalPreviewPrice(){
+    const value = formatMoney(LOCAL_PREVIEW_PRICE.price, LOCAL_PREVIEW_PRICE.currency);
+    document.querySelectorAll('[data-product-price]').forEach(el => { el.textContent=value; el.hidden=false; });
+    document.querySelectorAll('[data-product-price-wrap]').forEach(el => { el.hidden=false; });
+    document.querySelectorAll('[data-price-loading]').forEach(el => { el.hidden=true; });
+  }
+  if(location.protocol !== 'file:') fetch('product.json',{cache:'no-store'}).then(r=>{if(!r.ok) throw new Error('product.json unavailable');return r.json()}).then(applyProduct).catch(markProductUnavailable);
+  else applyLocalPreviewPrice();
+
+  const prpCookieChoiceKey = window.PRP_COOKIE_CHOICE_KEY || 'prp_analytics_consent';
+  const cookieBanner=document.getElementById('cookieConsent'), cookieAccept=document.getElementById('cookieAccept'), cookieReject=document.getElementById('cookieReject');
+  const cookieSettingsModal=document.getElementById('cookieSettingsModal'), cookieStatus=document.getElementById('cookieStatus');
+  const settingsAccept=document.getElementById('settingsAccept'), settingsReject=document.getElementById('settingsReject'), settingsClose=document.getElementById('settingsClose');
+  function getCookieChoice(){try{return localStorage.getItem(prpCookieChoiceKey)}catch(e){return null}}
+  function showCookieBanner(){if(cookieBanner)cookieBanner.classList.add('show')} function hideCookieBanner(){if(cookieBanner)cookieBanner.classList.remove('show')}
+  function updateCookieStatus(){if(!cookieStatus)return;const c=getCookieChoice();cookieStatus.textContent='Current choice: '+(c==='accepted'?'analytics accepted':c==='rejected'?'analytics rejected':'not selected yet')}
+  function openCookieSettingsModal(){updateCookieStatus();cookieSettingsModal&&cookieSettingsModal.classList.add('show')} function closeCookieSettingsModal(){cookieSettingsModal&&cookieSettingsModal.classList.remove('show')}
+  window.prpOpenCookieSettings=openCookieSettingsModal;
+  function acceptAnalyticsChoice(){try{localStorage.setItem(prpCookieChoiceKey,'accepted')}catch(e){};if(typeof window.prpLoadAnalytics==='function')window.prpLoadAnalytics();hideCookieBanner();updateCookieStatus();closeCookieSettingsModal()}
+  function rejectAnalyticsChoice(){try{localStorage.setItem(prpCookieChoiceKey,'rejected')}catch(e){};hideCookieBanner();updateCookieStatus();closeCookieSettingsModal()}
+  if(!getCookieChoice())showCookieBanner(); cookieAccept&&cookieAccept.addEventListener('click',acceptAnalyticsChoice);cookieReject&&cookieReject.addEventListener('click',rejectAnalyticsChoice);settingsAccept&&settingsAccept.addEventListener('click',acceptAnalyticsChoice);settingsReject&&settingsReject.addEventListener('click',rejectAnalyticsChoice);settingsClose&&settingsClose.addEventListener('click',closeCookieSettingsModal);cookieSettingsModal&&cookieSettingsModal.addEventListener('click',e=>{if(e.target===cookieSettingsModal)closeCookieSettingsModal()});
+
+
+
+  const heroProductVideo=document.getElementById('heroProductVideo');
+  const heroProductStage=heroProductVideo&&heroProductVideo.closest('.app-stage');
+  function setHeroVideoExpanded(open){
+    if(!heroProductVideo||!heroProductStage)return;
+    heroProductStage.classList.toggle('is-expanded',open);
+    document.body.classList.toggle('hero-video-open',open);
+    heroProductVideo.setAttribute('aria-expanded',open?'true':'false');
+    heroProductVideo.setAttribute('aria-label',open?'Expanded product preview. Click again or press Escape to return.':'Product preview. Click to enlarge; click again or press Escape to return.');
+  }
+  function toggleHeroVideo(){setHeroVideoExpanded(!heroProductStage.classList.contains('is-expanded'))}
+  heroProductVideo&&heroProductVideo.addEventListener('click',e=>{e.preventDefault();toggleHeroVideo()});
+  heroProductVideo&&heroProductVideo.addEventListener('keydown',e=>{
+    if(e.key==='Enter'||e.key===' '){e.preventDefault();toggleHeroVideo()}
+  });
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape'&&heroProductStage&&heroProductStage.classList.contains('is-expanded'))setHeroVideoExpanded(false)
+  });
+
+  const mobileMenuBtn=document.getElementById('mobileMenuBtn'), mobileNav=document.getElementById('mobileNav');
+  function setMobileMenu(open){
+    if(!mobileMenuBtn||!mobileNav)return;
+    mobileNav.classList.toggle('open',open);
+    mobileMenuBtn.setAttribute('aria-expanded',open?'true':'false');
+    mobileMenuBtn.setAttribute('aria-label',open?'Close navigation':'Open navigation');
+    const glyph=mobileMenuBtn.querySelector('span');
+    if(glyph)glyph.textContent=open?'×':'☰';
+  }
+  mobileMenuBtn&&mobileMenuBtn.addEventListener('click',e=>{
+    e.stopPropagation();
+    setMobileMenu(!mobileNav.classList.contains('open'));
+  });
+  mobileNav&&mobileNav.addEventListener('click',e=>{
+    if(e.target.closest('a'))setMobileMenu(false);
+  });
+  document.addEventListener('click',e=>{
+    if(mobileNav&&mobileNav.classList.contains('open')&&!mobileNav.contains(e.target)&&e.target!==mobileMenuBtn)setMobileMenu(false);
+  });
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')setMobileMenu(false)});
+  window.addEventListener('resize',()=>{if(window.innerWidth>1050)setMobileMenu(false)});
+
+  function trackEvent(name,params={}){ if(typeof window.gtag==='function') window.gtag('event',name,params); }
+  document.addEventListener('click',e=>{const link=e.target.closest('[data-analytics]');if(link)trackEvent(link.dataset.analytics,{link_url:link.href||'',link_text:(link.textContent||'').trim()})});
+
+  const videoGrid=document.getElementById('videoGrid');
+  const fallbackVideos=[
+    {id:'2iBdrQqoMTA',title:'PDF Redactor Pro v2.77 Allowlist demo',description:'Detect phone numbers across a multi-page document while an allowlisted number remains visible.',published:'2026-05-25T20:52:21+00:00',url:'https://www.youtube.com/watch?v=2iBdrQqoMTA',thumbnail:'https://i.ytimg.com/vi/2iBdrQqoMTA/hqdefault.jpg'},
+    {id:'92quwcHEtMM',title:'How to Redact Scanned PDFs with OCR',description:'Create searchable OCR copies and redact scanned documents like text-based PDFs.',published:'2026-05-08T17:46:16+00:00',url:'https://www.youtube.com/watch?v=92quwcHEtMM',thumbnail:'https://i.ytimg.com/vi/92quwcHEtMM/hqdefault.jpg'},
+    {id:'8x2g2mPH73g',title:'PDF Redactor Pro — Fictional Invoice Demo',description:'Apply a saved redaction template, export a protected PDF and verify the result.',published:'2026-05-01T21:43:41+00:00',url:'https://www.youtube.com/watch?v=8x2g2mPH73g',thumbnail:'https://i.ytimg.com/vi/8x2g2mPH73g/hqdefault.jpg'},
+    {id:'xa6ZLOOg6Mk',title:'PDF Redactor Pro — Example of use',description:'A quick introduction to local PDF redaction for confidential documents.',published:'2026-03-13T17:12:02+00:00',url:'https://www.youtube.com/watch?v=xa6ZLOOg6Mk',thumbnail:'https://i.ytimg.com/vi/xa6ZLOOg6Mk/hqdefault.jpg'}
+  ];
+  const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
+  const formatDate=v=>{const d=new Date(v);return Number.isNaN(d.getTime())?'':d.toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric'})};
+  function renderVideos(videos){videoGrid.innerHTML=videos.slice(0,4).map(v=>`<a class="video-card" href="${esc(v.url)}" target="_blank" rel="noopener noreferrer" data-analytics="youtube_video_click"><div class="video-thumb"><img src="${esc(v.thumbnail)}" alt="${esc(v.title)}" loading="lazy"><span class="play">▶</span></div><div class="video-body"><div class="video-title">${esc(v.title)}</div><div class="video-desc">${esc(v.description||'')}</div><div class="video-meta"><span>${esc(formatDate(v.published))}</span><span>Watch →</span></div></div></a>`).join('')}
+  fetch('videos.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error();return r.json()}).then(d=>renderVideos(d.videos||[])).catch(()=>renderVideos(fallbackVideos));
+
+  const form=document.getElementById('contactForm');
+  form&&form.addEventListener('submit',async e=>{e.preventDefault();const btn=form.querySelector('button[type="submit"]');const old=btn.textContent;btn.textContent='Sending…';btn.disabled=true;try{const res=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{Accept:'application/json'}});if(res.ok){form.reset();document.getElementById('formOk').style.display='block';btn.textContent='Sent!';trackEvent('contact_submit')}else{throw new Error()}}catch(err){btn.textContent='Error. Try again.';btn.disabled=false;setTimeout(()=>btn.textContent=old,2500)}});
+</script>
+</body>
+</html>

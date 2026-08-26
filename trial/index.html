@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PDF Redact &amp; Extract Pro — Trial Download</title>
+  <meta name="description" content="Redirecting to the PDF Redact & Extract Pro Trial download.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://pdfredact.pro/trial/">
+  <link rel="icon" href="../assets/PRP.ico">
+  <script>
+    window.PRP_GA_ID = 'G-NYWCCW67BT';
+    window.PRP_COOKIE_CHOICE_KEY = 'prp_analytics_consent';
+    window.PRP_TRIAL_URL = 'https://drive.google.com/file/d/1NU-3PplQBVYKBHr9CEbQ--Ku6WA85u-t/view?usp=drive_link';
+
+    function prpIsProductionHost() {
+      return location.hostname === 'pdfredact.pro' || location.hostname === 'www.pdfredact.pro';
+    }
+    function prpGetCookieChoice() {
+      try { return localStorage.getItem(window.PRP_COOKIE_CHOICE_KEY); }
+      catch (e) { return null; }
+    }
+    function prpLoadAnalytics() {
+      if (!prpIsProductionHost() || window.PRP_ANALYTICS_LOADED) return;
+      window.PRP_ANALYTICS_LOADED = true;
+      var gaScript = document.createElement('script');
+      gaScript.async = true;
+      gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=' + window.PRP_GA_ID;
+      document.head.appendChild(gaScript);
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function(){ dataLayer.push(arguments); };
+      gtag('js', new Date());
+      gtag('config', window.PRP_GA_ID, { anonymize_ip: true });
+    }
+  </script>
+  <style>
+    :root{--bg:#f6f7f9;--surface:#fff;--ink:#17202b;--muted:#647080;--line:#e3e6ea;--brand:#c62828;--shadow:0 18px 55px rgba(22,32,43,.10)}
+    *{box-sizing:border-box}html,body{min-height:100%}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Aptos","Segoe UI",Arial,Helvetica,sans-serif;display:grid;place-items:center;padding:24px}
+    .card{width:min(560px,100%);background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:34px;text-align:center}
+    .mark{width:52px;height:52px;margin:0 auto 18px;display:block}.title{font-size:26px;font-weight:800;letter-spacing:-.02em;margin:0 0 8px}.copy{margin:0;color:var(--muted);line-height:1.6}
+    .spinner{width:30px;height:30px;border:3px solid #eceff3;border-top-color:var(--brand);border-radius:50%;margin:22px auto 18px;animation:spin .8s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+    .fallback{margin-top:18px;font-size:14px;color:var(--muted)}.fallback a{color:var(--brand);font-weight:700}.small{margin-top:18px;font-size:12px;color:#8b95a3}
+  </style>
+</head>
+<body>
+  <main class="card" aria-live="polite">
+    <img class="mark" src="../assets/PRP.ico" alt="PDF Redact & Extract Pro">
+    <h1 class="title">Preparing your Trial download…</h1>
+    <p class="copy">You will be redirected to the current PDF Redact &amp; Extract Pro Trial on Google Drive.</p>
+    <div class="spinner" aria-hidden="true"></div>
+    <p class="fallback">If the redirect does not start, <a id="trialFallback" href="#" rel="noopener noreferrer">continue to the Trial</a>.</p>
+    <p class="small">Analytics is used only if you previously accepted analytics on pdfredact.pro.</p>
+  </main>
+
+  <script>
+  (function(){
+    var target = window.PRP_TRIAL_URL;
+    var fallback = document.getElementById('trialFallback');
+    if (fallback) fallback.href = target;
+
+    var redirected = false;
+    function go(){
+      if (redirected) return;
+      redirected = true;
+      window.location.replace(target);
+    }
+
+    var choice = prpGetCookieChoice();
+    if (choice === 'accepted' && prpIsProductionHost()) {
+      prpLoadAnalytics();
+      var params = new URLSearchParams(window.location.search);
+      var sourceHint = params.get('src') || params.get('utm_source') || '';
+      var referrerHost = '';
+      try { referrerHost = document.referrer ? new URL(document.referrer).hostname : ''; } catch (e) {}
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'trial_redirect', {
+          link_url: target,
+          source_hint: sourceHint || '(none)',
+          referrer_host: referrerHost || '(direct)',
+          transport_type: 'beacon',
+          event_callback: go,
+          event_timeout: 900
+        });
+        window.setTimeout(go, 1000);
+        return;
+      }
+    }
+    window.setTimeout(go, 250);
+  })();
+  </script>
+</body>
+</html>
