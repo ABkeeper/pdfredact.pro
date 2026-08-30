@@ -3,6 +3,14 @@
   "channelUrl": "https://www.youtube.com/@PDFRedactPro/videos",
   "videos": [
     {
+      "id": "EBqnh8_hjCM",
+      "title": "Bank Statement Data Extraction to Excel | PDF Redact & Extract Pro",
+      "description": "Portfolio demonstration of extracting structured data from a bank statement PDF into Excel.",
+      "published": "2026-08-30T10:18:08+00:00",
+      "url": "https://www.youtube.com/watch?v=EBqnh8_hjCM",
+      "thumbnail": "https://i.ytimg.com/vi/EBqnh8_hjCM/hqdefault.jpg"
+    },
+    {
       "id": "YuAVucOLD78",
       "title": "Coming Soon: PDF Redact & Extract Pro v3.0 – New Data Extraction & Smarter Redaction",
       "description": "PDF Redact & Extract Pro v3.0 is coming soon.",
@@ -25,15 +33,7 @@
       "published": "2026-05-25T20:52:21+00:00",
       "url": "https://www.youtube.com/watch?v=2iBdrQqoMTA",
       "thumbnail": "https://i.ytimg.com/vi/2iBdrQqoMTA/hqdefault.jpg"
-    },
-    {
-      "id": "92quwcHEtMM",
-      "title": "How to Redact Scanned PDFs with OCR | PDF Redactor Pro Beta",
-      "description": "A practical OCR workflow for converting scanned PDFs into searchable copies and redacting them like normal text-based documents.",
-      "published": "2026-05-08T17:46:16+00:00",
-      "url": "https://www.youtube.com/watch?v=92quwcHEtMM",
-      "thumbnail": "https://i.ytimg.com/vi/92quwcHEtMM/hqdefault.jpg"
     }
   ],
-  "updatedAt": "2026-08-26T20:03:25.118Z"
+  "updatedAt": "2026-08-30T11:55:58.466Z"
 }
