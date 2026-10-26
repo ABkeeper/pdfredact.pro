@@ -3,6 +3,14 @@
   "channelUrl": "https://www.youtube.com/@PDFRedactPro/videos",
   "videos": [
     {
+      "id": "8PhuP8kMonw",
+      "title": "PDF Redact & Extract PRO 3.1 — Coming Soon | PDF Tables to Excel: Auto Shift, Sequence, Combine",
+      "description": "PDF Redact & Extract PRO 3.1 is coming soon. Here is a first look at four new ways to turn real-world PDF tables into clean Excel files.",
+      "published": "2026-10-26T19:11:12+00:00",
+      "url": "https://www.youtube.com/watch?v=8PhuP8kMonw",
+      "thumbnail": "https://i.ytimg.com/vi/8PhuP8kMonw/hqdefault.jpg"
+    },
+    {
       "id": "EBqnh8_hjCM",
       "title": "Convert PDF to Excel | Extract Bank Statement Data and Tables",
       "description": "Convert PDF data to Excel with PDF Redact & Extract Pro.",
@@ -25,15 +33,7 @@
       "published": "2026-06-19T13:07:50+00:00",
       "url": "https://www.youtube.com/watch?v=Xi1gAQN_U30",
       "thumbnail": "https://i.ytimg.com/vi/Xi1gAQN_U30/hqdefault.jpg"
-    },
-    {
-      "id": "2iBdrQqoMTA",
-      "title": "PDF Redactor Pro v2.77 Allowlist demo",
-      "description": "See how phone numbers can be detected across a multi-page document while one selected allowlisted number remains visible.",
-      "published": "2026-05-25T20:52:21+00:00",
-      "url": "https://www.youtube.com/watch?v=2iBdrQqoMTA",
-      "thumbnail": "https://i.ytimg.com/vi/2iBdrQqoMTA/hqdefault.jpg"
     }
   ],
-  "updatedAt": "2026-09-04T16:22:33.376Z"
+  "updatedAt": "2026-10-26T22:40:44.742Z"
 }
