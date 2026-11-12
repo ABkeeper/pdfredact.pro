@@ -3,6 +3,14 @@
   "channelUrl": "https://www.youtube.com/@PDFRedactPro/videos",
   "videos": [
     {
+      "id": "C3us6CT1570",
+      "title": "PDF Redact & Extract PRO v3.1 | New Features & Real Software Demo",
+      "description": "Meet PDF Redact & Extract PRO v3.1 — a Windows desktop app for extracting data from PDFs, working with complex tables, redacting sensitive information, and converting documents.",
+      "published": "2026-11-12T13:24:24+00:00",
+      "url": "https://www.youtube.com/watch?v=C3us6CT1570",
+      "thumbnail": "https://i.ytimg.com/vi/C3us6CT1570/hqdefault.jpg"
+    },
+    {
       "id": "8PhuP8kMonw",
       "title": "PDF Redact & Extract PRO 3.1 — Coming Soon | PDF Tables to Excel: Auto Shift, Sequence, Combine",
       "description": "PDF Redact & Extract PRO 3.1 is coming soon. Here is a first look at four new ways to turn real-world PDF tables into clean Excel files.",
@@ -25,15 +33,7 @@
       "published": "2026-08-18T13:04:41+00:00",
       "url": "https://www.youtube.com/watch?v=YuAVucOLD78",
       "thumbnail": "https://i.ytimg.com/vi/YuAVucOLD78/hqdefault.jpg"
-    },
-    {
-      "id": "Xi1gAQN_U30",
-      "title": "PDF Redactor Pro v2.79 - Regex_Address_Search",
-      "description": "This video demonstrates how to use PDF Redactor Pro v2.79 to automatically detect and permanently redact sensitive information in PDF documents.",
-      "published": "2026-06-19T13:07:50+00:00",
-      "url": "https://www.youtube.com/watch?v=Xi1gAQN_U30",
-      "thumbnail": "https://i.ytimg.com/vi/Xi1gAQN_U30/hqdefault.jpg"
     }
   ],
-  "updatedAt": "2026-10-26T22:40:44.742Z"
+  "updatedAt": "2026-11-12T19:55:26.537Z"
 }
