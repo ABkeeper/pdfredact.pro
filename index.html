@@ -4,19 +4,19 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>PDF to Excel &amp; PDF Redaction Software | PDF Redact &amp; Extract Pro</title>
-  <meta name="description" content="Redact PDFs, OCR scanned documents, and convert PDF data and tables to Excel with PDF Redact &amp; Extract Pro. Offline Windows PDF redaction and extraction software with visual preview.">
-  <meta name="keywords" content="PDF to Excel, Convert PDF to Excel, PDF data extraction, PDF table extraction, extract data from PDF, PDF redaction software, redact PDF, OCR PDF, offline PDF tool, Windows PDF redaction, PDF extractor">
+  <meta name="description" content="Redact PDFs, OCR scanned documents, convert PDFs and scans to editable Word and Excel, and extract PDF tables with PDF Redact &amp; Extract Pro. Offline Windows PDF redaction and extraction software with visual preview.">
+  <meta name="keywords" content="PDF to Word, Convert PDF to Word, scanned PDF to Word, PDF to Excel, Convert PDF to Excel, PDF data extraction, PDF table extraction, extract data from PDF, PDF redaction software, redact PDF, OCR PDF, offline PDF tool, Windows PDF redaction, PDF extractor">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://pdfredact.pro/">
   <link rel="icon" href="assets/PRP.ico">
-  <meta property="og:title" content="PDF Redact &amp; Extract Pro v3.0">
+  <meta property="og:title" content="PDF Redact &amp; Extract Pro v3.1">
   <meta property="og:description" content="Redact PDFs and extract structured data or tables to Excel. Offline Windows software with OCR and visual review.">
   <meta property="og:url" content="https://pdfredact.pro/">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://pdfredact.pro/assets/social-preview.png">
-  <meta property="og:image:alt" content="PDF Redact &amp; Extract Pro v3.0 — offline PDF redaction and Excel extraction">
+  <meta property="og:image:alt" content="PDF Redact &amp; Extract Pro v3.1 — offline PDF redaction and Excel extraction">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="PDF Redact &amp; Extract Pro v3.0">
+  <meta name="twitter:title" content="PDF Redact &amp; Extract Pro v3.1">
   <meta name="twitter:description" content="Redact PDFs. Extract data. Convert PDF tables to Excel — locally on Windows.">
   <meta name="twitter:image" content="https://pdfredact.pro/assets/social-preview.png">
 
@@ -117,7 +117,7 @@
     .hero-security-link a:hover{color:#293440;border-bottom-color:#818c98}
     .hero-security-link strong{font-weight:850;color:#394450}
     .app-stage{position:relative;padding:15px;background:linear-gradient(145deg,#fff,#f0f2f4);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow)}
-    .app-stage:before{content:"Actual v3.0 interface";position:absolute;top:-13px;right:20px;background:var(--navy);color:#fff;border-radius:999px;padding:5px 10px;font-size:11px;font-weight:700;letter-spacing:.03em;z-index:3}
+    .app-stage:before{content:"Actual v3.1 interface";position:absolute;top:-13px;right:20px;background:var(--navy);color:#fff;border-radius:999px;padding:5px 10px;font-size:11px;font-weight:700;letter-spacing:.03em;z-index:3}
     .app-stage img,.app-stage video{display:block;width:100%;border-radius:12px;border:1px solid #d4d8dd;background:#fff}
     .app-stage video{height:auto;aspect-ratio:16/9;object-fit:cover}
     .micro-card{position:absolute;left:-34px;bottom:30px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 15px;box-shadow:var(--shadow-soft);font-size:12.5px;color:#4d5968;font-weight:650}
@@ -376,6 +376,59 @@ body.hero-video-open::after{
   .app-stage #heroProductVideo{scroll-behavior:auto}
 }
 
+
+/* ===== v3.1 "What's new" section (new) ===== */
+.v31{display:grid;grid-template-columns:minmax(260px,.78fr) minmax(0,1.6fr);gap:26px;align-items:start}
+.v31-tabs{display:flex;flex-direction:column;gap:10px}
+.v31-tab{all:unset;cursor:pointer;display:block;background:#fff;border:1px solid var(--line);border-radius:14px;padding:15px 16px 14px;box-shadow:0 2px 8px rgba(22,32,43,.03);transition:border-color .15s,box-shadow .15s,transform .15s}
+.v31-tab:hover{border-color:var(--line-strong);transform:translateY(-1px)}
+.v31-tab:focus-visible{outline:3px solid rgba(198,40,40,.35);outline-offset:2px}
+.v31-tab[aria-selected="true"]{border-color:#f0b8b8;box-shadow:0 10px 26px rgba(198,40,40,.10);background:linear-gradient(180deg,#fff,#fffafa)}
+.v31-tab-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.v31-tab b{font-size:15.5px;color:var(--ink)}
+.v31-num{font-size:11px;font-weight:800;color:#8a94a0;letter-spacing:.06em}
+.v31-tab[aria-selected="true"] .v31-num{color:var(--brand)}
+.v31-tab p{margin:5px 0 0;font-size:13.5px;line-height:1.5;color:var(--muted)}
+.v31-bar{height:3px;border-radius:3px;background:#eef0f3;margin-top:11px;overflow:hidden;display:none}
+.v31-tab[aria-selected="true"] .v31-bar{display:block}
+.v31-bar span{display:block;height:100%;width:0;background:var(--brand)}
+.v31-stage{position:relative;padding:15px;background:linear-gradient(145deg,#fff,#f0f2f4);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow)}
+.v31-stage:before{content:"Actual v3.1 interface";position:absolute;top:-13px;right:20px;background:var(--navy);color:#fff;border-radius:999px;padding:5px 10px;font-size:11px;font-weight:700;letter-spacing:.03em}
+.v31-panel[hidden]{display:none!important}
+.v31-panel h3{margin:4px 2px 4px;font-size:19px;letter-spacing:-.01em}
+.v31-panel .v31-lead{margin:0 2px 12px;color:var(--muted);font-size:14.5px}
+.v31-media{background:#f6f8fc;border:1px solid #d4d8dd;border-radius:12px;overflow:hidden}
+.v31-media img{display:block;width:100%;height:auto}
+.v31-points{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:12px}
+.v31-points div{background:#fff;border:1px solid var(--line);border-radius:11px;padding:10px 12px;font-size:13px;color:#4d5968}
+.v31-points b{display:block;color:var(--ink);font-size:13.5px;margin-bottom:1px}
+.v31-modes{display:inline-flex;gap:4px;background:#fff;border:1px solid var(--line-strong);border-radius:11px;padding:4px;margin:0 0 10px 2px}
+.v31-modes button{all:unset;cursor:pointer;font-size:13px;font-weight:700;color:#526071;padding:7px 12px;border-radius:8px}
+.v31-modes button[aria-pressed="true"]{background:var(--brand);color:#fff}
+.v31-modes button:focus-visible{outline:3px solid rgba(198,40,40,.35)}
+.v31-mode-note{margin:8px 2px 0;font-size:13px;color:var(--muted)}
+.v31-cta{display:flex;flex-wrap:wrap;gap:11px;align-items:center;margin-top:24px}
+.v31-cta small{color:#7a8592;font-size:13px}
+@media(max-width:980px){.v31{grid-template-columns:1fr}.v31-tabs{flex-direction:row;overflow-x:auto;padding-bottom:4px}.v31-tab{min-width:220px}.v31-points{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.v31-tab{transition:none}}
+
+
+/* v15: Convert spotlight */
+.convert-spot{background:linear-gradient(180deg,#fff7ef 0%,#fffdfa 55%,#fff 100%);border-top:1px solid #f3dcc4;border-bottom:1px solid #f1e6da;position:relative}
+.convert-spot:before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:linear-gradient(90deg,var(--brand),var(--warm))}
+.convert-badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--brand);margin-bottom:10px}
+.convert-badge span{background:var(--brand);color:#fff;border-radius:999px;padding:3px 9px;letter-spacing:.06em;font-size:11px}
+.convert-compare{margin:8px auto 26px;max-width:1080px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:12px;box-shadow:var(--shadow)}
+.convert-compare img{display:block;width:100%;height:auto;border-radius:10px}
+.convert-compare figcaption{font-size:13px;color:var(--muted);text-align:center;margin:10px 6px 2px}
+.convert-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.convert-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:var(--shadow-soft)}
+.convert-card h3{font-size:17px;margin:10px 0 6px}
+.convert-card p{font-size:14px;color:#455260;margin:0}
+.convert-icon{display:inline-grid;place-items:center;min-width:38px;height:38px;padding:0 8px;border-radius:10px;background:var(--brand-soft);color:var(--brand);font-weight:800;font-size:13px}
+.convert-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+@media(max-width:980px){.convert-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.convert-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -383,10 +436,10 @@ body.hero-video-open::after{
   <div class="wrap nav">
     <a class="brand" href="index.html" aria-label="PDF Redact & Extract Pro home">
       <span class="brand-mark" aria-hidden="true"><img src="assets/PRP.ico" alt=""></span>
-      <span>PDF Redact &amp; Extract Pro <small>v3.0</small></span>
+      <span>PDF Redact &amp; Extract Pro <small>v3.1</small></span>
     </a>
     <nav class="nav-links" id="mobileNav" aria-label="Main navigation">
-      <a href="#workflows">Workflows</a><a href="#features">Features</a><a href="#videos">Videos</a><a href="#pricing">Pricing</a><a href="help.html">Help</a>
+      <a href="#workflows">Workflows</a><a href="#features">Features</a><a href="#convert">Convert</a><a href="#videos">Videos</a><a href="#pricing">Pricing</a><a href="help.html">Help</a><a href="#whats-new">What’s new</a>
       <a class="mobile-nav-trial" href="trial/" target="_blank" rel="noopener noreferrer" data-analytics="trial_download_click">Download Trial</a>
     </nav>
     <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Open navigation" aria-controls="mobileNav" aria-expanded="false"><span aria-hidden="true">☰</span></button>
@@ -407,7 +460,7 @@ body.hero-video-open::after{
         <span class="hero-line"><span class="hero-word-extract">Extract</span> Data.</span>
         <span class="hero-line hero-local">Work Locally.</span>
       </h1>
-      <p class="hero-copy">Redact confidential content and extract structured data or tables to Excel. OCR scanned PDFs, review both workflows visually, and create output only when you are ready.</p>
+      <p class="hero-copy">Redact confidential content and extract structured data or tables to Excel. OCR scanned PDFs, convert whole documents to Word or Excel, review everything visually, and create output only when you are ready.</p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="#pricing" data-buy-link data-analytics="buy_click">Buy once<span data-product-price-wrap hidden> — <span data-product-price></span></span></a>
         <a class="btn btn-secondary" href="trial/" target="_blank" rel="noopener noreferrer" data-analytics="trial_download_click">Download Trial</a>
@@ -416,7 +469,7 @@ body.hero-video-open::after{
         <span><b class="check">✓</b> No subscription</span>
         <span><b class="check">✓</b> No cloud upload</span>
         <span><b class="check">✓</b> Windows 10 / 11</span>
-        <span><b class="check">✓</b> OCR + Excel extraction</span>
+        <span><b class="check">✓</b> OCR + Word / Excel</span>
       </div>
       <div class="hero-price-note">One-time license.<span data-product-price-wrap hidden> Current launch price: <strong data-product-price></strong>.</span></div>
       <div class="hero-security-link">
@@ -424,9 +477,9 @@ body.hero-video-open::after{
       </div>
     </div>
     <div class="app-stage">
-      <video id="heroProductVideo" autoplay muted loop playsinline preload="metadata" poster="assets/01_main_interface_overview.png" role="button" tabindex="0" aria-expanded="false" aria-label="Product preview. Click to enlarge; click again or press Escape to return.">
+      <video id="heroProductVideo" autoplay muted loop playsinline preload="metadata" poster="assets/v31/interface_overview.webp" role="button" tabindex="0" aria-expanded="false" aria-label="Product preview. Click to enlarge; click again or press Escape to return.">
         <source src="assets/v3-announcement-hero-loop.mp4" type="video/mp4">
-        <img src="assets/01_main_interface_overview.png" alt="PDF Redact & Extract Pro v3.0 main interface">
+        <img src="assets/v31/interface_overview.webp" alt="PDF Redact & Extract Pro v3.1 main interface">
       </video>
       <span class="video-zoom-hint" aria-hidden="true"><span class="hint-open">Click to enlarge</span><span class="hint-close">Click to return · Esc</span></span>
       <div class="micro-card"><strong>Redact + Extract</strong>One workspace, two output workflows.</div>
@@ -438,7 +491,7 @@ body.hero-video-open::after{
   <div class="wrap trust-row">
     <div class="trust-cell"><div class="trust-icon">PC</div><div><b>Local processing</b><span>Your files stay on your computer</span></div></div>
     <div class="trust-cell"><div class="trust-icon">OCR</div><div><b>Scanned PDFs</b><span>Create searchable OCR copies</span></div></div>
-    <div class="trust-cell"><div class="trust-icon">XLS</div><div><b>PDF → Excel</b><span>Extract structured fields and tables</span></div></div>
+    <div class="trust-cell"><div class="trust-icon">DOC</div><div><b>PDF → Word / Excel</b><span>Editable copies, tables extracted</span></div></div>
     <div class="trust-cell"><div class="trust-icon">∞</div><div><b>One-time purchase</b><span>No recurring subscription</span></div></div>
   </div>
 </section>
@@ -513,9 +566,33 @@ body.hero-video-open::after{
         </div>
       </div>
       <div class="showcase-media">
-        <img src="assets/11_table_full_workspace.png" alt="Table workspace in PDF Redact & Extract Pro v3.0" loading="lazy">
+        <img src="assets/v31/table_workspace.webp" alt="Table workspace in PDF Redact & Extract Pro v3.1" loading="lazy">
         <div class="media-caption">Table workspace with PDF preview, extraction controls and output configuration.</div>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="section convert-spot" id="convert">
+  <div class="wrap">
+    <div class="section-head center">
+      <div class="convert-badge"><span>New</span> PDF → Word &amp; Excel</div>
+      <h2>Convert Any PDF to Word or Excel. Even Scans.</h2>
+      <p>One click turns a whole PDF into an editable document — no rules to set up. Tables become real tables, pictures stay where they were, and scanned pages are recognised on the way. All on your PC.</p>
+    </div>
+    <figure class="convert-compare">
+      <img src="assets/v31/convert_scan_to_word.webp" alt="A scanned report on the left and the editable Word document made from it on the right: same layout, real text, the pie chart kept as a picture" loading="lazy" width="1600" height="966">
+      <figcaption>A scanned report (left) and the Word document Convert made from it (right): the layout is kept, the text is editable, the logo and the chart stay pictures.</figcaption>
+    </figure>
+    <div class="convert-grid">
+      <article class="convert-card"><div class="convert-icon">W</div><h3>Word, as in the PDF</h3><p>Real Word tables with merged cells, borders and fill; fonts, sizes, bold and colours; headings, bullet lists, links, headers and footers. Two layouts: <b>Editable</b> or <b>As in PDF</b>.</p></article>
+      <article class="convert-card"><div class="convert-icon">X</div><h3>Excel, ready to calculate</h3><p>Each table or the whole page. Numbers as numbers, dates as dates only when day and month cannot be mixed up, links as links. A table that runs over to the next page is joined into one.</p></article>
+      <article class="convert-card"><div class="convert-icon">OCR</div><h3>Scans included</h3><p>Scanned pages become text with tables, bold, underline, font sizes and colours — even white text on dark fills. Tilted and sideways pages are put upright.</p></article>
+      <article class="convert-card"><div class="convert-icon">▣</div><h3>Picture Areas</h3><p>Mark a logo, stamp or signature once: it stays a picture instead of turning into garbled text — in Word, in Excel and in OCR copies.</p></article>
+    </div>
+    <div class="convert-cta">
+      <a class="btn btn-primary" href="trial/" target="_blank" rel="noopener noreferrer" data-analytics="trial_download_click">Try it on your PDFs</a>
+      <a class="btn btn-secondary" href="help.html#convert" data-analytics="convert_guide_click">How Convert works</a>
     </div>
   </div>
 </section>
@@ -524,7 +601,7 @@ body.hero-video-open::after{
   <div class="wrap">
     <div class="section-head center"><div class="kicker">Designed for real documents</div><h2>Built for Real-World PDFs.</h2><p>Work with scans, changing page layouts and repeated jobs — from a single manual rectangle to reusable page-specific and batch workflows.</p></div>
     <div class="feature-cards">
-      <article class="feature-card"><div class="icon">OCR</div><h3>OCR for scans</h3><p>Create a searchable text layer, then use the normal Search, Auto and Table workflows.</p></article>
+      <article class="feature-card"><div class="icon">OCR</div><h3>OCR for scans</h3><p>Create a searchable copy — the scan with invisible text, or a clean rebuilt page — then use the normal Search, Auto and Table workflows.</p></article>
       <article class="feature-card"><div class="icon">Pg</div><h3>Page-specific modes</h3><p>Keep manual Draw areas or supported rule profiles different on individual pages when layouts change.</p></article>
       <article class="feature-card"><div class="icon">↻</div><h3>Templates & batch</h3><p>Save reusable configurations and process multiple PDFs or one file at a time.</p></article>
       <article class="feature-card"><div class="icon">👁</div><h3>Visual verification</h3><p>Review redaction overlays and extracted values before creating the final PDF or Excel file.</p></article>
@@ -547,7 +624,7 @@ body.hero-video-open::after{
       <div>
         <div class="price-label">Launch price</div>
         <div class="price"><span class="price-pending" data-price-loading>Current price</span><span data-product-price hidden></span><span class="regular-price" data-regular-price hidden></span></div>
-        <div class="price-note">One-time payment · Instant download via Payhip</div>
+        <div class="price-note">One-time payment · Use on up to 2 computers · Instant download via Payhip</div>
         <div class="price-actions">
           <a class="btn btn-primary" href="#pricing" data-buy-link data-analytics="buy_click">Buy &amp; Download<span data-product-price-wrap hidden> — <span data-product-price></span></span></a>
           <a class="btn btn-secondary" href="trial/" target="_blank" rel="noopener noreferrer" data-analytics="trial_download_click">Download Trial</a>
@@ -555,7 +632,7 @@ body.hero-video-open::after{
         <div class="secure">Secure payment via Payhip · PayPal and cards accepted</div>
       </div>
       <ul class="price-list">
-        <li>Full redaction workflow</li><li>Table & structured Excel extraction</li><li>OCR for scanned PDFs</li><li>Batch and one-by-one modes</li><li>Templates and page-specific tools</li><li>Windows 10 / 11</li><li>Free updates</li>
+        <li>Full redaction workflow</li><li>Table & structured Excel extraction</li><li>OCR for scanned PDFs</li><li>PDF &amp; scans to Word / Excel</li><li>Batch and one-by-one modes</li><li>Templates and page-specific tools</li><li>Windows 10 / 11</li><li>Up to 2 computers per license</li><li>Personal, professional and commercial use</li><li>Free version 3 updates</li>
       </ul>
     </div>
     <div class="windows-security-note" id="windows-security-notice" role="note" aria-label="Windows security compatibility notice">
@@ -573,9 +650,13 @@ body.hero-video-open::after{
     <div class="section-head"><div class="kicker">FAQ</div><h2>Before you download.</h2></div>
     <div class="faq-grid">
       <div class="faq-item"><h3>Does the app upload PDFs to a cloud service?</h3><p>No. The application is designed to process documents locally on your Windows PC.</p></div>
-      <div class="faq-item"><h3>Can it work with scanned PDFs?</h3><p>Yes. Use the OCR workflow to create searchable copies, then apply Search, Auto and Table tools.</p></div>
+      <div class="faq-item"><h3>Can it work with scanned PDFs?</h3><p>Yes. Create searchable OCR copies, then apply Search, Auto and Table tools — or convert the scan straight to Word or Excel. Picture Areas keep logos and stamps as pictures.</p></div>
+      <div class="faq-item" id="convert-word"><h3>Can it convert a PDF or a scan to Word?</h3><p>Yes. The Convert tab turns a whole PDF into an editable Word document or an Excel workbook, with tables, fonts, pictures and links. Scanned pages are recognised on the way. Everything runs locally; nothing is uploaded.</p></div>
       <div class="faq-item"><h3>Can I convert PDF data and tables to Excel?</h3><p>Yes. Use Search-to-Extract or Table tools to extract PDF data, structure it with Split/Merge, review it in Excel Preview, and create the final Excel output with Apply Extract.</p></div>
-      <div class="faq-item"><h3>Is this a subscription?</h3><p>No. The full version is sold as a one-time purchase.</p></div>
+      <div class="faq-item"><h3>Is this a subscription?</h3><p>No. The full version is sold as a one-time purchase. Updates of version 3 are free.</p></div>
+      <div class="faq-item" id="commercial-use"><h3>Can I use it for my business and for client documents?</h3><p>Yes. The license covers personal, professional and commercial work, on up to 2 computers of the license holder.</p></div>
+      <div class="faq-item" id="refunds"><h3>Can I get a refund?</h3><p>Please try the free trial first. If the full version does not work on your computer because of a defect and support cannot solve it, contact us within 14 days of the purchase for a refund.</p></div>
+      <div class="faq-item" id="license-computers"><h3>On how many computers can I use one license?</h3><p>One license can be active on up to 2 computers at the same time — for example, a desktop and a laptop. Moving to a new PC? Open <strong>Options → License → Deactivate this computer</strong> on the old one, then activate the license on the new one. Lost access to the old computer? Contact support and we will free the activation.</p></div>
       <div class="faq-item" id="windows-signing"><h3>Is the Windows app digitally code-signed?</h3><p>Not yet. The current release is an unsigned Windows application, so Windows Smart App Control or restrictive corporate security policies may prevent it from running. Code signing is planned for a future release. <strong>If your organization only permits digitally signed applications, please wait for a future signed release.</strong></p></div>
     </div>
   </div>
@@ -602,10 +683,54 @@ body.hero-video-open::after{
     </div>
   </div>
 </section>
+<!-- ===== NEW SECTION for index.html (insert after #contact, before </main>) ===== -->
+<section class="section warm" id="whats-new">
+  <div class="wrap">
+    <div class="section-head center">
+      <div class="kicker">What’s new in v3.1</div>
+      <h2>New and Improved Table Tools for Real-World PDFs.</h2>
+      <p>Version 3.1 handles the documents that break simple extractors: tables that move, lists printed side by side, mixed layouts and product catalogs with photos.</p>
+    </div>
+    <div class="v31">
+      <div class="v31-tabs" role="tablist" aria-label="New in version 3.1" aria-orientation="vertical">
+        <button class="v31-tab" role="tab" type="button" data-analytics="v31_tab_autoshift" id="v31-tab-autoshift" aria-controls="v31-panel-autoshift" aria-selected="true" tabindex="0">
+          <span class="v31-tab-top"><b>Auto Shift</b><span class="v31-num">01</span></span>
+          <p>The table moved? Your template follows.</p><span class="v31-bar"><span></span></span></button><button class="v31-tab" role="tab" type="button" data-analytics="v31_tab_sequence" id="v31-tab-sequence" aria-controls="v31-panel-sequence" aria-selected="false" tabindex="-1">
+          <span class="v31-tab-top"><b>Sequence</b><span class="v31-num">02</span></span>
+          <p>Side-by-side lists, one continuous table.</p><span class="v31-bar"><span></span></span></button><button class="v31-tab" role="tab" type="button" data-analytics="v31_tab_combine" id="v31-tab-combine" aria-controls="v31-panel-combine" aria-selected="false" tabindex="-1">
+          <span class="v31-tab-top"><b>Combine</b><span class="v31-num">03</span></span>
+          <p>Different tables. One clean sheet.</p><span class="v31-bar"><span></span></span></button><button class="v31-tab" role="tab" type="button" data-analytics="v31_tab_catalog" id="v31-tab-catalog" aria-controls="v31-panel-catalog" aria-selected="false" tabindex="-1">
+          <span class="v31-tab-top"><b>Catalog Cards</b><span class="v31-num">04</span></span>
+          <p>Product cards, photos included.</p><span class="v31-bar"><span></span></span></button>
+      </div>
+      <div class="v31-stage">
+        <div class="v31-panel" role="tabpanel" id="v31-panel-autoshift" aria-labelledby="v31-tab-autoshift">
+          <h3>The table moved? Your template follows.</h3><p class="v31-lead">One saved template finds the same table wherever it sits on the page, across a whole batch of files.</p><div class="v31-media"><img src="assets/v31/autoshift.webp" alt="Auto Shift: Three purchase orders, the line-items table in a different place each time: one template, 9 rows in Excel." loading="lazy"></div><p class="v31-mode-note">Three purchase orders, the line-items table in a different place each time: one template, 9 rows in Excel.</p>
+          <div class="v31-points"><div><b>Batch-ready</b>Different layouts, one template</div><div><b>Header-aware</b>Columns stay mapped by their header</div><div><b>Visible</b>Every hit is outlined in PDF Preview</div></div></div><div class="v31-panel" role="tabpanel" id="v31-panel-sequence" aria-labelledby="v31-tab-sequence" hidden>
+          <h3>Side-by-side lists, one continuous table.</h3><p class="v31-lead">Tables printed next to each other (T1 → T2 → T3) are read in order and exported as one list. Section titles are kept as their own column.</p><div class="v31-media"><img src="assets/v31/sequence.webp" alt="Sequence: A three-column price list: 24 rows in reading order, with the room name (Hierarchy Tables HT1–HT3) on every row." loading="lazy"></div><p class="v31-mode-note">A three-column price list: 24 rows in reading order, with the room name (Hierarchy Tables HT1–HT3) on every row.</p>
+          <div class="v31-points"><div><b>Reading order</b>Down each column, then the next</div><div><b>Section titles</b>Living · Hallway · Bath as a column</div><div><b>One sheet</b>No copy-pasting between tables</div></div></div><div class="v31-panel" role="tabpanel" id="v31-panel-combine" aria-labelledby="v31-tab-combine" hidden>
+          <h3>Different tables. One clean sheet.</h3><p class="v31-lead">Two tables with different column orders go into one schema. Match columns by header name, by position, or map them by hand.</p><div class="v31-modes" role="group" aria-label="Column match mode">
+            <button type="button" aria-pressed="true" data-mode="header">By Header Name</button><button type="button" aria-pressed="false" data-mode="position">By Position</button><button type="button" aria-pressed="false" data-mode="manual">Manual Mapping</button></div>
+          <div class="v31-media"><img id="v31-combine-img" src="assets/v31/combine.webp" alt="Two invoice tables with different column orders combined into one Excel sheet"></div>
+          <p class="v31-mode-note" id="v31-mode-note">Result in Excel: Date · Ref · Qty · Net · Tax from both tables. Pick a mode above to see the Combined Table window.</p>
+          <div class="v31-points"><div><b>By Header Name</b>Same column names line up</div><div><b>By Position</b>1st column to 1st column</div><div><b>Manual Mapping</b>You pick every source column</div></div></div><div class="v31-panel" role="tabpanel" id="v31-panel-catalog" aria-labelledby="v31-tab-catalog" hidden>
+          <h3>Product cards, photos included.</h3><p class="v31-lead">Draw one product card. Every matching card in the document becomes an Excel row, picture included. Merge card cells when a picture spans the row.</p><div class="v31-media"><img src="assets/v31/catalog.webp" alt="Catalog Cards: A product catalog: every card becomes one Excel row with SKU, product, price, category and its photo." loading="lazy"></div><p class="v31-mode-note">A product catalog: every card becomes one Excel row with SKU, product, price, category and its photo.</p>
+          <div class="v31-points"><div><b>Draw once</b>Refresh Matches finds the rest</div><div><b>Pictures in cells</b>JPEG, resized with the cell</div><div><b>Merge Cells</b>Join card cells, Unmerge to undo</div></div></div>
+      </div>
+    </div>
+    <div class="v31-cta">
+      <a class="btn btn-primary" href="#pricing" data-buy-link data-analytics="buy_click">Buy once<span data-product-price-wrap hidden> — <span data-product-price></span></span></a>
+      <a class="btn btn-secondary" href="trial/" target="_blank" rel="noopener noreferrer" data-analytics="trial_download_click">Download Trial</a>
+      <a class="btn btn-secondary" href="help.html#catalog-cards" data-analytics="v31_guide_click">Step-by-step guide</a>
+    </div>
+  </div>
+</section>
+<!-- ===== /NEW SECTION ===== -->
+
 </main>
 
 <footer>
-  <div class="wrap"><div class="footer-row"><div class="footer-brand">PDF Redact &amp; Extract <span>Pro v3.0</span></div><div class="footer-links"><a href="help.html">Help</a><a href="privacy.html">Privacy</a><a href="#pricing">Pricing</a><a href="#contact">Contact</a><a href="#" onclick="prpOpenCookieSettings();return false;">Cookie settings</a></div></div><div class="footer-copy">© 2026 PDF Redact &amp; Extract Pro. All rights reserved.</div></div>
+  <div class="wrap"><div class="footer-row"><div class="footer-brand">PDF Redact &amp; Extract <span>Pro v3.1</span></div><div class="footer-links"><a href="help.html">Help</a><a href="privacy.html">Privacy</a><a href="#pricing">Pricing</a><a href="#contact">Contact</a><a href="#" onclick="prpOpenCookieSettings();return false;">Cookie settings</a></div></div><div class="footer-copy">© 2026 PDF Redact &amp; Extract Pro. All rights reserved.</div></div>
 </footer>
 
 <div class="cookie" id="cookieConsent" role="dialog" aria-label="Cookie consent">
@@ -642,10 +767,10 @@ body.hero-video-open::after{
     schema.textContent = JSON.stringify({
       '@context':'https://schema.org','@type':'SoftwareApplication','name':'PDF Redact & Extract Pro','applicationCategory':'BusinessApplication',
       'operatingSystem':'Windows 10, Windows 11','url':'https://pdfredact.pro/',
-      'description':'Offline Windows software to redact PDFs, OCR scanned documents, extract PDF data, and convert PDF tables to Excel with visual review.',
-      'keywords':'PDF to Excel, Convert PDF to Excel, PDF data extraction, PDF table extraction, PDF redaction software, OCR PDF, offline PDF tool, Windows PDF redaction',
+      'description':'Offline Windows software to redact PDFs, OCR scanned documents, convert PDFs and scans to Word and Excel, and extract PDF data and tables with visual review.',
+      'keywords':'PDF to Word, Convert PDF to Word, PDF to Excel, Convert PDF to Excel, PDF data extraction, PDF table extraction, PDF redaction software, OCR PDF, offline PDF tool, Windows PDF redaction',
       'offers':{'@type':'Offer','price':p.price.toFixed(2),'priceCurrency':p.currency,'url':p.payhipUrl},
-      'featureList':['PDF redaction software','Convert PDF to Excel','PDF data extraction','PDF table extraction','OCR for scanned PDFs','Automatic PII detection','Search and RegEx workflows','Excel Preview','Split and Merge output fields','Batch processing','Page-specific Draw and Rules']
+      'featureList':['PDF redaction software','Convert PDF to Word','Convert scanned PDF to Word and Excel','Convert PDF to Excel','PDF data extraction','PDF table extraction','OCR for scanned PDFs','Automatic PII detection','Search and RegEx workflows','Excel Preview','Split and Merge output fields','Batch processing','Page-specific Draw and Rules']
     }); document.head.appendChild(schema);
   }
   function markProductUnavailable(){
@@ -736,6 +861,61 @@ body.hero-video-open::after{
 
   const form=document.getElementById('contactForm');
   form&&form.addEventListener('submit',async e=>{e.preventDefault();const btn=form.querySelector('button[type="submit"]');const old=btn.textContent;btn.textContent='Sending…';btn.disabled=true;try{const res=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{Accept:'application/json'}});if(res.ok){form.reset();document.getElementById('formOk').style.display='block';btn.textContent='Sent!';trackEvent('contact_submit')}else{throw new Error()}}catch(err){btn.textContent='Error. Try again.';btn.disabled=false;setTimeout(()=>btn.textContent=old,2500)}});
+</script>
+<script>
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('.v31-tab'));
+  var panels=tabs.map(function(t){return document.getElementById(t.getAttribute('aria-controls'));});
+  var AUTO_MS=7000, timer=null, start=0, raf=null, userTook=false;
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function select(i,focus){
+    tabs.forEach(function(t,j){var on=j===i;t.setAttribute('aria-selected',on);t.tabIndex=on?0:-1;panels[j].hidden=!on;
+      var b=t.querySelector('.v31-bar span'); if(b) b.style.width='0';});
+    if(focus) tabs[i].focus();
+    start=performance.now();
+  }
+  function current(){return tabs.findIndex(function(t){return t.getAttribute('aria-selected')==='true';});}
+  function tick(now){
+    if(userTook||reduce) return;
+    if(paused){ raf=requestAnimationFrame(tick); return; }
+    var i=current(), p=Math.min(1,(now-start)/AUTO_MS), b=tabs[i].querySelector('.v31-bar span');
+    if(b) b.style.width=(p*100)+'%';
+    if(p>=1) select((i+1)%tabs.length,false);
+    raf=requestAnimationFrame(tick);
+  }
+  function stopAuto(){userTook=true; tabs.forEach(function(t){var b=t.querySelector('.v31-bar');if(b)b.style.display='none';});}
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){stopAuto();select(i,false);});
+    t.addEventListener('keydown',function(e){
+      var k=e.key, n=null;
+      if(k==='ArrowDown'||k==='ArrowRight') n=(i+1)%tabs.length;
+      if(k==='ArrowUp'||k==='ArrowLeft') n=(i-1+tabs.length)%tabs.length;
+      if(k==='Home') n=0; if(k==='End') n=tabs.length-1;
+      if(n!==null){e.preventDefault();stopAuto();select(n,true);}
+    });
+  });
+  var stage=document.querySelector('.v31-stage'), paused=0;
+  // Hovering the picture pauses the auto-advance; leaving resumes it.
+  stage.addEventListener('mouseenter',function(){ paused=performance.now(); });
+  stage.addEventListener('mouseleave',function(){ if(paused){ start+=performance.now()-paused; paused=0; } });
+  // Combine: match-mode switcher (real Combined Table window in each mode)
+  var IMGS={"header": "assets/v31/combine_header.webp", "position": "assets/v31/combine_position.webp", "manual": "assets/v31/combine_manual.webp"};
+  var NOTES={header:'By Header Name: columns with the same name line up (Date ↔ Date, Ref ↔ Ref …).',
+             position:'By Position: the 1st column goes to the 1st output column, the 2nd to the 2nd, and so on.',
+             manual:'Manual Mapping: you choose the source column for every output column.'};
+  [].forEach.call(document.querySelectorAll('.v31-modes button'),function(b){
+    b.addEventListener('click',function(){
+      stopAuto();
+      [].forEach.call(document.querySelectorAll('.v31-modes button'),function(x){x.setAttribute('aria-pressed',x===b);});
+      var m=b.getAttribute('data-mode'); document.getElementById('v31-combine-img').src=IMGS[m];
+      document.getElementById('v31-mode-note').textContent=NOTES[m];
+    });
+  });
+  // start auto-advance only when the section is on screen
+  if('IntersectionObserver' in window){
+    var seen=false; new IntersectionObserver(function(es){es.forEach(function(e){ if(e.isIntersecting&&!seen){seen=true;start=performance.now();requestAnimationFrame(tick);} });},{threshold:.35}).observe(stage);
+  } else { start=performance.now(); requestAnimationFrame(tick); }
+})();
 </script>
 </body>
 </html>
