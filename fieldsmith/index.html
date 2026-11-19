@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Fieldsmith - Fillable PDF Form Creator for Windows | Create, Fill and Export PDF Forms</title>
-  <meta name="description" content="Fieldsmith turns any PDF, scan or phone photo into a fillable PDF form in one click. Edit and test fields, fill forms from Excel, collect the answers in Excel and send fillable Word forms. Offline Windows software, one-time license.">
+  <meta name="description" content="Fieldsmith turns any PDF, scan or phone photo into a fillable PDF form in one click. Edit and test fields, fill forms from Excel, export form data to Excel and create fillable Word forms. Offline Windows software, one-time license.">
   <meta name="keywords" content="fillable PDF form, create fillable PDF, PDF form creator, PDF form field editor, fill PDF from Excel, PDF form data to Excel, fillable Word form, scanned form to fillable PDF, offline PDF form software, Windows">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://pdfredact.pro/fieldsmith/">
@@ -512,7 +512,7 @@ body.hero-video-open::after{
         <span class="hero-line"><span class="hero-word-a">Fillable</span> form.</span>
         <span class="hero-line hero-local">One click.</span>
       </h1>
-      <p class="hero-copy">Open a PDF, a scan or a phone photo and press Analyze: text boxes, dates, check boxes, radio buttons, drop-downs and signature lines appear where they belong. Edit and test them, fill hundreds of forms from Excel, collect the answers in Excel and send fillable Word forms.</p>
+      <p class="hero-copy">Open a PDF, a scan or a phone photo and press Analyze: text boxes, dates, check boxes, radio buttons, drop-downs and signature lines appear where they belong. Edit and test them, fill hundreds of forms from Excel, export the data of filled forms to Excel and create fillable Word forms.</p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="#pricing" data-buy-link data-analytics="fs_buy_click">Buy once<span data-product-price-wrap hidden> &mdash; <span data-product-price></span></span></a>
         <a class="btn btn-secondary" href="trial/" target="_blank" rel="noopener noreferrer" data-analytics="fs_trial_download_click">Download free trial</a>
@@ -537,7 +537,7 @@ body.hero-video-open::after{
   <div class="wrap trust-row">
     <div class="trust-cell"><div class="trust-icon">1&#215;</div><div><b>One-click detection</b><span>Boxes, lines, tables, captions</span></div></div>
     <div class="trust-cell"><div class="trust-icon">OCR</div><div><b>Scans &amp; photos</b><span>Straightened, cleaned, read</span></div></div>
-    <div class="trust-cell"><div class="trust-icon">XLS</div><div><b>Excel in, Excel out</b><span>Fill forms, collect answers</span></div></div>
+    <div class="trust-cell"><div class="trust-icon">XLS</div><div><b>Excel in, Excel out</b><span>Fill PDFs from Excel, export form data to Excel</span></div></div>
     <div class="trust-cell"><div class="trust-icon">PC</div><div><b>Local processing</b><span>Your documents stay with you</span></div></div>
   </div>
 </section>
@@ -554,7 +554,7 @@ body.hero-video-open::after{
       <div class="step"><div class="step-num">1</div><h3>Open</h3><p>A PDF, a Word document, a scan or a photo of a paper form.</p></div>
       <div class="step"><div class="step-num">2</div><h3>Analyze</h3><p>Fields are found and named after their labels: text, dates, check boxes, radio groups, drop-downs, signatures.</p></div>
       <div class="step"><div class="step-num">3</div><h3>Edit &amp; test</h3><p>Move, resize, align many fields at once; change types and choices; try the form in Preview mode.</p></div>
-      <div class="step"><div class="step-num">4</div><h3>Export</h3><p>A standard fillable PDF, many filled PDFs from Excel, the answers in Excel, or a fillable Word form.</p></div>
+      <div class="step"><div class="step-num">4</div><h3>Export</h3><p>A standard fillable PDF, many filled PDFs from Excel, the form data in an Excel table, or a fillable Word form.</p></div>
     </div>
   </div>
 </section>
@@ -601,7 +601,7 @@ body.hero-video-open::after{
     <div class="showcase reverse" style="margin-top:56px">
       <div class="showcase-copy">
         <div class="kicker">PDF &rarr; Excel</div>
-        <h3>All the answers in one table.</h3>
+        <h3>Form data from many PDFs in one Excel table.</h3>
         <p>Choose the filled PDFs you got back &mdash; Fieldsmith reads every field and writes one Excel row per PDF (or one row per table row).</p>
         <div class="bullet-stack">
           <div class="bullet"><i>&#10003;</i><span>Values of this form, or of many filled PDFs at once.</span></div>
@@ -656,7 +656,7 @@ body.hero-video-open::after{
         <div class="secure">Secure payment via Payhip &middot; PayPal and cards accepted</div>
       </div>
       <ul class="price-list">
-        <li>Automatic field detection</li><li>Scans and phone photos (OCR)</li><li>Full form field editor</li><li>Preview mode</li><li>Fill PDFs from Excel</li><li>Export answers to Excel</li><li>Fillable Word forms</li><li>Windows 10 / 11</li><li>Up to 2 computers per license</li><li>Personal, professional and commercial use</li>
+        <li>Automatic field detection</li><li>Scans and phone photos (OCR)</li><li>Full form field editor</li><li>Preview mode</li><li>Fill PDFs from Excel</li><li>Export form data to Excel</li><li>Fillable Word forms</li><li>Windows 10 / 11</li><li>Up to 2 computers per license</li><li>Personal, professional and commercial use</li>
       </ul>
     </div>
     <div class="windows-security-note" id="windows-security-notice" role="note" aria-label="Windows security compatibility notice">
@@ -749,7 +749,7 @@ body.hero-video-open::after{
     schema.textContent = JSON.stringify({
       '@context':'https://schema.org','@type':'SoftwareApplication','name':'Fieldsmith - PDF Form Field Editor','applicationCategory':'BusinessApplication',
       'operatingSystem':'Windows 10, Windows 11','url':'https://pdfredact.pro/fieldsmith/',
-      'description':'Offline Windows software that turns PDFs, scans and phone photos into fillable PDF forms, fills forms from Excel, exports answers to Excel and creates fillable Word forms.',
+      'description':'Offline Windows software that turns PDFs, scans and phone photos into fillable PDF forms, fills forms from Excel, exports form data to Excel and creates fillable Word forms.',
       'offers':{'@type':'Offer','price':p.price.toFixed(2),'priceCurrency':p.currency,'url':p.payhipUrl},
       'featureList':['Create fillable PDF forms automatically','Fillable form from a scan or photo (OCR)','Fill PDF forms from Excel','Export PDF form data to Excel','Fillable Word forms','Form field editor','Offline, no upload']
     }); document.head.appendChild(schema);
