@@ -3,6 +3,14 @@
   "channelUrl": "https://www.youtube.com/@PDFRedactPro/videos",
   "videos": [
     {
+      "id": "qeoqbcUOnlU",
+      "title": "Fieldsmith — Turn Any PDF into a Fillable Form in One Click | PDF Form Creator for Windows",
+      "description": "Fieldsmith turns any PDF, scan or phone photo into a fillable PDF form in one click — then fills it from Excel, collects the answers in Excel and sends it as a fillable Word form. Offline Windows software, one-time li...",
+      "published": "2026-11-19T01:40:01+00:00",
+      "url": "https://www.youtube.com/watch?v=qeoqbcUOnlU",
+      "thumbnail": "https://i.ytimg.com/vi/qeoqbcUOnlU/hqdefault.jpg"
+    },
+    {
       "id": "C3us6CT1570",
       "title": "PDF Redact & Extract PRO v3.1 | New Features & Real Software Demo",
       "description": "Meet PDF Redact & Extract PRO v3.1 — a Windows desktop app for extracting data from PDFs, working with complex tables, redacting sensitive information, and converting documents.",
@@ -25,15 +33,7 @@
       "published": "2026-08-30T10:18:08+00:00",
       "url": "https://www.youtube.com/watch?v=EBqnh8_hjCM",
       "thumbnail": "https://i.ytimg.com/vi/EBqnh8_hjCM/hqdefault.jpg"
-    },
-    {
-      "id": "YuAVucOLD78",
-      "title": "Coming Soon: PDF Redact & Extract Pro v3.0 – New Data Extraction & Smarter Redaction",
-      "description": "PDF Redact & Extract Pro v3.0 is coming soon.",
-      "published": "2026-08-18T13:04:41+00:00",
-      "url": "https://www.youtube.com/watch?v=YuAVucOLD78",
-      "thumbnail": "https://i.ytimg.com/vi/YuAVucOLD78/hqdefault.jpg"
     }
   ],
-  "updatedAt": "2026-11-12T19:55:26.537Z"
+  "updatedAt": "2026-11-19T07:27:43.184Z"
 }
