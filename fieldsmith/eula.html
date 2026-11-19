@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>License Agreement (EULA) - Fieldsmith</title>
+  <meta name="description" content="End User License Agreement for Fieldsmith - PDF Form Field Editor.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://pdfredact.pro/fieldsmith/eula.html">
+  <link rel="icon" href="assets/favicon.ico">
+  <script>
+    window.PRP_GA_ID = 'G-NYWCCW67BT';
+    window.PRP_COOKIE_CHOICE_KEY = 'prp_analytics_consent';
+    function prpIsProductionHost() {
+      return location.hostname === 'pdfredact.pro' || location.hostname === 'www.pdfredact.pro';
+    }
+    function prpLoadAnalytics() {
+      if (!prpIsProductionHost() || window.PRP_ANALYTICS_LOADED) return;
+      window.PRP_ANALYTICS_LOADED = true;
+      var gaScript = document.createElement('script');
+      gaScript.async = true;
+      gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=' + window.PRP_GA_ID;
+      document.head.appendChild(gaScript);
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function(){ dataLayer.push(arguments); };
+      gtag('js', new Date());
+      gtag('config', window.PRP_GA_ID, { anonymize_ip: true });
+    }
+    function prpGetCookieChoice() {
+      try { return localStorage.getItem(window.PRP_COOKIE_CHOICE_KEY); }
+      catch (e) { return null; }
+    }
+    if (prpGetCookieChoice() === 'accepted') {
+      prpLoadAnalytics();
+    }
+  </script>
+  <style>
+    :root{--bg:#f7f8fa;--bg2:#fff;--border:#e2e6ee;--border2:#d0d5e0;--text:#2c3245;--text2:#5a6278;--text3:#8e97ab;--heading:#111827;--accent:#2563eb;--accent2:#f59e0b;--header-h:54px}
+    *{box-sizing:border-box;margin:0;padding:0} html{scroll-behavior:smooth} body{font-family:"Segoe UI",system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.7;padding-top:var(--header-h)}
+    .topbar{position:fixed;top:0;left:0;right:0;height:var(--header-h);background:#fff;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 32px;z-index:200;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+    .brand{display:flex;align-items:center;gap:9px;text-decoration:none;color:var(--heading);font-weight:800}.brand img{width:24px;height:24px}.brand span span{color:var(--accent2)}
+    .topbar a.nav{color:var(--text2);text-decoration:none;font-size:13.5px;font-weight:600}.topbar a.nav:hover{color:var(--accent)}
+    main{max-width:920px;margin:0 auto;padding:54px 24px 70px}.card{background:#fff;border:1px solid var(--border);border-radius:18px;padding:34px;box-shadow:0 16px 45px rgba(15,23,42,.06)}
+    h1{font-size:42px;line-height:1.15;color:var(--heading);letter-spacing:-.04em;margin-bottom:10px} h2{font-size:22px;color:var(--heading);margin:30px 0 10px} p,li{color:var(--text2)} ul{margin-left:22px} a{color:var(--accent);text-decoration:none;font-weight:600} a:hover{text-decoration:underline}.muted{color:var(--text3);font-size:13px;margin-bottom:24px}.note{background:#f8fafc;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin:18px 0}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}.btn{border:1px solid var(--border2);border-radius:10px;padding:10px 14px;background:#fff;color:var(--heading);font-weight:700;cursor:pointer;font:inherit}.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+    footer{text-align:center;border-top:1px solid var(--border);padding:28px 20px;color:var(--text3);font-size:13px;background:#fff}.footer-badge{margin:0 0 12px}.footer-badge a{display:inline-flex;align-items:center;opacity:.86;transition:opacity .15s,transform .15s}.footer-badge a:hover{opacity:1;transform:translateY(-1px)}.footer-badge img{display:block;max-width:150px;height:auto}
+    .cookie-consent{position:fixed;left:18px;right:18px;bottom:18px;max-width:980px;margin:0 auto;display:none;align-items:center;justify-content:space-between;gap:18px;padding:16px 18px;background:rgba(255,255,255,.96);border:1px solid var(--border);border-radius:14px;box-shadow:0 18px 55px rgba(15,23,42,.18);z-index:1000;backdrop-filter:blur(12px)}.cookie-consent.show{display:flex}.cookie-consent p{margin:0;color:var(--text2);font-size:13.5px;line-height:1.55}.cookie-consent strong{color:var(--heading)}.cookie-actions{display:flex;gap:10px;flex-shrink:0}.cookie-btn{border:1px solid var(--border2);border-radius:9px;padding:9px 14px;font:inherit;font-size:13px;font-weight:700;cursor:pointer;background:#fff;color:var(--heading)}.cookie-btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}@media(max-width:720px){.topbar{padding:0 18px}h1{font-size:32px}.card{padding:24px}.cookie-consent{align-items:stretch;flex-direction:column}.cookie-actions{width:100%}.cookie-btn{flex:1}}
+    .cookie-settings-modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 22px;
+      background: rgba(15, 23, 42, .55);
+      z-index: 1400;
+    }
+    .cookie-settings-modal.show { display: flex; }
+    .cookie-settings-panel {
+      width: min(520px, 100%);
+      background: #fff;
+      border: 1px solid var(--border, var(--line, #e2e6ee));
+      border-radius: 16px;
+      box-shadow: 0 28px 80px rgba(15,23,42,.30);
+      padding: 22px;
+      color: var(--text, var(--ink, #2c3245));
+    }
+    .cookie-settings-panel h2 {
+      margin: 0 0 8px;
+      color: var(--heading, var(--ink, #111827));
+      font-size: 22px;
+      line-height: 1.2;
+    }
+    .cookie-settings-panel p {
+      margin: 0 0 14px;
+      color: var(--text2, var(--muted, #5a6278));
+      font-size: 14px;
+      line-height: 1.55;
+    }
+    .cookie-status {
+      margin: 14px 0 18px;
+      padding: 12px 14px;
+      border-radius: 11px;
+      background: #f8fafc;
+      border: 1px solid var(--border, var(--line, #e2e6ee));
+      font-size: 13.5px;
+      color: var(--text2, var(--muted, #5a6278));
+    }
+    .cookie-status strong { color: var(--heading, var(--ink, #111827)); }
+    .cookie-settings-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+    .cookie-settings-actions .cookie-btn { min-width: 110px; }
+    @media (max-width: 540px) {
+      .cookie-settings-actions { flex-direction: column; }
+      .cookie-settings-actions .cookie-btn { width: 100%; }
+    }
+
+  </style>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="./"><img src="assets/icon-64.png" alt=""><span>Field<span>smith</span></span></a>
+  <a class="nav" href="./">Back to Fieldsmith</a>
+</header>
+<main>
+  <div class="card">
+    <h1>Fieldsmith License Agreement</h1>
+    <p class="muted">End User License Agreement (EULA) &middot; Fieldsmith 1.0</p>
+<p>Please read this agreement before installing or using Fieldsmith (&quot;the Software&quot;). By installing, copying or using the Software you accept this agreement. If you do not accept it, do not install or use the Software.</p>
+<p>In this agreement, &quot;Licensor&quot; means the publisher of Fieldsmith, and &quot;you&quot; means the person or the organisation that installs or uses the Software.</p>
+<h2>1. License</h2>
+<p>The Software is licensed, not sold. Subject to this agreement, the Licensor grants you a non-exclusive, non-transferable license to install and use the Software:</p>
+<ul><li>Trial: for evaluation, with the limits shown in the Software (a limited number of days and launches, and a limited number of pages saved per launch).</li><li>Purchased license: on up to two (2) computers at the same time per license key, for personal or business use. A computer can be released with &quot;Deactivate This Computer&quot; and the key used on another computer.</li></ul>
+<h2>2. Restrictions</h2>
+<p>You may not:</p>
+<ul><li>share, publish, sell, rent or lend your license key, or let other people use it;</li><li>remove, bypass or tamper with the license check, the trial limits or copyright notices;</li><li>reverse engineer, decompile or disassemble the Software, except where the law expressly</li></ul>
+<p>allows it in spite of this restriction;</p>
+<ul><li>distribute modified copies of the Software.</li></ul>
+<p>The trial version may be shared unchanged, in its original installer, without charge.</p>
+<h2>3. Third-Party Components</h2>
+<p>The Software includes open-source components (for example Qt / PySide6, PDFium, pikepdf / QPDF and Tesseract OCR). They are licensed under their own licenses, which are listed in THIRD_PARTY_LICENSES.txt and in the &quot;licenses&quot; folder of the program. Nothing in this agreement limits your rights under those licenses. In particular, the Qt libraries (LGPL-3.0) are separate files in the program folder and may be replaced with compatible versions.</p>
+<h2>4. Your Documents And Data</h2>
+<p>The Software processes your documents on your own computer; documents are not uploaded. The license check sends only the license key and an anonymous identifier of the computer. You are responsible for your documents, for keeping backup copies and for checking every result (fields, filled values, exported files) before you rely on it or send it to others.</p>
+<h2>5. No Warranty</h2>
+<p>The Software is provided &quot;as is&quot; and &quot;as available&quot;. To the maximum extent permitted by law, the Licensor gives no warranty of any kind, express or implied, including fitness for a particular purpose, merchantability, accuracy of results and uninterrupted or error-free operation. Automatic detection of form fields, OCR and conversions can be incomplete or wrong and must be checked by you.</p>
+<h2>6. Limitation Of Liability</h2>
+<p>To the maximum extent permitted by law, the Licensor is not liable for any indirect, incidental, special or consequential damages, or for loss of data, profits, business or documents, arising from the use of or inability to use the Software. In any case, the Licensor&#x27;s total liability is limited to the amount you paid for the license.</p>
+<h2>7. Refunds</h2>
+<p>Please use the free trial to make sure the Software suits your needs before you buy. A refund is given only when the Software has a defect that prevents its main functions from working and that cannot be fixed or worked around, reported through the contact form on the website within 14 days of the purchase. Statutory consumer rights that cannot be excluded remain unaffected.</p>
+<h2>8. Updates And Support</h2>
+<p>Updates and support are provided at the Licensor&#x27;s discretion. Support requests are handled through the contact form on the Fieldsmith website.</p>
+<h2>9. Termination</h2>
+<p>This license ends automatically if you break this agreement. You must then stop using the Software and delete all copies. Sections 3 to 6 and 10 remain in force after termination.</p>
+<h2>10. General</h2>
+<p>This agreement is governed by the laws of the Licensor&#x27;s country of residence, without regard to its conflict-of-law rules, except where mandatory consumer law of your country applies. If any provision is found unenforceable, the remaining provisions stay in force. This is the entire agreement about the Software between you and the Licensor.</p>
+    <div class="actions"><a class="btn primary" href="./">Back to Fieldsmith</a></div>
+  </div>
+</main>
+<footer>&copy; 2026 Fieldsmith. All rights reserved. &middot; <a href="../privacy.html">Privacy</a></footer>
+<div class="cookie-consent" id="cookieConsent" role="dialog" aria-live="polite" aria-label="Cookie consent">
+  <p><strong>Privacy choices.</strong> We use essential storage to make this website work. With your consent, we also use Google Analytics to understand visits and improve this website.</p>
+  <div class="cookie-actions">
+    <button type="button" class="cookie-btn" id="cookieReject">Reject</button>
+    <button type="button" class="cookie-btn primary" id="cookieAccept">Accept analytics</button>
+  </div>
+</div>
+
+<div class="cookie-settings-modal" id="cookieSettingsModal" role="dialog" aria-modal="true" aria-labelledby="cookieSettingsTitle">
+  <div class="cookie-settings-panel">
+    <h2 id="cookieSettingsTitle">Cookie Settings</h2>
+    <p>Essential storage is used only to remember your choice. Google Analytics runs only if you accept analytics.</p>
+    <div class="cookie-status" id="cookieStatus">Current choice: <strong>not selected yet</strong></div>
+    <div class="cookie-settings-actions">
+      <button type="button" class="cookie-btn" id="settingsReject">Reject</button>
+      <button type="button" class="cookie-btn primary" id="settingsAccept">Accept analytics</button>
+      <button type="button" class="cookie-btn" id="settingsClose">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var key = window.PRP_COOKIE_CHOICE_KEY || 'prp_analytics_consent';
+  var banner = document.getElementById('cookieConsent');
+  var accept = document.getElementById('cookieAccept');
+  var reject = document.getElementById('cookieReject');
+  function hideBanner(){ if (banner) banner.classList.remove('show'); }
+  function showBanner(){ if (banner) banner.classList.add('show'); }
+  var prpCookieChoiceKey = key;
+  var cookieBanner = banner;
+  function hideCookieBanner(){ hideBanner(); }
+
+  var cookieSettingsModal = document.getElementById('cookieSettingsModal');
+  var cookieStatus = document.getElementById('cookieStatus');
+  var settingsAccept = document.getElementById('settingsAccept');
+  var settingsReject = document.getElementById('settingsReject');
+  var settingsClose = document.getElementById('settingsClose');
+  function getCookieChoice(){ try{return localStorage.getItem(prpCookieChoiceKey);}catch(e){return null;} }
+  function updateCookieStatus(){
+    if(!cookieStatus) return;
+    var choice = getCookieChoice();
+    var label = choice === 'accepted' ? 'analytics accepted' : choice === 'rejected' ? 'analytics rejected' : 'not selected yet';
+    cookieStatus.innerHTML = 'Current choice: <strong>' + label + '</strong>';
+  }
+  function openCookieSettingsModal(){ updateCookieStatus(); if(cookieSettingsModal) cookieSettingsModal.classList.add('show'); }
+  function closeCookieSettingsModal(){ if(cookieSettingsModal) cookieSettingsModal.classList.remove('show'); }
+  window.prpOpenCookieSettings = function(){ openCookieSettingsModal(); };
+  function acceptAnalyticsChoice(){ try{localStorage.setItem(prpCookieChoiceKey,'accepted');}catch(e){} if(typeof window.prpLoadAnalytics === 'function') window.prpLoadAnalytics(); if(typeof window.gtag === 'function') window.gtag('event','analytics_consent_accept'); hideCookieBanner(); updateCookieStatus(); closeCookieSettingsModal(); }
+  function rejectAnalyticsChoice(){ try{localStorage.setItem(prpCookieChoiceKey,'rejected');}catch(e){} hideCookieBanner(); updateCookieStatus(); closeCookieSettingsModal(); }
+  if(settingsAccept) settingsAccept.addEventListener('click', acceptAnalyticsChoice);
+  if(settingsReject) settingsReject.addEventListener('click', rejectAnalyticsChoice);
+  if(settingsClose) settingsClose.addEventListener('click', closeCookieSettingsModal);
+  if(cookieSettingsModal) cookieSettingsModal.addEventListener('click', function(e){ if(e.target === cookieSettingsModal) closeCookieSettingsModal(); });
+  if (!getCookieChoice()) showBanner();
+  if (accept) accept.addEventListener('click', acceptAnalyticsChoice);
+  if (reject) reject.addEventListener('click', rejectAnalyticsChoice);
+})();
+</script>
+</body>
+</html>
